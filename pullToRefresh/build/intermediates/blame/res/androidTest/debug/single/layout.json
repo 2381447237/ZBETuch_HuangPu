@@ -4,7 +4,15 @@
         "source": "C:\\Users\\sfhan\\Desktop\\clon\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_horizontal.xml"
     },
     {
+        "merged": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_horizontal.xml",
+        "source": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_horizontal.xml"
+    },
+    {
         "merged": "C:\\Users\\sfhan\\Desktop\\clon\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_vertical.xml",
         "source": "C:\\Users\\sfhan\\Desktop\\clon\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_vertical.xml"
+    },
+    {
+        "merged": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_vertical.xml",
+        "source": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_vertical.xml"
     }
 ]

@@ -20,7 +20,7 @@ public class MyOkHttpUtils {
     public static final String BaseUrl="http://web.youli.pw:8088";
     public static OkHttpClient okHttpClient=null;
 
-    static String cookies=SharedPreferencesUtils.getString("cookie");
+    static String cookies;
 
     //懒汉
     private static synchronized OkHttpClient getInstance(){
@@ -30,7 +30,7 @@ public class MyOkHttpUtils {
               okHttpClient=new OkHttpClient();
 
           }
-
+        cookies=SharedPreferencesUtils.getString("cookie");
           return  okHttpClient;
     }
 
@@ -48,7 +48,7 @@ public class MyOkHttpUtils {
 
         Request request=new Request.Builder().addHeader("cookie",cookies).url(url).build();
 
-
+        Log.e("2017/11/8","cookies="+cookies);
 
         Response response=null;
 

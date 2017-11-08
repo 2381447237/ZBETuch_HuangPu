@@ -23,8 +23,10 @@
             android:screenOrientation="portrait"></activity>
         <activity android:name=".activity.AdminInfoActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name=".activity.FunctionListActivity"/>
-        <activity android:name=".activity.ZiyuandiaochaActivity"/><!--资源调查-->
+        <activity android:name=".activity.FunctionListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ZiyuandiaochaActivity"
+            android:screenOrientation="portrait"/><!--资源调查-->
 
     </application>
 

@@ -91,13 +91,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     //显示关于Dialog
     private void showAboutDialog() {
-        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_login_about, null);
         builder.setView(view);
         TextView tv_dialog_app_version = (TextView) view.findViewById(R.id.tv_dialog_app_version);
         //修改dialog的软件版本的内容为Manifest中的VersionName
 //        tv_dialog_app_version.setText(GetManifestInfo.getVersionName(this));
-        android.support.v7.app.AlertDialog dialog = builder.create();
+        AlertDialog dialog = builder.create();
         dialog.show();
 
     }

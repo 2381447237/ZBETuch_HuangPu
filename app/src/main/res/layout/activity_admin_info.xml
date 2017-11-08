@@ -57,6 +57,7 @@
                android:layout_alignParentRight="true"/>
 
            <com.youli.zbetuch_huangpu.view.CircleImageView
+               android:id="@+id/iv_admin_info_head"
                android:layout_toLeftOf="@id/iv_admin_info_head_arrow"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
@@ -92,13 +93,14 @@
                 android:layout_alignParentRight="true"/>
 
             <TextView
+                android:id="@+id/tv_admin_info_name"
                 android:textColor="#cccccc"
                 android:layout_toLeftOf="@id/iv_admin_info_head_name"
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="admin"
+
                 />
 
         </RelativeLayout>
@@ -124,13 +126,14 @@
                 android:src="@drawable/jt"
                 android:layout_alignParentRight="true"/>
             <TextView
+                android:id="@+id/tv_admin_info_email"
                 android:textColor="#cccccc"
                 android:layout_toLeftOf="@id/iv_admin_info_head_email"
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="2381447237@qq.com"
+
                 />
 
         </RelativeLayout>

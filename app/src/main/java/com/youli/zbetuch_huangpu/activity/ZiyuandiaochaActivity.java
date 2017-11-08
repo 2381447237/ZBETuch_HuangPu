@@ -136,7 +136,7 @@ public class ZiyuandiaochaActivity extends BaseActivity implements View.OnClickL
             }
         });
 
-      //  getNetData(typeStr, streetId);
+        getNetData(typeStr, streetId);
 
     }
 
@@ -178,8 +178,10 @@ public class ZiyuandiaochaActivity extends BaseActivity implements View.OnClickL
                         } else {
                             url = MyOkHttpUtils.BaseUrl + "/Json/GetResourceSurvey.aspx?STREET" + finalStreet + "&TYPE=" + typeStr + "&page=0&rows=15";
                         }
-
+                        Log.e("2017/11/8","url="+url);
                         Response response = MyOkHttpUtils.okHttpGet(url);
+
+
 
                         try {
                             Message msg = Message.obtain();
@@ -187,6 +189,9 @@ public class ZiyuandiaochaActivity extends BaseActivity implements View.OnClickL
 
                                 if (response.body() != null) {
                                     String infoStr = response.body().string();
+
+                                    Log.e("2017/11/8","infoStr="+infoStr);
+
                                     if (!TextUtils.equals(infoStr, "")) {
 
                                         Gson gson = new Gson();
@@ -273,10 +278,10 @@ public class ZiyuandiaochaActivity extends BaseActivity implements View.OnClickL
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        Intent intent=new Intent(this,ZiyuanDetailListActivity.class);
-        intent.putExtra("TYPE",RInfoList.get(position).getTYPE());
-        intent.putExtra("RInfo",RInfoList.get(position));
-        startActivity(intent);
+//        Intent intent=new Intent(this,ZiyuanDetailListActivity.class);
+//        intent.putExtra("TYPE",RInfoList.get(position).getTYPE());
+//        intent.putExtra("RInfo",RInfoList.get(position));
+//        startActivity(intent);
 
     }
 }
