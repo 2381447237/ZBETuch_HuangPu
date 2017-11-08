@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#f1f1f1">
+
+    <RelativeLayout
+        android:padding="10dp"
+        android:background="@drawable/shape_homepage_title_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_admin_info_back"
+            android:layout_centerVertical="true"
+            android:src="@drawable/fh"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:textSize="22sp"
+            android:textColor="#ffffff"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="个 人 信 息"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+       <RelativeLayout
+           android:layout_marginTop="5dp"
+           android:background="#ffffff"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:padding="10dp">
+
+           <TextView
+               android:layout_centerVertical="true"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textSize="20sp"
+               android:text="头像"/>
+
+           <ImageView
+               android:id="@+id/iv_admin_info_head_arrow"
+               android:layout_centerVertical="true"
+               android:layout_width="wrap_content"
+               android:layout_height="15dp"
+               android:src="@drawable/jt"
+               android:layout_alignParentRight="true"/>
+
+           <com.youli.zbetuch_huangpu.view.CircleImageView
+               android:layout_toLeftOf="@id/iv_admin_info_head_arrow"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/personhead"
+               app:civ_border_color="#ffffff"
+               app:civ_border_width="1dp"
+               />
+
+
+
+       </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="5dp"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="昵称"/>
+
+            <ImageView
+                android:id="@+id/iv_admin_info_head_name"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:src="@drawable/jt"
+                android:layout_alignParentRight="true"/>
+
+            <TextView
+                android:textColor="#cccccc"
+                android:layout_toLeftOf="@id/iv_admin_info_head_name"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="admin"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="5dp"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="电子邮箱"/>
+            <ImageView
+                android:id="@+id/iv_admin_info_head_email"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:src="@drawable/jt"
+                android:layout_alignParentRight="true"/>
+            <TextView
+                android:textColor="#cccccc"
+                android:layout_toLeftOf="@id/iv_admin_info_head_email"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="2381447237@qq.com"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
