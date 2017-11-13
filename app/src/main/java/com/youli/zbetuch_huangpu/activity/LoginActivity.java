@@ -145,6 +145,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                     @Override
                     public void run() {
                         String url= MyOkHttpUtils.BaseUrl+"/login.aspx?username="+name+"&password="+password;
+
+                        Log.e("2017/11/9","登录="+url);
+
                         Response response=MyOkHttpUtils.okHttpGet(url);
 
                         //获得cookies

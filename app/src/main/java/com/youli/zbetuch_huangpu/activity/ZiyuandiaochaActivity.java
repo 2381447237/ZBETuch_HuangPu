@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.youli.zbetuch_huangpu.R;
 import com.youli.zbetuch_huangpu.adapter.CommonAdapter;
+import com.youli.zbetuch_huangpu.entity.AdminInfo;
 import com.youli.zbetuch_huangpu.entity.CommonViewHolder;
 import com.youli.zbetuch_huangpu.entity.ResourcesInfo;
 import com.youli.zbetuch_huangpu.entity.StreetInfo;
@@ -159,7 +160,7 @@ public class ZiyuandiaochaActivity extends BaseActivity implements View.OnClickL
     private void getNetData(String type, String street) {
 
         if (type == null) {
-            type = "请选择";
+            type = "全部";
         }
         if (street == null) {
             street = "0";
@@ -173,10 +174,10 @@ public class ZiyuandiaochaActivity extends BaseActivity implements View.OnClickL
 
                         String url = null;
 
-                        if (TextUtils.equals(finalType, "请选择")) {
+                        if (TextUtils.equals(finalType, "全部")) {
                             url = MyOkHttpUtils.BaseUrl + "/Json/GetResourceSurvey.aspx?STREET=" + finalStreet + "&page=0&rows=15";
                         } else {
-                            url = MyOkHttpUtils.BaseUrl + "/Json/GetResourceSurvey.aspx?STREET" + finalStreet + "&TYPE=" + typeStr + "&page=0&rows=15";
+                            url = MyOkHttpUtils.BaseUrl + "/Json/GetResourceSurvey.aspx?STREET=" + finalStreet + "&TYPE=" + typeStr + "&page=0&rows=15";
                         }
                         Log.e("2017/11/8","url="+url);
                         Response response = MyOkHttpUtils.okHttpGet(url);
@@ -195,13 +196,18 @@ public class ZiyuandiaochaActivity extends BaseActivity implements View.OnClickL
                                     if (!TextUtils.equals(infoStr, "")) {
 
                                         Gson gson = new Gson();
+                                        try {
+                                            RInfoList = gson.fromJson(infoStr, new TypeToken<List<ResourcesInfo>>() {}.getType());
 
-                                        RInfoList = gson.fromJson(infoStr, new TypeToken<List<ResourcesInfo>>() {
-                                        }.getType());
+                                            msg.what = SUCCESS;
+                                            msg.obj = RInfoList;
+                                            mHandler.sendMessage(msg);
+                                        } catch (Exception e) {
 
-                                        msg.what = SUCCESS;
-                                        msg.obj = RInfoList;
-                                        mHandler.sendMessage(msg);
+                                            Log.e("2017/11/13","登录超时了");
+
+
+                                        }
                                     }
                                 } else {
                                     sendProblemMessage(msg);
@@ -233,20 +239,25 @@ public class ZiyuandiaochaActivity extends BaseActivity implements View.OnClickL
                 TextView numTv = holder.getView(R.id.item_ziyuandiaocha_number_tv);
                 numTv.setText(position + 1 + "");
                 TextView typeTv = holder.getView(R.id.item_ziyuandiaocha_type_tv);
-                typeTv.setText(data.get(position).getDclx());
+                typeTv.setText(data.get(position).getDclx());//本次调查类型(失业、无业、应届生)
                 TextView nameTv = holder.getView(R.id.item_ziyuandiaocha_operator_tv);
-                nameTv.setText(data.get(position).getDccjrxm());
+                nameTv.setText(data.get(position).getDccjrxm());//本次调查创建人姓名
                 TextView timeTv = holder.getView(R.id.item_ziyuandiaocha_time_tv);
-                timeTv.setText(data.get(position).getBzdate().split("T")[0]);
+                timeTv.setText(data.get(position).getBzdate().split("T")[0]);//本次调查布置日期
                 TextView xuchaTv = holder.getView(R.id.item_ziyuandiaocha_needNum_tv);
-                xuchaTv.setText(data.get(position).getDcmdrs() + "");
+                xuchaTv.setText(data.get(position).getDcmdrs() + "");//本次调查名单人数
                 TextView yichaTv = holder.getView(R.id.item_ziyuandiaocha_alreadyNum_tv);
-                yichaTv.setText(data.get(position).getDcwcrs() + "");
+                yichaTv.setText(data.get(position).getDcwcrs() + "");////要显示的
                 LinearLayout ll = holder.getView(R.id.item_ziyuandiaocha_ll);
-                if (position % 2 != 0) {
-                    ll.setBackgroundResource(R.drawable.selector_ziyuandiaocha_item1);
-                } else {
-                    ll.setBackgroundResource(R.drawable.selector_ziyuandiaocha_item2);
+//                if (position % 2 != 0) {
+//                    ll.setBackgroundResource(R.drawable.selector_ziyuandiaocha_item1);
+//                } else {
+//                    ll.setBackgroundResource(R.drawable.selector_ziyuandiaocha_item2);
+//                }
+                if (position % 2 == 0){
+                    ll.setBackgroundResource(R.drawable.selector_questionnaire_click_blue);
+                }else {
+                    ll.setBackgroundResource(R.drawable.selector_questionnaire_click_white);
                 }
             }
         };
@@ -278,10 +289,10 @@ public class ZiyuandiaochaActivity extends BaseActivity implements View.OnClickL
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-//        Intent intent=new Intent(this,ZiyuanDetailListActivity.class);
+        Intent intent=new Intent(this,ZiyuanDetailListActivity.class);
 //        intent.putExtra("TYPE",RInfoList.get(position).getTYPE());
-//        intent.putExtra("RInfo",RInfoList.get(position));
-//        startActivity(intent);
+        intent.putExtra("RInfo",RInfoList.get(position));
+        startActivity(intent);
 
     }
 }

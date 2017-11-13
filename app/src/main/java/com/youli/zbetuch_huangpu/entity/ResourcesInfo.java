@@ -4,22 +4,28 @@ import java.io.Serializable;
 
 /**
  * Created by sfhan on 2017/11/7.
+ *
+ * http://web.youli.pw:8088/Json/GetResourceSurvey.aspx?page=0&rows=15&TYPE=
+ *
+ * [{"dcid":3,"dclx":"应届生","bzdate":"2017-11-02T00:00:00","dccjrid":1,"dccjrxm":"admin","dccjsj":"2017-11-02T12:19:25.427",
+ * "dcjdmc":"黄浦区","dcmdrs":28,"dcwcrs":0,"bz":"","rows":3}]
+ *
  */
 
 public class ResourcesInfo implements Serializable {
 
-    private int dcid;//要显示的
-    private String dclx;//要显示的
-    private String dccjrxm;//要显示的
-    private String bzdate;//要显示的
-    private int dcmdrs;//要显示的
-    private int dcwcrs;//要显示的
+    private int dcid;//要显示的       本次调查ID
+    private String dclx;//要显示的    本次调查类型(失业、无业、应届生)
+    private String dccjrxm;//要显示的  本次调查创建人姓名
+    private String bzdate;//要显示的   本次调查布置日期
+    private int dcmdrs;//要显示的   本次调查名单人数
+    private int dcwcrs;//要显示的   本次已完成调查人数
 
-    private int dccjrid;
-    private String dccjsj;
-    private String dcjdmc;
-    private String bz;
-    private int rows;
+    private int dccjrid; //本次调查创建人ID
+    private String dccjsj;//本次调查创建时间
+    private String dcjdmc;//本次调查街道名称
+    private String bz;//备注
+    private int rows;//总记录数
 
     public ResourcesInfo(int dcid, String dclx, String dccjrxm,String bzdate,int dcmdrs,int dcwcrs) {
         this.dcid=dcid;

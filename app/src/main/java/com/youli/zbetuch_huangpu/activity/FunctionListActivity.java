@@ -60,62 +60,17 @@ public class FunctionListActivity extends BaseActivity {
                     switch (finalI) {//判断哪一个 GridView
                         case 0:
                             switch (position) {//判断哪一个item
-//                                case 0:
-//                                    intent = new Intent(FunctionListActivity.this,
-//                                            PersonalInfoQuery.class);
-//                                    startActivity(intent);
-//                                    break;
-//                                case 1:
-//                                    intent = new Intent(mContext,
-//                                            RecruitInfoActivity.class);
-//                                    startActivity(intent);
-//                                    break;
-//                                case 2:
-//                                    intent = new Intent(mContext,
-//                                            ReportActivity.class);
-//                                    startActivity(intent);
-//                                    break;
-//                                case 3:
-//                                    intent = new Intent(mContext,
-//                                            GraduateActivity.class);
-//                                    startActivity(intent);
-//                                    break;
+
                                 case 0:
-                                    intent=new Intent(mContext,ZiyuandiaochaActivity.class);
+                                    intent=new Intent(mContext,ZiyuandiaochaActivity.class);//资源调查
                                     startActivity(intent);
                                     break;
-//                                case 5:
-//                                    intent=new Intent(mContext,InterviewActivity.class);
-//                                    startActivity(intent);
-//                                    break;
-//                                case 6:
-//                                    intent=new Intent(mContext,ShiyeTongjiActivity.class);
-//                                    startActivity(intent);
-//                                    break;
-//                                case 7:
-//                                    intent=new Intent(mContext,WorkRecordActivity.class);
-//                                    startActivity(intent);
-//                                    break;
-//                                case 7:
-//                                    intent=new Intent(mContext,PersonDataCenterActivity.class);
-//                                    startActivity(intent);
-//                                    break;
-//                                case 8:
-//                                    intent=new Intent(mContext,FollowListActivity.class);
-//                                    startActivity(intent);
-//                                    break;
-//                                case 9:
-//                                    intent=new Intent(mContext,ChangePwdActivity.class);
-//                                    startActivity(intent);
-//                                    break;
-//                                case 10:
-//                                    intent=new Intent(mContext,ShowWenJuanActivity.class);
-//                                    startActivity(intent);
-//                                    break;
-//                                default:
-//                                    Toast.makeText(FunctionListActivity.this, "当前点击第" + finalI
-//                                            + "页第" + position + "个", Toast.LENGTH_SHORT).show();
-//                                    break;
+
+                                case 1:
+                                    intent=new Intent(mContext,SpecialDiaochaActivity.class);//专项调查
+                                    startActivity(intent);
+                                    break;
+
                             }
                             break;
 //                        case 1:
@@ -142,35 +97,6 @@ public class FunctionListActivity extends BaseActivity {
             });
         }
 
-
-
-
-//        for(int i=0;i<viewList.size();i++){
-//
-//            GridView gridView= (GridView) viewList.get(i);
-//
-//            final int finalI = i;
-//            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                @Override
-//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//                    if (finalI == 0) {
-//                        switch (position) {
-//                            case 0:
-//                                Intent intent=new Intent(mContext,ZiyuandiaochaActivity.class);
-//                                startActivity(intent);
-//                                break;
-//                            case 1:
-//                                Toast.makeText(mContext, "招聘信息", Toast.LENGTH_SHORT).show();
-//                                break;
-//                            case 4:
-//
-//                                break;
-//                        }
-//
-//                    }
-//                }
-//            });
         }
 
 
@@ -190,7 +116,7 @@ public class FunctionListActivity extends BaseActivity {
 //                .drawable.wjdc, R.drawable.ggwj};
 
         myIcons = new int[]{
-                R.drawable.zzdc
+                R.drawable.zzdc,R.drawable.zxdc,
         };
 //                R.drawable.gerenxinxi, R.drawable.zpxx, R.drawable.tjbb,
 //                R.drawable.yjbys, R.drawable.zzdc, R.drawable.xcms,

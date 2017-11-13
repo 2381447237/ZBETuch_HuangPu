@@ -27,7 +27,18 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.ZiyuandiaochaActivity"
             android:screenOrientation="portrait"/><!--资源调查-->
-
+        <activity android:name=".activity.ZiyuanDetailListActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/><!--资源调查人员列表-->
+        <activity android:name=".activity.ShiwuyeDetailActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name=".activity.SpecialDiaochaActivity"
+            android:screenOrientation="portrait" ><!--专项调查-->
+        </activity>
+        <activity android:name=".activity.OvertimeDialogActivity"
+            android:screenOrientation="portrait" ><!--登录超时的对话框界面-->
+        </activity>
     </application>
 
 </manifest>

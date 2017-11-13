@@ -1,6 +1,8 @@
 package com.youli.zbetuch_huangpu.activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,6 +39,7 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
 
     private Intent intent;
     private CircleImageView ivHead;//头像
+    public static String adminName;//调查人姓名
     private Button workBtn;
 
     private Handler mHandler=new Handler(){
@@ -50,7 +53,7 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
                 case SUCCESS_ADMIN_INFO:
 
                     adminInfo=(AdminInfo)msg.obj;
-
+                    adminName=adminInfo.getNAME();
                     break;
 
                 case PROBLEM:
@@ -110,9 +113,15 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
 
                                         Gson gson=new Gson();
 
-                                        msg.obj=gson.fromJson(resStr,AdminInfo.class);
+                                        try{
+                                            msg.obj=gson.fromJson(resStr,AdminInfo.class);
 
-                                        msg.what=SUCCESS_ADMIN_INFO;
+                                            msg.what=SUCCESS_ADMIN_INFO;
+                                        }catch(Exception e){
+
+                                        }
+
+
 
                                     }
 
@@ -162,6 +171,25 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
         }
 
     }
+    @Override
+    public void onBackPressed() {
 
+        final AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setMessage("您确定退出吗?");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                ActivityController.finishAll();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.show();
+    }
 
 }

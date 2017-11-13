@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="resources_shiye_status">
+        <item>请选择</item>
+        <item>有劳动收入</item>
+        <item>移居境外</item>
+        <item>死亡</item>
+        <item>移居市外</item>
+        <item>入学</item>
+        <item>服兵役</item>
+        <item>判刑、劳动教养</item>
+        <item>正在培训</item>
+        <item>积极求职</item>
+
+    </string-array>
+
+    <string-array name="resources_wuye_status">
+        <item>请选择</item>
+        <item>有劳动收入</item>
+        <item>领取证照</item>
+        <item>临时商贩和修配摊</item>
+        <item>各类帮工</item>
+        <item>家庭手工业</item>
+        <item>各类保险及业务代理人</item>
+        <item>有投资收入</item>
+        <item>患严重疾病</item>
+        <item>残疾</item>
+        <item>精神类疾病</item>
+        <item>死亡</item>
+        <item>入学</item>
+        <item>出国出境</item>
+        <item>正在培训</item>
+        <item>正在求职</item>
+        <item>集体户口</item>
+        <item>移居境外</item>
+        <item>移居市外</item>
+        <item>照顾家属</item>
+        <item>闲散在家</item>
+        <item>人户分离</item>
+        <item>无地址、查无此人</item>
+        <item>服兵役</item>
+        <item>判刑、劳动教养</item>
+        <item>失踪</item>
+        <item>居住证A(包括居留证)</item>
+        <item>超龄</item>
+        <item>其他</item>
+        <item>农业耕作</item>
+        <item>从事农林牧副渔业</item>
+    </string-array>
+
+    <string-array name="resources_wuye_yixiang">
+        <item>请选择</item>
+        <item>无需意向分类</item>
+        <item>有创业意向</item>
+        <item>就业条件较好</item>
+        <item>就业条件一般</item>
+    </string-array>
+
+</resources>

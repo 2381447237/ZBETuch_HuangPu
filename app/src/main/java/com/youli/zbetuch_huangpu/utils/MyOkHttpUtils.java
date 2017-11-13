@@ -18,6 +18,7 @@ import okhttp3.Response;
 public class MyOkHttpUtils {
 
     public static final String BaseUrl="http://web.youli.pw:8088";
+    //public static final String BaseUrl="http://192.168.191.1:89";
     public static OkHttpClient okHttpClient=null;
 
     static String cookies;
@@ -48,7 +49,7 @@ public class MyOkHttpUtils {
 
         Request request=new Request.Builder().addHeader("cookie",cookies).url(url).build();
 
-        Log.e("2017/11/8","cookies="+cookies);
+        Log.e("2017/11/8","url="+url);
 
         Response response=null;
 
@@ -95,6 +96,26 @@ public class MyOkHttpUtils {
         return response;
 
     };
+
+    //失业无业的调查提交
+    public static Response okHttpPost(String url,String ID,String DQYX,String MQZK,String DATE){
+        getInstance();
+        RequestBody requestBody=new FormBody.Builder()
+                .add("MDID",ID).add("DCBZ",DQYX).add("MQZK_NEW",MQZK)
+                .add("DQYX_NEW",DATE)
+                .build();
+        Request request=new Request.Builder().url(url)
+                .post(requestBody).addHeader("cookie",cookies).build();
+        Response response;
+
+        try {
+            response=okHttpClient.newCall(request).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return  null;
+        }
+        return  response;
+    }
 
     public static Response okHttpPost(String url,String userName){
 
