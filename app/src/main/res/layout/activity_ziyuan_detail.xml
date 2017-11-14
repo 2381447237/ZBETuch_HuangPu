@@ -141,6 +141,7 @@
         android:orientation="horizontal" >
 
         <TextView
+            android:textColor="#000"
             style="@style/gradeate_list_titletext"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -149,6 +150,7 @@
             />
 
         <TextView
+            android:textColor="#000"
             style="@style/gradeate_list_titletext"
             android:layout_width="0dp"
             android:layout_weight="1.5"
@@ -156,6 +158,7 @@
             android:text="姓名" />
 
         <TextView
+            android:textColor="#000"
             style="@style/gradeate_list_titletext"
             android:layout_width="0dp"
             android:layout_weight="6"
@@ -163,6 +166,7 @@
             android:text="身份证号" />
 
         <TextView
+            android:textColor="#000"
             style="@style/gradeate_list_titletext"
             android:layout_width="0dp"
             android:layout_weight="5"
@@ -171,6 +175,7 @@
             android:visibility="gone"/>
 
         <TextView
+            android:textColor="#000"
             style="@style/gradeate_list_titletext"
             android:layout_width="0dp"
             android:layout_weight="2.5"

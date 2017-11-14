@@ -94,32 +94,38 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="#000"
                 android:paddingLeft="3dp"
                 style="@style/resources_main_title"
                 android:layout_weight="0.5"
                 android:text="序号" />
 
             <TextView
+                android:textColor="#000"
                 style="@style/resources_main_title"
                 android:layout_weight="1"
                 android:text="调查类型" />
 
             <TextView
+                android:textColor="#000"
                 style="@style/resources_main_title"
                 android:layout_weight="1.1"
                 android:text="布置操作员" />
 
             <TextView
+                android:textColor="#000"
                 style="@style/resources_main_title"
                 android:layout_weight="1"
                 android:text="布置时间" />
 
             <TextView
+                android:textColor="#000"
                 style="@style/resources_main_title"
                 android:layout_weight="0.9"
                 android:text="需查人数" />
 
             <TextView
+                android:textColor="#000"
                 style="@style/resources_main_title"
                 android:layout_weight="0.9"
                 android:text="已查人数" />

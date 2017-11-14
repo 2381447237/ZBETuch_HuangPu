@@ -19,8 +19,6 @@ import com.youli.zbetuch_huangpu.view.CircleImageView;
 
 public class AdminInfoActivity extends BaseActivity implements View.OnClickListener{
 
-
-
     private ImageView ivBack;
     private CircleImageView ivHead;//头像
     private TextView tvName;

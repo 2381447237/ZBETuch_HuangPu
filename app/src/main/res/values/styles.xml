@@ -9,6 +9,13 @@
         <item name="android:screenOrientation">portrait</item>
     </style>
 
+    <style name="DialogActivityTheme" parent="@android:style/Theme.Translucent">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    
     <!-- 资源调查页面 -->
     <style name="resources_main_title">
         <item name="android:layout_height">wrap_content</item>
@@ -25,6 +32,15 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="dialog"  parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowIsFloating">true</item>    //dialog会自适应
     </style>
 
 </resources>

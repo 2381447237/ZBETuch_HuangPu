@@ -12,8 +12,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
 import com.google.gson.Gson;
 import com.youli.zbetuch_huangpu.R;
 import com.youli.zbetuch_huangpu.entity.AdminInfo;
@@ -21,19 +26,21 @@ import com.youli.zbetuch_huangpu.utils.MyOkHttpUtils;
 import com.youli.zbetuch_huangpu.view.CircleImageView;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import okhttp3.Response;
 
 
 //首页
-public class HomePageActivity extends BaseActivity implements View.OnClickListener{
+public class HomePageActivity extends CheckPermissionsActivity implements View.OnClickListener{
 
 
     private Context mContext=this;
 
     private final int SUCCESS_ADMIN_INFO=10001;
     private final int PROBLEM=10002;
-
+    private final int OVERTIME=10003;//登录超时
     private AdminInfo adminInfo;
 
 
@@ -42,6 +49,12 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
     public static String adminName;//调查人姓名
     private Button workBtn;
 
+    private TextView tvJdu,tvWdu,tvGdu;//经度，纬度，高度
+
+    //声明AMapLocationClient类对象
+    private AMapLocationClient mLocationClient;
+    //声明AMapLocationClientOption对象
+    private AMapLocationClientOption mLocationOption;
     private Handler mHandler=new Handler(){
 
         @Override
@@ -58,6 +71,12 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
 
                 case PROBLEM:
                     Toast.makeText(mContext, "网络不给力", Toast.LENGTH_SHORT).show();
+                    break;
+                case OVERTIME:
+
+                    Intent i=new Intent(mContext,OvertimeDialogActivity.class);
+                    startActivity(i);
+
                     break;
             }
 
@@ -81,7 +100,12 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
         workBtn = (Button) findViewById(R.id.main_layout_work_btn);
         workBtn.setOnClickListener(this);
 
+        tvJdu= (TextView) findViewById(R.id.main_layout_tv_jdu);
+        tvWdu= (TextView) findViewById(R.id.main_layout_tv_wdu);
+        tvGdu= (TextView) findViewById(R.id.main_layout_tv_gdu);
         getAdminInfo();
+
+        getGpsInfo();//定位
     }
 
     //获取管理员的信息
@@ -118,6 +142,8 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
 
                                             msg.what=SUCCESS_ADMIN_INFO;
                                         }catch(Exception e){
+                                            Log.e("2017/11/13","登录超时了");
+                                            msg.what=OVERTIME;
 
                                         }
 
@@ -146,6 +172,93 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
 
         ).start();
 
+    }
+
+
+    private void getGpsInfo(){
+
+        //初始化定位
+        mLocationClient = new AMapLocationClient(getApplicationContext());
+        //设置定位回调监听
+        mLocationClient.setLocationListener(new AMapLocationListener() {
+            @Override
+            public void onLocationChanged(AMapLocation aMapLocation) {
+
+                if(aMapLocation!=null){
+
+                    if(aMapLocation.getErrorCode()==0){
+                        //可在其中解析amapLocation获取相应内容。
+
+                        aMapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见定位类型表
+                        aMapLocation.getLatitude();//获取纬度
+                        aMapLocation.getLongitude();//获取经度
+                        aMapLocation.getAccuracy();//获取精度信息
+                        aMapLocation.getAddress();//地址，如果option中设置isNeedAddress为false，则没有此结果，网络定位结果中会有地址信息，GPS定位不返回地址信息。
+                        aMapLocation.getCountry();//国家信息
+                        aMapLocation.getProvince();//省信息
+                        aMapLocation.getCity();//城市信息
+                        aMapLocation.getDistrict();//城区信息
+                        aMapLocation.getStreet();//街道信息
+                        aMapLocation.getStreetNum();//街道门牌号信息
+                        aMapLocation.getCityCode();//城市编码
+                        aMapLocation.getAdCode();//地区编码
+                        aMapLocation.getAoiName();//获取当前定位点的AOI信息
+                        aMapLocation.getBuildingId();//获取当前室内定位的建筑物Id
+                        aMapLocation.getFloor();//获取当前室内定位的楼层
+                        aMapLocation.getGpsAccuracyStatus();//获取GPS的当前状态
+                        //获取定位时间
+                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        Date date = new Date(aMapLocation.getTime());
+                        df.format(date);
+                        tvJdu.setText("经度:"+(int)aMapLocation.getLongitude());
+                        tvWdu.setText("纬度:"+(int)aMapLocation.getLatitude());
+                        tvGdu.setText("高度:"+aMapLocation.getAltitude()+"米");
+                    }else{
+                        //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
+                        Log.e("AmapError","location Error, ErrCode:"
+                                + aMapLocation.getErrorCode() + ", errInfo:"
+                                + aMapLocation.getErrorInfo());
+                    }
+                }
+
+            }
+        });
+
+        //初始化AMapLocationClientOption对象
+        mLocationOption = new AMapLocationClientOption();
+        //设置定位模式为AMapLocationMode.Hight_Accuracy，高精度模式。
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+
+//        //设置定位模式为AMapLocationMode.Battery_Saving，低功耗模式。
+//        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Battery_Saving);
+
+        //设置定位间隔,单位毫秒,默认为2000ms，最低1000ms。
+        mLocationOption.setInterval(1000);
+
+        //设置是否返回地址信息（默认返回地址信息）
+        mLocationOption.setNeedAddress(true);
+
+        //设置是否允许模拟位置,默认为true，允许模拟位置
+        mLocationOption.setMockEnable(true);
+
+        //单位是毫秒，默认30000毫秒，建议超时时间不要低于8000毫秒。
+        mLocationOption.setHttpTimeOut(20000);
+
+        //关闭缓存机制
+        mLocationOption.setLocationCacheEnable(false);
+
+        //给定位客户端对象设置定位参数
+        mLocationClient.setLocationOption(mLocationOption);
+        //启动定位
+        mLocationClient.startLocation();
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mLocationClient.stopLocation();//停止定位后，本地定位服务并不会被销毁
+        mLocationClient.onDestroy();//销毁定位客户端，同时销毁本地定位服务。
     }
 
     @Override

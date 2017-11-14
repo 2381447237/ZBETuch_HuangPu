@@ -31,12 +31,9 @@ import com.youli.zbetuch_huangpu.entity.ResourcesDetailInfo;
 import com.youli.zbetuch_huangpu.utils.MyOkHttpUtils;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import okhttp3.Response;
 
@@ -545,7 +542,7 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
                                     mHandler.sendMessage(msg);
 
                                 }
-                            } catch (IOException e) {
+                            } catch (Exception e) {
                                 e.printStackTrace();
                             }
 

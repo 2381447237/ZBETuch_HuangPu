@@ -55,7 +55,7 @@ public class ZiyuandiaochaActivity extends BaseActivity implements View.OnClickL
 
     private final int SUCCESS = 10000;
     private final int PROBLEM = 10001;
-
+    private final int OVERTIME=10002;//登录超时
 
     private Handler mHandler = new Handler() {
 
@@ -78,6 +78,13 @@ public class ZiyuandiaochaActivity extends BaseActivity implements View.OnClickL
                 case PROBLEM:
 
                     Toast.makeText(mContext, "网络不给力", Toast.LENGTH_SHORT).show();
+
+                    break;
+
+                case OVERTIME:
+
+                    Intent i=new Intent(mContext,OvertimeDialogActivity.class);
+                    startActivity(i);
 
                     break;
             }
@@ -205,7 +212,8 @@ public class ZiyuandiaochaActivity extends BaseActivity implements View.OnClickL
                                         } catch (Exception e) {
 
                                             Log.e("2017/11/13","登录超时了");
-
+                                            msg.what=OVERTIME;
+                                            mHandler.sendMessage(msg);
 
                                         }
                                     }

@@ -23,7 +23,6 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.youli.zbetuch_huangpu.R;
 import com.youli.zbetuch_huangpu.adapter.CommonAdapter;
-import com.youli.zbetuch_huangpu.entity.AdminInfo;
 import com.youli.zbetuch_huangpu.entity.CommonViewHolder;
 import com.youli.zbetuch_huangpu.entity.ResourcesDetailInfo;
 import com.youli.zbetuch_huangpu.entity.ResourcesInfo;
@@ -60,6 +59,7 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
     private final int SUCCESS=10000;
     private final int NODATA=10001;
     private final int PROBLEM=10002;
+    private final int OVERTIME=10003;//登录超时
 
     public final static int RequestCode=111111;
     public final static int ResultCode=222222;
@@ -103,6 +103,12 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
                     if (lv.isRefreshing()) {
                         lv.onRefreshComplete();
                     }
+
+                    break;
+                case OVERTIME:
+
+                    Intent i=new Intent(mContext,OvertimeDialogActivity.class);
+                    startActivity(i);
 
                     break;
             }
@@ -233,7 +239,9 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
                                             new TypeToken<List<ResourcesDetailInfo>>(){}.getType());
                                     mHandler.sendMessage(msg);
                                 }catch(Exception e){
-
+                                    Log.e("2017/11/13","登录超时了");
+                                    msg.what=OVERTIME;
+                                    mHandler.sendMessage(msg);
                                 }
 
                             }else{
