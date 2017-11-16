@@ -56,7 +56,8 @@ public class ZiyuandiaochaActivity extends BaseActivity implements View.OnClickL
     private final int SUCCESS = 10000;
     private final int PROBLEM = 10001;
     private final int OVERTIME=10002;//登录超时
-
+    public final static int RequestCode=111111;
+    public final static int ResultCode=222222;
     private Handler mHandler = new Handler() {
 
         @Override
@@ -298,10 +299,20 @@ public class ZiyuandiaochaActivity extends BaseActivity implements View.OnClickL
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         Intent intent=new Intent(this,ZiyuanDetailListActivity.class);
-//        intent.putExtra("TYPE",RInfoList.get(position).getTYPE());
         intent.putExtra("RInfo",RInfoList.get(position));
-        startActivity(intent);
 
+        startActivityForResult(intent,RequestCode);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == RequestCode && resultCode == ResultCode) {
+
+            getNetData(typeStr, streetId);
+
+
+        }
     }
 }
 

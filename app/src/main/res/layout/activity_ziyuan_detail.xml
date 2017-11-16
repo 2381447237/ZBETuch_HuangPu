@@ -134,6 +134,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:padding="7.1dp"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:background="@drawable/title2"
@@ -144,7 +145,7 @@
             android:textColor="#000"
             style="@style/gradeate_list_titletext"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.9"
             android:gravity="center"
             android:text="编号"
             />
@@ -153,7 +154,7 @@
             android:textColor="#000"
             style="@style/gradeate_list_titletext"
             android:layout_width="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="1.8"
             android:gravity="center"
             android:text="姓名" />
 
@@ -161,7 +162,7 @@
             android:textColor="#000"
             style="@style/gradeate_list_titletext"
             android:layout_width="0dp"
-            android:layout_weight="6"
+            android:layout_weight="5.3"
             android:gravity="center"
             android:text="身份证号" />
 
@@ -169,16 +170,7 @@
             android:textColor="#000"
             style="@style/gradeate_list_titletext"
             android:layout_width="0dp"
-            android:layout_weight="5"
-            android:gravity="center"
-            android:text="户籍地址"
-            android:visibility="gone"/>
-
-        <TextView
-            android:textColor="#000"
-            style="@style/gradeate_list_titletext"
-            android:layout_width="0dp"
-            android:layout_weight="2.5"
+            android:layout_weight="3"
             android:gravity="center"
             android:text="居委" />
     </LinearLayout>

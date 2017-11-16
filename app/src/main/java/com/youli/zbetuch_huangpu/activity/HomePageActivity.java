@@ -34,7 +34,7 @@ import okhttp3.Response;
 
 //首页
 public class HomePageActivity extends CheckPermissionsActivity implements View.OnClickListener{
-
+//IMBI
 
     private Context mContext=this;
 

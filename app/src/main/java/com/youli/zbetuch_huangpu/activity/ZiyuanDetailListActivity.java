@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -28,6 +29,10 @@ import com.youli.zbetuch_huangpu.entity.ResourcesDetailInfo;
 import com.youli.zbetuch_huangpu.entity.ResourcesInfo;
 import com.youli.zbetuch_huangpu.utils.MyOkHttpUtils;
 import com.youli.zbetuch_huangpu.utils.ProgressDialogUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -63,6 +68,8 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
 
     public final static int RequestCode=111111;
     public final static int ResultCode=222222;
+
+    //public ResourcesDetailInfo eventBus;
 
     private Handler mHandler=new Handler(){
 
@@ -120,6 +127,9 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ziyuan_detail);
+
+        //注册事件
+        //EventBus.getDefault().register(this);
 
         initViews();
     }
@@ -182,6 +192,7 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
 
     //身份证查询:
    // http://web.youli.pw:8088/Json/Get_Resource_Survey_Detil_SY.aspx?page=0&rows=15&dcId=1&type=1&sfz=
+  //  @Subscribe(threadMode = ThreadMode.MAIN)
     private void getNetWorkData(final int dcid, final String dclx, final int typeId, final String sfz, final int page){
 
         ProgressDialogUtils.showMyProgressDialog(this);
@@ -397,7 +408,7 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
         intent.putExtra("RDInfo",dInfo.get(position-1));
         intent.putExtra("IsCheck",isCheck);
 
-        startActivityForResult(intent,RequestCode);
+       startActivityForResult(intent,RequestCode);
 
     }
 
@@ -413,7 +424,23 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
                 getNetWorkData(rInfo.getDcid(),rInfo.getDclx(),typeId,sfzStr,0);
             }
         }
+}
+
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        //取消注册事件
+//        EventBus.getDefault().unregister(this);
+//    }
 
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        		if(keyCode == KeyEvent.KEYCODE_BACK){
+                    setResult(ZiyuandiaochaActivity.ResultCode,null);
+			finish();
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
     }
 }

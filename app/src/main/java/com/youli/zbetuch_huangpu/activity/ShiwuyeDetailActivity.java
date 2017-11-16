@@ -30,6 +30,8 @@ import com.youli.zbetuch_huangpu.entity.PersonInfo;
 import com.youli.zbetuch_huangpu.entity.ResourcesDetailInfo;
 import com.youli.zbetuch_huangpu.utils.MyOkHttpUtils;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -54,6 +56,8 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
             streetEt,jwEt,presentStatusEt,masterDateEt,presentIntentionEt,
             shidengDateEt,shidengVidEt,phoneEt,diaocharenEt,remarksEt,diaochaDateEt,hujiTypeEt,isCjrEt,shoolEt,majorEt,biyeEt,qrzEt;
 
+    String ZJTYPE;
+
 
     private Spinner currStaSp,currIntSp;
     private String currIntStr,currStaStr;
@@ -65,6 +69,7 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
     private final int  PERSONINFO=10001;
     private final int  NOPERSONINFO=10002;
     private final int  PROBLEM=10004;
+
     private List<PersonInfo> personInfos=new ArrayList<>();
 
     private List<LastInvest> lastInfo=new ArrayList<>();
@@ -81,7 +86,7 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
                     Toast.makeText(mContext,"提交成功",Toast.LENGTH_SHORT).show();
                     isSave=true;
                     setResult(ZiyuanDetailListActivity.ResultCode,null);
-
+                   // EventBus.getDefault().post(new ResourcesDetailInfo());
                     break;
 
 
@@ -252,7 +257,22 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
             biyeEt.setText(RDInfo.getSFBYY());//是否毕肄业
             qrzEt.setText(RDInfo.getSFQRZ());//是否全日制
         }
-        zjlxTv.setText(RDInfo.getZJLX());//证件类型
+
+      String  sg=RDInfo.getZJLX();
+        if (sg.length()<=2)
+        {
+            char item1 =  sg.charAt(0);
+            char item2 =  sg.charAt(1);
+            ZJTYPE=item1+"    "+item2;
+
+        }else if (sg.length()<=3)
+        {
+            char item1 =  sg.charAt(0);
+            char item2 =  sg.charAt(1);
+            char item3 =  sg.charAt(2);
+            ZJTYPE=item1+"  "+item2+"  "+item3;
+        }
+        zjlxTv.setText(ZJTYPE);//证件类型
         sfzEt.setText(RDInfo.getZJHM());//身份证
        nameEt.setText(RDInfo.getXM());//姓名
         sexEt.setText(RDInfo.getGENDER());//性别
