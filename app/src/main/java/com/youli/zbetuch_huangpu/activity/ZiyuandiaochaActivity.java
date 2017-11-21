@@ -135,8 +135,8 @@ public class ZiyuandiaochaActivity extends BaseActivity implements View.OnClickL
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                streetId = getStreetId(position);
-
+               // streetId = getStreetId(position);
+                streetId =streetSpinner.getSelectedItem().toString();
             }
 
             @Override
@@ -171,7 +171,7 @@ public class ZiyuandiaochaActivity extends BaseActivity implements View.OnClickL
             type = "全部";
         }
         if (street == null) {
-            street = "0";
+            street = "全部";
         }
         final String finalType = type;
         final String finalStreet = street;
@@ -189,8 +189,6 @@ public class ZiyuandiaochaActivity extends BaseActivity implements View.OnClickL
                         }
                         Log.e("2017/11/8","url="+url);
                         Response response = MyOkHttpUtils.okHttpGet(url);
-
-
 
                         try {
                             Message msg = Message.obtain();

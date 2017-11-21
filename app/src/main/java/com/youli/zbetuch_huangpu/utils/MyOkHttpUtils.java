@@ -17,8 +17,8 @@ import okhttp3.Response;
 
 public class MyOkHttpUtils {
 
-    public static final String BaseUrl="http://web.youli.pw:8088";
-    //public static final String BaseUrl="http://192.168.191.1:89";
+    //public static final String BaseUrl="http://web.youli.pw:8088";
+    public static final String BaseUrl="http://192.168.191.1:89";
     public static OkHttpClient okHttpClient=null;
 
     static String cookies;

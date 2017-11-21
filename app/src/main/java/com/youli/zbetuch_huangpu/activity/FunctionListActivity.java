@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.youli.zbetuch_huangpu.R;
 import com.youli.zbetuch_huangpu.adapter.FunctionPageAdapter;
 import com.youli.zbetuch_huangpu.adapter.GridViewAdapter;
+import com.youli.zbetuch_huangpu.naire.ShowWenJuanActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +68,7 @@ public class FunctionListActivity extends BaseActivity {
                                     break;
 
                                 case 1:
-                                    intent=new Intent(mContext,SpecialDiaochaActivity.class);//专项调查
+                                    intent=new Intent(mContext,ShowWenJuanActivity.class);//专项调查
                                     startActivity(intent);
                                     break;
 

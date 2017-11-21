@@ -65,6 +65,63 @@
             android:theme="@style/DialogActivityTheme"
             android:screenOrientation="portrait" ><!--登录超时的对话框界面-->
         </activity>
+        <activity android:name=".naire.ShowWenJuanActivity"
+            android:screenOrientation="portrait" ><!--专项调查-->
+        </activity>
+        <activity android:name=".naire.WenJuanPersonActivity"
+            android:screenOrientation="portrait"></activity><!--问卷被调查人-->
+        <activity
+            android:name=".naire.ShowPersionDetailInfo"
+            android:theme="@style/Theme.ActivityDialogStyle"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" >
+        </activity>
+        <activity
+            android:name=".naire.WenJuanDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" >
+        </activity>
+        <activity
+            android:name=".naire.WenJuanRegisterInfo"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            ></activity>
+
+        <activity
+            android:theme="@style/Theme.ActivityDialogStyle"
+            android:name=".naire.ShowWenJuanMarkActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" >
+        </activity>
+
+        <activity
+            android:name=".naire.ShowPersionHistoryActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" >
+        </activity>
+
+        <activity
+            android:theme="@style/Theme.ActivityDialogStyle"
+            android:name=".naire.ShowPersionHistoryList"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" >
+        </activity>
+        <service android:name=".naire.PersonService" >
+            <intent-filter>
+                <action android:name="com.fc.person.newservice.PersonService" />
+            </intent-filter>
+        </service>
+        <service android:name=".naire.MainService" >
+            <intent-filter>
+                <action android:name="com.fc.main.newservice.MainService" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

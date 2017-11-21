@@ -48,10 +48,10 @@ public class StreetInfo {
         streetList.add(new StreetInfo("8013", "老西门街道"));
         streetList.add(new StreetInfo("8014", "豫园街道"));
         streetList.add(new StreetInfo("8015", "五里桥街道"));
-        streetList.add(new StreetInfo("8016", "滩海中路街道"));
+        streetList.add(new StreetInfo("8016", "淮海中路街道"));
         streetList.add(new StreetInfo("8101", "打浦街道"));
         streetList.add(new StreetInfo("8107", "瑞金二路街道"));
-        streetList.add(new StreetInfo("8108", "接到不明"));
+        streetList.add(new StreetInfo("8108", "街道不明"));
         streetList.add(new StreetInfo("8109", "街道为空"));
 
         return streetList;
