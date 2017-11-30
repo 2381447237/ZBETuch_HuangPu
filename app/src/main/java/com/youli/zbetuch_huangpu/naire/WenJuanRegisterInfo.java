@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -235,7 +236,7 @@ public class WenJuanRegisterInfo extends BaseActivity implements OnClickListener
 			
 			@Override
 			public void onError(Call arg0, Exception arg1) {
-				Toast.makeText(WenJuanRegisterInfo.this,"请连接网络",Toast.LENGTH_SHORT).show();
+				Toast.makeText(WenJuanRegisterInfo.this,"网络不给力",Toast.LENGTH_SHORT).show();
 			}
 		});
 		
@@ -346,7 +347,7 @@ private void showDialog(){
 	
 	private void registerInfo(){
 		//ZS代表16周岁 int
-		String cookies = SharedPreferencesUtils.getString("cookies");
+		String cookies = SharedPreferencesUtils.getString("cookie");
 		int Type;
 		int Id;
 		if(fInfo==null){
@@ -358,7 +359,12 @@ private void showDialog(){
 			Type=3;
 			
 		}
-		
+
+		Log.e("2017/11/29","家庭成员=="+MyOkHttpUtils.BaseUrl+registerInfoUrl+"?TYPE="+Type+"&NAME="+info.getNAME()
+		+"&SFZ="+info.getSFZ()+"&LXR="+contactsStr+"&LXDF="+phoneStr+"&JZNUM="+personStr+"&NAN="+manStr+"&NV="+womanStr
+		+"&ZS="+sixteenStr+"&ID="+Id+"&XSQ="+areaStr+"&XZJD="+streetStr+"&SQJWC="+villageStr+"&SQR="+interviewerStr+"&ADRESS="+addressStr
+		+"&QUESTIONMASTERID="+getIntent().getIntExtra("QUESTIONMASTERID", 0));
+
 		OkHttpUtils.post().url(MyOkHttpUtils.BaseUrl+registerInfoUrl).addParams("TYPE",Type+"").addParams("NAME",info.getNAME())
 		.addParams("SFZ",info.getSFZ()).addParams("LXR",contactsStr).addParams("LXDF",phoneStr)
 		.addParams("JZNUM",personStr+"").addParams("NAN",manStr+"").addParams("NV",womanStr+"").addParams("ZS",sixteenStr+"").addParams("ID",Id+"")
@@ -375,13 +381,13 @@ private void showDialog(){
 			
 			@Override
 			public void onError(Call arg0, Exception arg1) {
-				Toast.makeText(WenJuanRegisterInfo.this,"请连接网络",Toast.LENGTH_SHORT).show();
+				Toast.makeText(WenJuanRegisterInfo.this,"网络不给力",Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
 	
 private void registerInfo2(){
-	String cookies = SharedPreferencesUtils.getString("cookies");
+	String cookies = SharedPreferencesUtils.getString("cookie");
 		OkHttpUtils.post().url(MyOkHttpUtils.BaseUrl+registerInfoUrl).addParams("TYPE",1+"").addParams("NAME",info.getNAME())
 		.addParams("SFZ",info.getSFZ()).addParams("LXR",contactsStr).addParams("LXDF",phoneStr)
 		.addParams("JZNUM",personStr+"").addParams("NAN",manStr+"").addParams("NV",womanStr+"").addParams("ZS",sixteenStr+"").addParams("ID",info.getID()+"")
@@ -426,13 +432,13 @@ private void registerInfo2(){
 			@Override
 			public void onError(Call arg0, Exception arg1) {
 
-				Toast.makeText(WenJuanRegisterInfo.this,"请连接网络",Toast.LENGTH_SHORT).show();
+				Toast.makeText(WenJuanRegisterInfo.this,"网络不给力",Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
 
 private void addRefresh(){
-	String cookies = SharedPreferencesUtils.getString("cookies");
+	String cookies = SharedPreferencesUtils.getString("cookie");
 	int myTypeId;
 		
 		if(WenJuanPersonActivity.isWeichaRg){
@@ -459,7 +465,7 @@ private void addRefresh(){
 			@Override
 			public void onError(Call arg0, Exception arg1) {
 				// TODO Auto-generated method stub
-				Toast.makeText(WenJuanRegisterInfo.this,"请连接网络",Toast.LENGTH_SHORT).show();
+				Toast.makeText(WenJuanRegisterInfo.this,"网络不给力",Toast.LENGTH_SHORT).show();
 			}
 		
 		});

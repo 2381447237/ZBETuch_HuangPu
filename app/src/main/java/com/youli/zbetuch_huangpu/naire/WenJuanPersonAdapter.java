@@ -72,7 +72,7 @@ public class WenJuanPersonAdapter extends BaseAdapter {
 		if(context.myISJYSTATUS){
 			holdItem.tv_jtcys.setVisibility(View.VISIBLE);
 		}else{
-			holdItem.tv_jtcys.setVisibility(View.GONE);
+			holdItem.tv_jtcys.setVisibility(View.INVISIBLE);
 		}
 		holdItem.tv_jtcys.setText(info.getJTCYSL()+"");
 		return view;

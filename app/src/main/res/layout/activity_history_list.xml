@@ -6,16 +6,15 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/lt" >
+        android:layout_height="45dp"
+        android:background="@drawable/shape_homepage_title_rl" >
         <TextView
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textColor="#ffffff"
             android:text="历史问卷列表"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="40dp" />
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
 
         <TextView
@@ -36,57 +35,62 @@
         android:orientation="vertical" >
 
         <LinearLayout
+            android:padding="5dp"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="30dp"
             android:background="@drawable/title2"
             android:orientation="horizontal" >
 
             <TextView
+                android:textColor="#000"
                 android:id="@+id/tv_bianhao"
-                android:layout_width="0dp"
-                android:layout_weight="1.5"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:gravity="center"
-                android:text="编号"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="姓　名"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textView2"
                 android:layout_width="0dp"
                 android:layout_weight="1.2"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="性　别"
-                android:textSize="14sp"
+                android:text="编号"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:textColor="#000"
+                android:id="@+id/textView1"
+                android:layout_width="0dp"
+                android:layout_weight="1.5"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="姓　名"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:textColor="#000"
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_weight="0.8"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="性　别"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:textColor="#000"
                 android:id="@+id/textView3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1"
+                android:layout_weight="1.5"
                 android:gravity="center"
                 android:text="街道"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:textColor="#000"
                 android:id="@+id/textView6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -94,10 +98,11 @@
                 android:layout_weight="1.8"
                 android:gravity="center"
                 android:text="居委"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:textColor="#000"
                 android:id="@+id/textView7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -105,7 +110,7 @@
                 android:layout_weight="2"
                 android:gravity="center"
                 android:text="提交时间"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
         </LinearLayout>
 

@@ -219,10 +219,13 @@ public class HttpUtil {
 			}
 		}
 
+		Log.e("2017/11/29","url======="+strhttp);
+		Log.e("2017/11/29","data======="+data);
+
 		HttpPost post = new HttpPost(strhttp);
 		try {
 			//if (!HttpUrls_.staffName.trim().equals("")) {
-			String cookies= SharedPreferencesUtils.getString("cookies");
+			String cookies= SharedPreferencesUtils.getString("cookie");
 				post.setHeader("cookie", cookies);
 			//}
 			if (!"".equals(jsonString) && null != jsonString) {
@@ -237,6 +240,7 @@ public class HttpUtil {
 			}
 			HttpResponse response = client.execute(post);
 			if (response.getStatusLine().getStatusCode() == 200) {
+
 				return EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
 			}
 		} catch (UnsupportedEncodingException e) {

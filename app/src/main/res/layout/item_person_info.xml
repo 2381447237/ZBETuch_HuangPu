@@ -2,20 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#FFFFFF">
     
      <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
+          android:paddingBottom="10dp"
+         android:paddingTop="10dp"
+         android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
              >
 
             <TextView
+                android:textColor="#666666"
                 android:id="@+id/tv_bianhao"
                 android:layout_width="0dp"
-                android:layout_weight="1.5"
+                android:layout_weight="1.2"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:text="编号"
@@ -23,9 +27,10 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:textColor="#666666"
                 android:id="@+id/tv_name"
                 android:layout_width="0dp"
-                android:layout_weight="2"
+                android:layout_weight="1.5"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_gravity="center"
@@ -34,9 +39,10 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:textColor="#666666"
                 android:id="@+id/tv_sex"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="0.8"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -45,10 +51,11 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:textColor="#666666"
                 android:id="@+id/tv_jd"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-               android:layout_weight="1"
+               android:layout_weight="1.5"
                android:layout_gravity="center"
                  android:gravity="center"
                 android:text="街道"
@@ -56,10 +63,11 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:textColor="#666666"
                 android:id="@+id/tv_jw"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="1.8"
                  android:gravity="center"
                 android:layout_gravity="center"
                 android:text="居委"
@@ -67,6 +75,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:textColor="#666666"
                 android:id="@+id/tv_lxdz"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -78,6 +87,10 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
-    
+
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:background="#A9C6C9"/>-->
 
 </LinearLayout>

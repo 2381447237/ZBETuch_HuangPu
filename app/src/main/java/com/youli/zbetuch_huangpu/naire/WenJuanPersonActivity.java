@@ -37,6 +37,7 @@ public class WenJuanPersonActivity extends BaseActivity implements IActivity{
 	private PullToRefreshListView personquery_listview;
 	//private PullDownView mPullDownView;
 	private List<WenJuanPersonInfo> wenJuanPersonInfos = new ArrayList<WenJuanPersonInfo>();
+
 	private WenJuanPersonAdapter personAdapter;
 	private TextView lblNum;
 
@@ -81,7 +82,7 @@ public class WenJuanPersonActivity extends BaseActivity implements IActivity{
 		if(getIntent().getBooleanExtra("ISJYSTATUS", false)){
 			jtcyslTv.setVisibility(View.VISIBLE);
 		}else{
-			jtcyslTv.setVisibility(View.GONE);
+			jtcyslTv.setVisibility(View.INVISIBLE);
 		}
 		personquery_listview = (PullToRefreshListView) findViewById(R.id.pull_down_view);
 		personquery_listview.setMode(PullToRefreshBase.Mode.BOTH);
@@ -127,16 +128,15 @@ public class WenJuanPersonActivity extends BaseActivity implements IActivity{
 	public void refresh(Object... params) {
 		// TODO Auto-generated method stub
 		switch (Integer.parseInt(params[0].toString().trim())) {
+
 		case REFRESH_INFO:
 			if (dialog != null && dialog.isShowing()) {
 				dialog.dismiss();
 			}
 
-			Log.e("2017/10/24","问卷调查人=="+params[1].toString().trim());
-
 			if (!"".equals(params[1].toString().trim())
 					|| null != params[1].toString().trim()) {
-				List<WenJuanPersonInfo> newJuanPersonInfos = parseWenjuanPersonInfo(params[1]
+				 List<WenJuanPersonInfo> newJuanPersonInfos= parseWenjuanPersonInfo(params[1]
 						.toString().trim());
 				
 				
@@ -172,7 +172,13 @@ public class WenJuanPersonActivity extends BaseActivity implements IActivity{
 					if(potion >-1){
 					wenJuanPersonInfos.remove(potion - 1);
 					}
-					
+
+				}
+
+				if(wenJuanPersonInfos.size()>=1) {
+					lblNum.setText("共有" + (wenJuanPersonInfos.get(0).getRecordCount() - 1) + "人");
+				}else{
+					lblNum.setText("共有" + 0 + "人");
 				}
 				personAdapter.notifyDataSetChanged();
 
@@ -194,7 +200,7 @@ public class WenJuanPersonActivity extends BaseActivity implements IActivity{
 		Map<String, Object> params = new HashMap<String, Object>();
 		data.put("master_id", getIntent().getIntExtra("id", 1) + "");
 		data.put("page", index + "");
-		data.put("rows", "15");
+		data.put("rows", "20");
 		params.put("data", data);
 		PersonTask task = new PersonTask(
 				PersonTask.WENJUANACTIVITY_GET_WENJUANPERSON, params);

@@ -1,6 +1,6 @@
 package com.youli.zbetuch_huangpu.naire;
 
-import android.app.Activity;
+
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,21 +10,17 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
-
-
 import com.youli.zbetuch_huangpu.R;
 import com.youli.zbetuch_huangpu.activity.BaseActivity;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+//历史问卷列表
 
 public class ShowPersionHistoryActivity extends BaseActivity implements IActivity {
 

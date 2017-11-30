@@ -12,14 +12,14 @@
         android:orientation="vertical" >
 
         <TextView
-            android:background="#afb6ef"
+            android:background="@drawable/shape_homepage_title_rl"
             android:id="@+id/tv_titlename"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:gravity="center"
             android:text="备     注"
-            android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textColor="@color/white"
+            android:textSize="20sp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="30dp"></LinearLayout>
@@ -29,49 +29,66 @@
             android:layout_width="fill_parent"
             android:layout_marginLeft="0dp"
             >
-            <RadioButton 
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#769bfc"
+                />
+            <RadioButton
                 android:id="@+id/btn_chuguo"
-                android:background="@drawable/blue"
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
-                android:textSize="21sp"
+                android:textSize="18dp"
                 android:textColor="@color/black"
                android:paddingLeft="40dp"
                 android:text="出国出境"/>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#769bfc"
+                />
             <RadioButton 
                 android:id="@+id/btn_renhufenli"
                 android:background="@drawable/white"
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
-                android:textSize="21sp"
+                android:textSize="18dp"
                 android:textColor="@color/black"
                 android:paddingLeft="40dp"
-                android:text="人户分离,电话错误或\n无人接听等"/>
+                android:text="人户分离,电话错误或无人接听等"/>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#769bfc"
+                />
             <RadioButton 
                 android:id="@+id/btn_dianhuacuowu"
-                android:background="@drawable/blue"
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
-                android:textSize="21sp"
+                android:textSize="18dp"
                 android:textColor="@color/black"
                 android:paddingLeft="40dp"
                 android:text="拒绝调查"/>
-            
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#769bfc"
+                />
             <RadioButton 
                 android:id="@+id/btn_qita"
                 android:background="@drawable/white"
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
-                android:textSize="21sp"
+                android:textSize="18dp"
                 android:textColor="@color/black"
                android:paddingLeft="40dp"
                 android:text="其他(请注明):"/>
         </RadioGroup>
     </LinearLayout>
- <TextView 
+ <View
 	    android:layout_width="fill_parent"
 	    android:layout_height="1dp"
-	    android:background="@drawable/blue"
+	    android:background="#769bfc"
 	    />
     <LinearLayout
         android:layout_width="fill_parent"
@@ -113,7 +130,7 @@
             android:layout_height="30dp"
             android:layout_weight="1"
             android:layout_marginRight="10dip"
-            android:background="@drawable/blue_btn"
+            android:background="@drawable/button_selector"
             android:layout_gravity="center"
             android:text="确定"
         />
@@ -124,7 +141,7 @@
             android:layout_height="30dp"
             android:layout_weight="1"
             android:layout_marginLeft="10dip"
-            android:background="@drawable/blue_btn"
+            android:background="@drawable/button_selector"
             android:layout_gravity="center"
             android:text="取消"
              />

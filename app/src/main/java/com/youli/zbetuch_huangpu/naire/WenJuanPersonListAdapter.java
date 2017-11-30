@@ -168,7 +168,7 @@ public class WenJuanPersonListAdapter extends BaseAdapter {
 	}
 	
 	private void deleteFamilyInfo(final int position){
-		String cookies = SharedPreferencesUtils.getString("cookies");
+		String cookies = SharedPreferencesUtils.getString("cookie");
 		OkHttpUtils.post().url(MyOkHttpUtils.BaseUrl+WenJuanRegisterInfo.registerInfoUrl).addParams("TYPE","2").addParams("ID",infos.get(position).getID()+"").addHeader("cookie", cookies).build().execute(new StringCallback() {
 			
 			@Override
@@ -186,14 +186,14 @@ public class WenJuanPersonListAdapter extends BaseAdapter {
 			@Override
 			public void onError(Call arg0, Exception arg1) {
 			
-				Toast.makeText(context,"请连接网络",Toast.LENGTH_SHORT).show();
+				Toast.makeText(context,"网络不给力",Toast.LENGTH_SHORT).show();
 			}
 		});
 		
 	}
 	
 	private void deleteRefresh(){
-		String cookies = SharedPreferencesUtils.getString("cookies");
+		String cookies = SharedPreferencesUtils.getString("cookie");
 	int myTypeId;
 		
 		if(WenJuanPersonActivity.isWeichaRg){
@@ -222,7 +222,7 @@ public class WenJuanPersonListAdapter extends BaseAdapter {
 			}
 			@Override
 			public void onError(Call arg0, Exception arg1) {
-				Toast.makeText(context,"请连接网络",Toast.LENGTH_SHORT).show();
+				Toast.makeText(context,"网络不给力",Toast.LENGTH_SHORT).show();
 			}
 		
 		});
@@ -257,7 +257,7 @@ public class WenJuanPersonListAdapter extends BaseAdapter {
 			
 			@Override
 			public void onError(Call arg0, Exception arg1) {
-				Toast.makeText(context,"请连接网络",Toast.LENGTH_SHORT).show();
+				Toast.makeText(context,"网络不给力",Toast.LENGTH_SHORT).show();
 				
 			}
 		});

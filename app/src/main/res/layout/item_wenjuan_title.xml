@@ -16,18 +16,19 @@
             android:orientation="horizontal" >
 
             <TextView
+                android:textColor="#000"
                 android:id="@+id/number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="问卷编号："
-                android:textSize="16dip"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dip" />
+                android:textSize="16dp" />
         </LinearLayout>
  <LinearLayout
             android:layout_width="wrap_content"
@@ -36,18 +37,19 @@
             android:orientation="horizontal" >
 
             <TextView
+                android:textColor="#000"
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="  姓名："
-                android:textSize="16dip"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dip" />
+                android:textSize="16dp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -56,10 +58,11 @@
             android:orientation="horizontal" >
 
             <TextView
+                android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="访问日期:"
-                android:textSize="14dip"
+                android:textSize="14dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -67,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textSize="14dip" />
+                android:textSize="14dp" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -79,7 +82,7 @@
         android:layout_margin="5dip"
         android:gravity="center"
         android:textColor="@color/black"
-        android:textSize="18dip"
+        android:textSize="18dp"
         android:textStyle="bold" />
 
     <WebView

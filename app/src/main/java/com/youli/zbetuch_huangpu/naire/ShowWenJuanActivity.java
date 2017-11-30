@@ -176,12 +176,10 @@ public class ShowWenJuanActivity extends BaseActivity implements IActivity{
 
     private void getPageInfo(int index) {
 
-        Log.e("2017/10/24","getPageInfo(int index)");
-
         Map<String, Object> params = new HashMap<String, Object>();
         Map<String, String> data = new HashMap<String, String>();
         data.put("page", index + "");
-        data.put("rows", "15");
+        data.put("rows", "20");
         params.put("data", data);
         PersonTask task = new PersonTask(
                 PersonTask.WENJUANACTIVITY_GET_WENJUANINFO, params);

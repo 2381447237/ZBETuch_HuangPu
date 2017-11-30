@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -55,8 +56,6 @@ public class ShowPersionDetailInfo extends BaseActivity implements OnClickListen
 		public void handleMessage(Message msg) {
 
 			switch (msg.what){
-
-
 
 				case PROBLEM:
 
@@ -137,6 +136,7 @@ public class ShowPersionDetailInfo extends BaseActivity implements OnClickListen
 	private void getFamilyList(){
 		showDialog();
 		// http://192.168.11.11:89/Json/Get_Home.aspx?TYPE=1&QA_MASTER=5&SFZ=310108196301092815
+
 		OkHttpUtils.post().url(MyOkHttpUtils.BaseUrl+familyListUrl).addParams("TYPE","1").addParams("SFZ",info.getSFZ()).addParams("QA_MASTER",getIntent().getIntExtra("QUESTIONMASTERID", 0)+"").build().execute(new StringCallback() {
 			
 			@Override
@@ -203,15 +203,18 @@ public class ShowPersionDetailInfo extends BaseActivity implements OnClickListen
 			public void onError(Call arg0, Exception arg1) {
 
 				dialog.dismiss();
-				Toast.makeText(ShowPersionDetailInfo.this,"请连接网络",Toast.LENGTH_SHORT).show();
+				Toast.makeText(ShowPersionDetailInfo.this,"网络不给力",Toast.LENGTH_SHORT).show();
 			}
 		});
 		
 	}
 	
-	
+
+	//2017/11/29 改好了
 	private void setButtonText(){
-		
+
+		//Log.e("2017/11/29","按钮=="+MyOkHttpUtils.BaseUrl+answerUrl+"?HOMEID="+listInfo.get(0).getID());
+
 OkHttpUtils.post().url(MyOkHttpUtils.BaseUrl+answerUrl).addParams("HOMEID", listInfo.get(0).getID()+"").build().execute(new StringCallback() {
 			
 			@Override
@@ -229,7 +232,7 @@ OkHttpUtils.post().url(MyOkHttpUtils.BaseUrl+answerUrl).addParams("HOMEID", list
 			@Override
 			public void onError(Call arg0, Exception arg1) {
 
-				Toast.makeText(ShowPersionDetailInfo.this,"请连接网络",Toast.LENGTH_SHORT).show();
+				Toast.makeText(ShowPersionDetailInfo.this,"网络不给力",Toast.LENGTH_SHORT).show();
 			}
 		});
 		
@@ -550,7 +553,7 @@ case R.id.family://家庭成员调查
 			
 			@Override
 			public void onError(Call arg0, Exception arg1) {
-				Toast.makeText(ShowPersionDetailInfo.this,"请连接网络",Toast.LENGTH_SHORT).show();
+				Toast.makeText(ShowPersionDetailInfo.this,"网络不给力",Toast.LENGTH_SHORT).show();
 			}
 		});
 			
@@ -581,7 +584,7 @@ case R.id.family://家庭成员调查
 		if(keyCode==KeyEvent.KEYCODE_BACK&&event.getAction()==KeyEvent.ACTION_DOWN){
 			
 			Builder builder=new Builder(ShowPersionDetailInfo.this);
-			builder.setTitle("关闭提示").setMessage("您确定要退出调查问卷吗?")
+			builder.setTitle("关闭提示").setMessage("您确定要退出专项调查吗?")
 			.setIcon(android.R.drawable.ic_dialog_info)
 			.setCancelable(true)
 			.setPositiveButton("确定", new DialogInterface.OnClickListener() {

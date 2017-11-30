@@ -117,7 +117,7 @@ zt_tv, jd_tv, jw_tv, lxdz_tv, phone, dzszqx_tv,sphl_tv_name;
 			public void onError(Call call, Exception e) {
 
 				dialog.dismiss();
-				Toast.makeText(ShowPersionHistoryList.this,"请连接网络",Toast.LENGTH_SHORT).show();
+				Toast.makeText(ShowPersionHistoryList.this,"网络不给力",Toast.LENGTH_SHORT).show();
 			}
 
 			@Override
@@ -234,7 +234,7 @@ zt_tv, jd_tv, jw_tv, lxdz_tv, phone, dzszqx_tv,sphl_tv_name;
 				
 				@Override
 				public void onError(Call arg0, Exception arg1) {
-					Toast.makeText(ShowPersionHistoryList.this,"请连接网络",Toast.LENGTH_SHORT).show();
+					Toast.makeText(ShowPersionHistoryList.this,"网络不给力",Toast.LENGTH_SHORT).show();
 				}
 			});
 				

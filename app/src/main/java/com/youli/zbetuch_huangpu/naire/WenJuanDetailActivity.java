@@ -6,6 +6,7 @@ import android.app.AlertDialog.Builder;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -146,19 +147,7 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 		if (rb) {
 			btn_star.setVisibility(View.VISIBLE);
 		} else {
-			
 			showDialog();
-		//	btn_all.setVisibility(View.VISIBLE);
-			
-//			if("historyList".equals(getIntent().getAction())){
-//				if(getIntent().getBooleanExtra("myStatus",false)){
-//					typeMap = MainTools.map.get("lishiwenjuaninfo");
-//				}
-//			}else{
-//				typeMap = MainTools.map.get("wenjuaninfo");
-//			}
-//			
-//			checkAnswer();
 		}
 		
 		if ("historyList".equals(getIntent().getAction())) {
@@ -849,37 +838,47 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 		if ("".equals(isAll)) {
 			llDuty.removeAllViews();
 		}
-		LinearLayout alllinearLayout = new LinearLayout(context);
+		LinearLayout alllinearLayout = new LinearLayout(context);//整体布局（包括问题和选项）
+		alllinearLayout.setOrientation(LinearLayout.VERTICAL);
 		LinearLayout.LayoutParams allparam = new LinearLayout.LayoutParams(
 				LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
 		alllinearLayout.setLayoutParams(allparam);
-		alllinearLayout.setOrientation(LinearLayout.VERTICAL);
-		HorizontalScrollView hsv=new HorizontalScrollView(context);
-		hsv.setLayoutParams(allparam);
-		LinearLayout qlinearLayout = new LinearLayout(context);
-		qlinearLayout.setLayoutParams(allparam);
-		qlinearLayout.setOrientation(LinearLayout.HORIZONTAL);
-		TextView textView = new TextView(context);
-		textView.setLayoutParams(allparam);
+
+		LinearLayout qlinearLayout = new LinearLayout(context);//问题的布局
+
+		if(info.getTITLE_L().length()>=30) {//左边的文字长度大于等于30就换行
+
+			qlinearLayout.setOrientation(LinearLayout.VERTICAL);
+		}else{
+
+			qlinearLayout.setOrientation(LinearLayout.HORIZONTAL);
+		}
+
+
+		TextView textView = new TextView(context);//问题左边的部分
+
 		textView.setText(info.getTITLE_L());
-	
+	    textView.setTextColor(Color.parseColor("#000000"));
 		textView.setTextSize(16);
 		qlinearLayout.addView(textView, allparam);
-		
+
+		LinearLayout qRightll=new LinearLayout(this);//问题的右边布局(包括一个EditText和一个TextView)
+
+		qRightll.setOrientation(LinearLayout.HORIZONTAL);
 		if (info.isINPUT()) {
-			
-			if(!info.getTITLE_L().contains("出生")&&!info.getTITLE_L().contains("就业时间")&&!info.getTITLE_L().contains("就业的时间")&&!info.getTITLE_L().contains("什么时候")){	
-				
-				EditText editText = new EditText(context);
-				LinearLayout.LayoutParams edit = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-			editText.setLayoutParams(edit);
+			qRightll.setVisibility(View.VISIBLE);
+			if(!info.getTITLE_L().contains("出生")&&!info.getTITLE_L().contains("就业时间")&&!info.getTITLE_L().contains("就业的时间")&&!info.getTITLE_L().contains("什么时候")){
+
+				EditText editText = new EditText(context);//问题的输入框
+				editText.setGravity(Gravity.CENTER);
+                editText.setPadding(0,-15,0,0);
 				editText.setText("        ");
 			if(info.getTITLE_L().contains("姓名")){
-				
+
 				editText.setText(nameStr);
 
-				
+
 			}
 			if ("int".equals(info.getINPUT_TYPE())) {
 				editText.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -901,7 +900,7 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 			}
 
 			editText.setId(info.getID());
-			
+
 			if (allchaWenJuans.size() > 0) {
 				for (YiChaWenJuan yiChaWenJuan : allchaWenJuans) {
 					if (yiChaWenJuan.getDETIL_ID() == editText.getId()) {
@@ -911,42 +910,40 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 			}
 			if ("all".equals(isAll)) {
 				editText.setEnabled(false);
-			}		
+			}
 			questionEditTexts.add(editText);
-			qlinearLayout.addView(editText, edit);
-			}else{	
-				
-				final TextView TextView = new TextView(context);
-				LinearLayout.LayoutParams tv = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
-				TextView.setLayoutParams(tv);
+			qRightll.addView(editText, allparam);
+			}else{
+
+				final TextView TextView = new TextView(context);//问题里面选择日期的
 				TextView.setTextSize(16);
 			TextView.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);//下划线
             TextView.setTextColor(0xff538ee5);
 				TextView.setPadding(10,0,0,0);
-				Drawable drawable= getResources().getDrawable(R.drawable.rili);  
-				/// 这一步必须要做,否则不会显示.  
-				drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());  
+				Drawable drawable= getResources().getDrawable(R.drawable.rili);
+				/// 这一步必须要做,否则不会显示.
+				drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
 				TextView.setCompoundDrawables(null,null,drawable,null);
-				
+
 				TextView.setText("请点击选择");
-				
+
 				TextView.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View arg0) {
 						Calendar c=Calendar.getInstance();
-						new DatePickerDialog(WenJuanDetailActivity.this, 
+						new DatePickerDialog(WenJuanDetailActivity.this,
 						new DatePickerDialog.OnDateSetListener() {
-							
+
 							@Override
 							public void onDateSet(DatePicker view, int year, int monthOfYear,
 									int dayOfMonth) {
 								TextView.setText(year+"年"+(monthOfYear+1)+"月"+dayOfMonth+"日");
 							}
 						},c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH)).show();
-						
+
 					}
 				});
-				
+
 				if (questionTextViews.size() > 0) {
 					List<TextView> tempTextViews = new ArrayList<TextView>();
 					for (TextView textView2 : questionTextViews) {
@@ -971,29 +968,31 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 				if ("all".equals(isAll)) {
 					TextView.setEnabled(false);
 				}
-				
+
 				questionTextViews.add(TextView);
-				qlinearLayout.addView(TextView,tv);
-				
-				}			
-				
-			
-			if (!"".equals(info.getTITLE_R())) {
-				TextView rTextView = new TextView(context);
-				rTextView.setLayoutParams(allparam);
+				qRightll.addView(TextView,allparam);
+
+				}
+
+		}else{
+			qRightll.setVisibility(View.GONE);
+		}
+
+           if(!("").equals(info.getTITLE_R())) {
+				TextView rTextView = new TextView(context);//问题右边的部分
+
 				rTextView.setTextSize(16);
 				rTextView.setText(info.getTITLE_R());
-				qlinearLayout.addView(rTextView, allparam);
+				rTextView.setTextColor(Color.parseColor("#000000"));
+				qRightll.addView(rTextView, allparam);
 			}
-		}
-		hsv.addView(qlinearLayout, allparam);
-		alllinearLayout.addView(hsv, allparam);
 
-		//alllinearLayout.addView(qlinearLayout, allparam);//2017/10/26
+		qlinearLayout.addView(qRightll,allparam);
+		alllinearLayout.addView(qlinearLayout, allparam);
 
-		LinearLayout aLinearLayout = new LinearLayout(context);
+		LinearLayout aLinearLayout = new LinearLayout(context);//选项的布局
 		aLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
-		aLinearLayout.setLayoutParams(allparam);
+
 
 		RadioGroup radioGroup = new RadioGroup(context);
 		radioGroup.setLayoutParams(allparam);
@@ -1079,7 +1078,7 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 	CheckButton.setOnCheckedChangeListener(new MyOnCheckedChangeListener(
 			CheckBoxGroup, MultiSelect));
 	LinearLayout.LayoutParams param2 = new LinearLayout.LayoutParams(
-			LayoutParams.WRAP_CONTENT, 60);//60 2017/10/26
+			LayoutParams.WRAP_CONTENT, 83);//60 2017/10/26
 	CheckButton.setLayoutParams(param2);
 	//给复选框设置ID
 	CheckButton.setId(wenJuanInfo.getID());
@@ -1173,7 +1172,7 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 				LinearLayout.LayoutParams edit = new LinearLayout.LayoutParams(100,
 						LayoutParams.WRAP_CONTENT);//45 2017/10/26
 				editText.setLayoutParams(edit);
-		linearLayout.setPadding(0,-25,0,0);
+	//	linearLayout.setPadding(0,-25,0,0);
 				linearLayout.addView(editText, edit);
 
 				if (!"".equals(wenJuanInfo.getTITLE_R())) {
@@ -1183,13 +1182,13 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 					textView.setLayoutParams(rParams);
 					rTextView.setTextSize(23);
 					rTextView.setText(wenJuanInfo.getTITLE_R());
-					linearLayout.setPadding(0,-30,0,0);
+				//	linearLayout.setPadding(0,-30,0,0);
 					linearLayout.addView(rTextView, rParams);
 				}
 			} else {	
 				TextView textView = new TextView(context);
 				LinearLayout.LayoutParams textparams = new LinearLayout.LayoutParams(
-						LayoutParams.WRAP_CONTENT, 60);//45 2017/10/26
+						LayoutParams.WRAP_CONTENT, 83);//45 2017/10/26
 				textView.setGravity(Gravity.CENTER);
 				CheckButton.setId(wenJuanInfo.getID());
 				textView.setText(wenJuanInfo.getTITLE_L());
@@ -1209,7 +1208,7 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 		linearLayout.setOrientation(LinearLayout.HORIZONTAL);
 
 		RadioButton radioButton = new RadioButton(context);
-		LinearLayout.LayoutParams param2 = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, 60);//60 2017/10/26
+		LinearLayout.LayoutParams param2 = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, 83);//60 2017/10/26
 		radioButton.setLayoutParams(param2);
 		radioButton.setId(wenJuanInfo.getID());
 		radioButton.setOnClickListener(new OnClickListener() {
@@ -1290,8 +1289,7 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 			editTexts.add(editText);
 			LinearLayout.LayoutParams edit = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);//10 2017/10/26
 			editText.setLayoutParams(edit);
-			//linearLayout.setPadding(0,-35,0,0);
-			linearLayout.setPadding(0,-25,0,0);
+		//	linearLayout.setPadding(0,-25,0,0);
 			linearLayout.addView(editText, edit);
 
 			if (!"".equals(wenJuanInfo.getTITLE_R())) {
@@ -1300,13 +1298,12 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 				textView.setLayoutParams(rParams);
 				rTextView.setTextSize(13);
 				rTextView.setText(wenJuanInfo.getTITLE_R());
-				//linearLayout.setPadding(0,-46,0,0);
-				linearLayout.setPadding(0,-30,0,0);
+				//linearLayout.setPadding(0,-30,0,0);
 				linearLayout.addView(rTextView, rParams);
 			}
 		} else {
 			TextView textView = new TextView(context);
-			LinearLayout.LayoutParams textparams = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,60);//50  这里不能乱改  不是输入文字的选项的布局
+			LinearLayout.LayoutParams textparams = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,83);//50  这里不能乱改  不是输入文字的选项的布局
 			textView.setGravity(Gravity.CENTER);
 			radioButton.setId(wenJuanInfo.getID());
 			textView.setText(wenJuanInfo.getTITLE_L());
@@ -1666,14 +1663,14 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 				
 
 			final String strhttp = MyOkHttpUtils.BaseUrl + url+"?ID="+myHOMEID;
-				
 
+			Log.e("2017/11/30","url=="+strhttp);
 			new Thread(
 
 					new Runnable() {
 						@Override
 						public void run() {
-							String cookies = SharedPreferencesUtils.getString("cookies");
+							String cookies = SharedPreferencesUtils.getString("cookie");
 							HttpPost post = new HttpPost(strhttp);
 				try {
 					//if (!HttpUrls_.staffName.trim().equals("")) {
@@ -1691,9 +1688,9 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 						}
 
 					HttpResponse response = client.execute(post);
-					
+					Log.e("2017/11/30","来来来来");
 					if (response.getStatusLine().getStatusCode() == 200) {
-
+						Log.e("2017/11/30","去去去去");
             runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
@@ -1734,7 +1731,7 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 			}
 	
 		private void getPersonNum(){
-			String cookies = SharedPreferencesUtils.getString("cookies");
+			String cookies = SharedPreferencesUtils.getString("cookie");
 			int typeId;
 			
 			if(WenJuanPersonActivity.isWeichaRg){
@@ -1767,14 +1764,14 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 				@Override
 				public void onError(Call arg0, Exception arg1) {
 					
-					Toast.makeText(WenJuanDetailActivity.this,"请连接网络",Toast.LENGTH_SHORT).show();
+					Toast.makeText(WenJuanDetailActivity.this,"网络不给力",Toast.LENGTH_SHORT).show();
 				}
 			});
 			
 		}
 	//注册家庭人员信息
 	private void getFlistInfo(){
-		String cookies = SharedPreferencesUtils.getString("cookies");
+		String cookies = SharedPreferencesUtils.getString("cookie");
 		OkHttpUtils.post().url(MyOkHttpUtils.BaseUrl+WenJuanRegisterInfo.registerInfoUrl).addParams("TYPE",1+"").addParams("NAME",fInfo.getNAME()+"")
 		.addParams("SFZ",fInfo.getSFZ()+"").addParams("LXR",fInfo.getLXR()).addParams("LXDF",fInfo.getLXDF()+"")
 		.addParams("JZNUM",fInfo.getJZNUM()+"").addParams("NAN",fInfo.getNAN()+"").addParams("NV",fInfo.getNV()+"").addParams("ZS",fInfo.getZS()+"")
@@ -1795,7 +1792,7 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 			public void onError(Call arg0, Exception arg1) {
 				
 				
-				Toast.makeText(WenJuanDetailActivity.this,"请连接网络",Toast.LENGTH_SHORT).show();
+				Toast.makeText(WenJuanDetailActivity.this,"网络不给力",Toast.LENGTH_SHORT).show();
 			}
 		});
 		
@@ -1807,7 +1804,7 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 		private void newNullInfo(){
 			
 			String phoneStr;
-			String cookies = SharedPreferencesUtils.getString("cookies");
+			String cookies = SharedPreferencesUtils.getString("cookie");
 			if(TextUtils.equals(wjPInfo.getPHONE(),"")){
 				phoneStr="";
 			}else{
@@ -1833,7 +1830,7 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 				public void onError(Call arg0, Exception arg1) {
 					
 					
-					Toast.makeText(WenJuanDetailActivity.this,"请连接网络",Toast.LENGTH_SHORT).show();
+					Toast.makeText(WenJuanDetailActivity.this,"网络不给力",Toast.LENGTH_SHORT).show();
 				}
 			});
 			
@@ -1910,7 +1907,7 @@ OkHttpUtils.post().url(MyOkHttpUtils.BaseUrl+ShowPersionDetailInfo.familyListUrl
 				
 				//Log.i("2017/3/6","===2017/3/6失败==="+arg0+"===2017/3/6异常==="+arg1);
 				
-				Toast.makeText(WenJuanDetailActivity.this,"请连接网络",Toast.LENGTH_SHORT).show();
+				Toast.makeText(WenJuanDetailActivity.this,"网络不给力",Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
