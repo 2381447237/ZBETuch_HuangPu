@@ -112,6 +112,14 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" >
         </activity>
+        <activity android:name=".activity.MeetManageActivity"
+            android:screenOrientation="portrait"></activity><!--会议管理-->
+        <activity android:name=".activity.MeetDetailActivity"
+            android:screenOrientation="portrait"></activity><!--会议详情-->
+        <activity android:name=".activity.InspectorActivity"
+            android:screenOrientation="portrait"></activity><!--督察督办-->
+        <activity android:name=".activity.NeedWorkActivity"
+            android:screenOrientation="portrait"></activity><!--待办工作-->
         <service android:name=".naire.PersonService" >
             <intent-filter>
                 <action android:name="com.fc.person.newservice.PersonService" />

@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 
 import java.lang.reflect.Method;
@@ -32,14 +33,10 @@ public class CheckPermissionsActivity extends BaseActivity {
 	/**
 	 * 需要进行检测的权限数组
 	 */
-	protected String[] needPermissions = {
-			Manifest.permission.ACCESS_COARSE_LOCATION,
-			Manifest.permission.ACCESS_FINE_LOCATION,
-			//Manifest.permission.WRITE_EXTERNAL_STORAGE,
-		//	Manifest.permission.READ_EXTERNAL_STORAGE,
-		//	Manifest.permission.READ_PHONE_STATE
-			};
-	
+
+	protected String[] needPermissions;
+	public String markStr;//标记
+
 	private static final int PERMISSON_REQUESTCODE = 0;
 	
 	/**
@@ -50,6 +47,13 @@ public class CheckPermissionsActivity extends BaseActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
+
+		if(TextUtils.equals(markStr,"HomePageActivity")){//判断是哪个界面，需要哪个权限
+			needPermissions= new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
+		}
+
+
+
 		if (Build.VERSION.SDK_INT >= 23
 				&& getApplicationInfo().targetSdkVersion >= 23) {
 			if (isNeedCheck) {

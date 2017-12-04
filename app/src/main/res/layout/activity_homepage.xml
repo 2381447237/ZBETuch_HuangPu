@@ -140,7 +140,6 @@
                       android:layout_alignParentBottom="true"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:text="我的关注我的关注我的关注我的关注我的关注我的关注我的关注"
                       android:textColor="#ffffff"/>
 
              </RelativeLayout>
@@ -164,7 +163,6 @@
                         android:layout_alignParentBottom="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="通知公告通知公告通知公告"
                         android:textColor="#ffffff"/>
 
                 </RelativeLayout>
@@ -175,6 +173,7 @@
                     >
 
                     <ImageView
+                        android:id="@+id/homepage_meet_manage_iv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:src="@drawable/hygl"/>
@@ -187,7 +186,6 @@
                         android:layout_alignParentBottom="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="会议管理会议管理会议管理"
                         android:textColor="#ffffff"/>
 
 
@@ -199,6 +197,7 @@
                     >
 
                     <ImageView
+                        android:id="@+id/homepage_need_work_iv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:src="@drawable/dbgz"/>
@@ -211,7 +210,6 @@
                         android:layout_alignParentBottom="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="待办工作待办工作待办工作"
                         android:textColor="#ffffff"/>
 
 
@@ -235,7 +233,6 @@
                         android:layout_alignParentBottom="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="邮件管理邮件管理邮件管理邮件管理"
                         android:textColor="#ffffff"/>
 
 
@@ -247,6 +244,7 @@
                     >
 
                     <ImageView
+                        android:id="@+id/homepage_inspector_iv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:src="@drawable/dcdb"/>
@@ -260,7 +258,6 @@
                         android:layout_alignParentBottom="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="督察督办督察督办"
                         android:textColor="#ffffff"/>
 
 

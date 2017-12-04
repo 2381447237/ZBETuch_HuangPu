@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -49,6 +50,9 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
     public static String adminName;//调查人姓名
     private Button workBtn;
 
+    private ImageView meetManageIv;//会议管理
+    private ImageView needWorkIv;//待办工作
+    private ImageView inspectorIv;//督察督办
     private TextView tvJdu,tvWdu,tvGdu;//经度，纬度，高度
 
     //声明AMapLocationClient类对象
@@ -87,6 +91,9 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
+
+        markStr="HomePageActivity";//通知权限的标记， 这句一定不能少
+
         initViews();
 
 
@@ -97,6 +104,12 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
         ivHead= (CircleImageView) findViewById(R.id.iv_activity_homepage_head);
         ivHead.setOnClickListener(this);
+        meetManageIv= (ImageView) findViewById(R.id.homepage_meet_manage_iv);
+        meetManageIv.setOnClickListener(this);
+        needWorkIv= (ImageView) findViewById(R.id.homepage_need_work_iv);
+        needWorkIv.setOnClickListener(this);
+        inspectorIv= (ImageView) findViewById(R.id.homepage_inspector_iv);
+        inspectorIv.setOnClickListener(this);
         workBtn = (Button) findViewById(R.id.main_layout_work_btn);
         workBtn.setOnClickListener(this);
 
@@ -281,6 +294,18 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
                 break;
 
+            case R.id.homepage_meet_manage_iv://会议管理
+                intent = new Intent(this,MeetManageActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.homepage_need_work_iv://待办工作
+                intent = new Intent(this,NeedWorkActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.homepage_inspector_iv://督察督办
+                intent = new Intent(this,InspectorActivity.class);
+                startActivity(intent);
+                break;
         }
 
     }
