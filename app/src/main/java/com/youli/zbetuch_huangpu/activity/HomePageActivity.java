@@ -10,6 +10,8 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,6 +39,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 //IMBI
 
     private Context mContext=this;
+    private WebView webView_image;
 
     private final int SUCCESS_ADMIN_INFO=10001;
     private final int PROBLEM=10002;
@@ -45,6 +48,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
 
     private Intent intent;
+    private ImageView notice;
     private CircleImageView ivHead;//头像
     public static String adminName;//调查人姓名
     private Button workBtn;
@@ -94,12 +98,13 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
 
     private void initViews(){
-
+        notice= (ImageView) findViewById(R.id.notice);
+        notice.setOnClickListener(this);
         ivHead= (CircleImageView) findViewById(R.id.iv_activity_homepage_head);
         ivHead.setOnClickListener(this);
         workBtn = (Button) findViewById(R.id.main_layout_work_btn);
         workBtn.setOnClickListener(this);
-
+        webView_image=new WebView(this);
         tvJdu= (TextView) findViewById(R.id.main_layout_tv_jdu);
         tvWdu= (TextView) findViewById(R.id.main_layout_tv_wdu);
         tvGdu= (TextView) findViewById(R.id.main_layout_tv_gdu);
@@ -278,7 +283,12 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
             case R.id.main_layout_work_btn:
                 intent=new Intent(this,FunctionListActivity.class);
                 startActivity(intent);
+                break;
 
+            //通知公告
+            case R.id.notice:
+                intent=new Intent(this,NoticeBulletin.class);
+                startActivity(intent);
                 break;
 
         }

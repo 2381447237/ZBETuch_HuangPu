@@ -133,6 +133,18 @@
             android:textSize="15sp"/>
     </LinearLayout>
 
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/ziyuan_detail_lv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:cacheColorHint="#000000"
+        android:divider="#19000000"
+        android:fastScrollEnabled="false"
+        android:footerDividersEnabled="true"
+        android:smoothScrollbar="true"
+        ptr:ptrAnimationStyle="rotate"></com.handmark.pulltorefresh.library.PullToRefreshListView>
+
     <LinearLayout
         android:padding="7.1dp"
         android:layout_width="fill_parent"
@@ -174,17 +186,7 @@
             android:gravity="center"
             android:text="居委" />
     </LinearLayout>
-    <com.handmark.pulltorefresh.library.PullToRefreshListView
-        android:id="@+id/ziyuan_detail_lv"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:cacheColorHint="#000000"
-        android:divider="#19000000"
-        android:fastScrollEnabled="false"
-        android:footerDividersEnabled="true"
-        android:smoothScrollbar="true"
-        ptr:ptrAnimationStyle="rotate"></com.handmark.pulltorefresh.library.PullToRefreshListView>
+
     <TextView
         android:visibility="gone"
         android:gravity="center"
