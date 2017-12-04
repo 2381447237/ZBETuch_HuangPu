@@ -151,9 +151,14 @@
                     >
 
                     <ImageView
+                        android:id="@+id/notice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/tzgg"/>
+                        android:src="@drawable/tzgg"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
                     <TextView
                         android:layout_marginRight="100dp"
                         android:singleLine="true"
