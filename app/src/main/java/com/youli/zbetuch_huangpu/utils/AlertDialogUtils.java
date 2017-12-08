@@ -41,11 +41,7 @@ public class AlertDialogUtils{
 
         view= LayoutInflater.from(context).inflate(layout,null);
 
-
-
         builder.setView(view);
-
-
 
         dialog=builder.create();
 

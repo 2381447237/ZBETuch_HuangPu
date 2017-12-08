@@ -107,8 +107,8 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
                     break;
                 case NODATA:
 
-                    if (lv.isRefreshing()) {
-                        lv.onRefreshComplete();
+                    if (lv.isRefreshing()) { //isRefreshing boolean类型 判断listview是否在刷新
+                        lv.onRefreshComplete();  //onRefreshComplete如果listview在刷新就停止
                     }
 
                     break;
@@ -273,28 +273,19 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-
         pageIndex=0;
-
         switch (checkedId){
-
             case R.id.ziyuan_detail_weicha_rb:
                 rg.check(R.id.ziyuan_detail_weicha_rb);
                 setTypeId();
                 sfzStr="null";
-
-
                 getNetWorkData(rInfo.getDcid(),rInfo.getDclx(),typeId,"null",pageIndex);
-
-
                 break;
             case R.id.ziyuan_detail_yicha_rb:
                 rg.check(R.id.ziyuan_detail_yicha_rb);
                 setTypeId();
                 sfzStr="null";
-
                 getNetWorkData(rInfo.getDcid(),rInfo.getDclx(),typeId,"null",pageIndex);
-
                 break;
         }
 
