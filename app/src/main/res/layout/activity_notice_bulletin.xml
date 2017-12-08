@@ -72,12 +72,13 @@
         android:footerDividersEnabled="true"
         android:smoothScrollbar="true">
     </com.handmark.pulltorefresh.library.PullToRefreshListView>
+
     <TextView
-        android:gravity="center"
         android:id="@+id/tongzhi_detail_tv_nodata"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="暂无数据"/>
+        android:gravity="center"
+        android:text="暂无数据" />
 
 </LinearLayout>

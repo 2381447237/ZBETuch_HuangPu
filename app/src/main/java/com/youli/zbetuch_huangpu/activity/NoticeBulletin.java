@@ -214,6 +214,7 @@ public class NoticeBulletin extends BaseActivity implements AdapterView.OnItemCl
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent intent=new Intent(this,ContentActivity.class);
             intent.putExtra("RDInfoo",nList.get(position-1).getID());
+            intent.putExtra("Nr",nList.get(position-1).getTITLE());
             startActivity(intent);
         }
 }
