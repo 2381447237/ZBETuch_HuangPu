@@ -112,7 +112,6 @@
             android:name=".naire.ShowPersionHistoryList"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-<<<<<<< HEAD
             android:windowSoftInputMode="adjustPan|stateHidden" >
         </activity>
         <activity android:name=".activity.MeetManageActivity"
@@ -123,13 +122,8 @@
             android:screenOrientation="portrait"></activity><!--督察督办-->
         <activity android:name=".activity.NeedWorkActivity"
             android:screenOrientation="portrait"></activity><!--待办工作-->
-        <service android:name=".naire.PersonService" >
-=======
-            android:theme="@style/Theme.ActivityDialogStyle"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
 
         <service android:name=".naire.PersonService">
->>>>>>> a94b903200b3c02fbc49a100b3b37e916ebc75cf
             <intent-filter>
                 <action android:name="com.fc.person.newservice.PersonService" />
             </intent-filter>
@@ -145,6 +139,10 @@
             android:screenOrientation="portrait" /><!--通知公告-->
         <activity android:name=".activity.ContentActivity"
             android:screenOrientation="portrait"></activity><!--通知公告内容-->
+        <activity android:name=".activity.InspectorDetailActivity"
+            android:screenOrientation="portrait" ></activity><!--督察督办详情-->
+        <activity android:name=".activity.MyFollowActivity"
+            android:screenOrientation="portrait" ></activity><!--我的关注-->
     </application>
 
 </manifest>

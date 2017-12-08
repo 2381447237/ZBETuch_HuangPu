@@ -127,6 +127,7 @@
                   >
 
              <ImageView
+                 android:id="@+id/homepage_my_follow_iv"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
                  android:src="@drawable/wdgz"/>
@@ -160,6 +161,17 @@
                         android:layout_alignParentStart="true" />
 
                     <TextView
+                        android:id="@+id/tzgg_num_tv"
+                        android:layout_marginLeft="200dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:background="@drawable/homepage_num_shape"
+                        android:text="99"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
                         android:layout_marginRight="100dp"
                         android:singleLine="true"
                         android:paddingBottom="5dp"
@@ -177,11 +189,24 @@
                     android:layout_height="wrap_content"
                     >
 
+
                     <ImageView
                         android:id="@+id/homepage_meet_manage_iv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:src="@drawable/hygl"/>
+
+                    <TextView
+                        android:id="@+id/hygl_num_tv"
+                        android:layout_marginLeft="200dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:background="@drawable/homepage_num_shape"
+                        android:text="10"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
                     <TextView
                         android:layout_marginRight="100dp"
                         android:singleLine="true"
@@ -206,6 +231,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:src="@drawable/dbgz"/>
+
+                    <TextView
+                        android:id="@+id/dbgz_num_tv"
+                        android:layout_marginLeft="200dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:background="@drawable/homepage_num_shape"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
                     <TextView
                         android:layout_marginRight="100dp"
                         android:singleLine="true"
@@ -253,6 +290,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:src="@drawable/dcdb"/>
+
+                    <TextView
+                        android:id="@+id/dcdb_num_tv"
+                        android:layout_marginLeft="200dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:background="@drawable/homepage_num_shape"
+                        android:text="3"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
                     <TextView
                         android:layout_marginRight="100dp"

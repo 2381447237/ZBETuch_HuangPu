@@ -33,7 +33,7 @@ public class MeetDetailActivity extends BaseActivity{
 
     private int MeetingId;
 
-    private ProgressDialog progressDialog;
+   // private ProgressDialog progressDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class MeetDetailActivity extends BaseActivity{
 
         MeetingId=getIntent().getIntExtra("mId",0);
 
-        showDialog();
+      //  showDialog();
 
         initViews();
 
@@ -61,17 +61,17 @@ public class MeetDetailActivity extends BaseActivity{
         web.getSettings().setUseWideViewPort(true);
         web.getSettings().setLoadWithOverviewMode(true);
         // 加载数据
-        web.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-                if (newProgress == 100) {
-                    if (progressDialog != null && progressDialog.isShowing()) {
-                        progressDialog.dismiss();
-                        progressDialog = null;
-                    }
-                }
-            }
-        });
+//        web.setWebChromeClient(new WebChromeClient() {
+//            @Override
+//            public void onProgressChanged(WebView view, int newProgress) {
+//                if (newProgress == 100) {
+//                    if (progressDialog != null && progressDialog.isShowing()) {
+//                        progressDialog.dismiss();
+//                        progressDialog = null;
+//                    }
+//                }
+//            }
+//        });
         web.setWebViewClient(new WebViewClient());
 
 
@@ -94,13 +94,13 @@ public class MeetDetailActivity extends BaseActivity{
         CookieSyncManager.getInstance().sync();
     }
 
-    private void showDialog() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setIcon(android.R.drawable.ic_dialog_info);
-        progressDialog.setTitle("加载提示");
-        progressDialog.setMessage("信息加载中，请稍后。。。");
-        progressDialog.show();
-    }
+//    private void showDialog() {
+//        progressDialog = new ProgressDialog(this);
+//        progressDialog.setIcon(android.R.drawable.ic_dialog_info);
+//        progressDialog.setTitle("加载提示");
+//        progressDialog.setMessage("信息加载中，请稍后。。。");
+//        progressDialog.show();
+//    }
 
         public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == event.KEYCODE_BACK) && web.canGoBack()) {

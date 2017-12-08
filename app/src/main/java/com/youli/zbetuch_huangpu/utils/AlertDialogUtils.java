@@ -34,33 +34,34 @@ public class AlertDialogUtils{
         this.style=style;
     }
 
+    public AlertDialogUtils(Context context, int layout) {
+        this.context = context;
+        this.layout = layout;
 
-    public void showAlertDialog(){
+    }
+
+    public void showAlertDialog(){//显示对话框
 
         AlertDialog.Builder builder=new AlertDialog.Builder(context,style);
 
         view= LayoutInflater.from(context).inflate(layout,null);
 
-
-
         builder.setView(view);
-
-
 
         dialog=builder.create();
 
-        dialog.setCancelable(false);
+        dialog.setCancelable(false);//设置点击对话框外面的地方，对话框不能消失
 
         dialog.show();
 
     }
 
-   public View getAduView(){
+   public View getAduView(){//得到对话框里面的控件
 
         return view!=null?view:null;
     }
 
-    public void dismissAlertDialog(){
+    public void dismissAlertDialog(){//隐藏对话框
         dialog.dismiss();
     }
 

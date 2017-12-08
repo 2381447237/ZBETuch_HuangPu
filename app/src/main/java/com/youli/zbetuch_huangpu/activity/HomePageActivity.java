@@ -7,12 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -57,7 +55,13 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
     private ImageView meetManageIv;//会议管理
     private ImageView needWorkIv;//待办工作
     private ImageView inspectorIv;//督察督办
+    private ImageView myFollowIv;//我的关注
     private TextView tvJdu,tvWdu,tvGdu;//经度，纬度，高度
+
+    private TextView tzggNumTv;//通知公告的数量
+    private TextView hyglNumTv;//会议管理的数量
+    private TextView dbgzNumTv;//待办工作的数量
+    private TextView dcdbNumTv;//督察督办的数量
 
     //声明AMapLocationClient类对象
     private AMapLocationClient mLocationClient;
@@ -115,12 +119,24 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
         needWorkIv.setOnClickListener(this);
         inspectorIv= (ImageView) findViewById(R.id.homepage_inspector_iv);
         inspectorIv.setOnClickListener(this);
+        myFollowIv= (ImageView) findViewById(R.id.homepage_my_follow_iv);
+        myFollowIv.setOnClickListener(this);
         workBtn = (Button) findViewById(R.id.main_layout_work_btn);
         workBtn.setOnClickListener(this);
         webView_image=new WebView(this);
         tvJdu= (TextView) findViewById(R.id.main_layout_tv_jdu);
         tvWdu= (TextView) findViewById(R.id.main_layout_tv_wdu);
         tvGdu= (TextView) findViewById(R.id.main_layout_tv_gdu);
+
+        tzggNumTv= (TextView) findViewById(R.id.tzgg_num_tv);
+        hyglNumTv= (TextView) findViewById(R.id.hygl_num_tv);
+        dbgzNumTv= (TextView) findViewById(R.id.dbgz_num_tv);
+        dcdbNumTv= (TextView) findViewById(R.id.dcdb_num_tv);
+
+        tzggNumTv.setText("1");
+        hyglNumTv.setText("2");
+        dbgzNumTv.setText("3");
+        dcdbNumTv.setText("4");
         getAdminInfo();
 
         getGpsInfo();//定位
@@ -314,6 +330,10 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
                 break;
             case R.id.homepage_inspector_iv://督察督办
                 intent = new Intent(this,InspectorActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.homepage_my_follow_iv://我的关注
+                intent = new Intent(this,MyFollowActivity.class);
                 startActivity(intent);
                 break;
         }

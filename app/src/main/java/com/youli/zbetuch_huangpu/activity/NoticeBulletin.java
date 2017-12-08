@@ -50,9 +50,6 @@ public class NoticeBulletin extends BaseActivity implements AdapterView.OnItemCl
     private final int PROBLEM=10002;  //网络不给力
     private final int OVERTIME=10003;//登录超时
 
-    public final static int RequestCodee=111111;
-    public final static int ResultCodee=222222;
-
     private Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {

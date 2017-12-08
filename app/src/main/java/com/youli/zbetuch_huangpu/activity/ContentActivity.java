@@ -6,6 +6,8 @@ import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
+
 import com.youli.zbetuch_huangpu.R;
 import com.youli.zbetuch_huangpu.utils.MyOkHttpUtils;
 import com.youli.zbetuch_huangpu.utils.SharedPreferencesUtils;
@@ -27,7 +29,10 @@ public class ContentActivity extends BaseActivity {
         WebSettings settings = myWebView.getSettings();
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
+        settings.setJavaScriptEnabled(true);
+        myWebView.setWebViewClient(new WebViewClient());
         synCookies(this,url);
+
         myWebView.loadUrl(url);
 
 

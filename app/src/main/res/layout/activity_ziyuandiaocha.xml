@@ -98,7 +98,7 @@
                 android:paddingLeft="3dp"
                 style="@style/resources_main_title"
                 android:layout_weight="0.5"
-                android:text="序号" />
+                android:text="编号" />
 
             <TextView
                 android:textColor="#000"
