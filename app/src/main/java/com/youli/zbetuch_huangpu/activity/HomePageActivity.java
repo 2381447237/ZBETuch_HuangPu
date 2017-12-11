@@ -21,14 +21,19 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.youli.zbetuch_huangpu.R;
 import com.youli.zbetuch_huangpu.entity.AdminInfo;
+import com.youli.zbetuch_huangpu.entity.InspectorInfo;
+import com.youli.zbetuch_huangpu.entity.MyFollowInfo;
 import com.youli.zbetuch_huangpu.utils.MyOkHttpUtils;
 import com.youli.zbetuch_huangpu.view.CircleImageView;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import okhttp3.Response;
 
@@ -38,11 +43,19 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 //IMBI
 
     private Context mContext=this;
-    private WebView webView_image;
+
 
     private final int SUCCESS_ADMIN_INFO=10001;
     private final int PROBLEM=10002;
     private final int OVERTIME=10003;//登录超时
+    private final int SUCCESS_TZGG_NUM=10004;//通知公告的数量
+    private final int SUCCESS_HYGL_NUM=10005;//会议管理的数量
+    private final int SUCCESS_DBGZ_NUM=10006;//待办工作的数量
+    private final int SUCCESS_DCDB_NUM=10007;//督察督办的数量
+    private final int SUCCESS_WDGZ_NUM=10008;//我的关注的数量
+
+    private List<MyFollowInfo> followData=new ArrayList<>();//我的关注的数据
+
     private AdminInfo adminInfo;
 
 
@@ -58,6 +71,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
     private ImageView myFollowIv;//我的关注
     private TextView tvJdu,tvWdu,tvGdu;//经度，纬度，高度
 
+    private TextView wdgzNumTv;//我的关注的数量
     private TextView tzggNumTv;//通知公告的数量
     private TextView hyglNumTv;//会议管理的数量
     private TextView dbgzNumTv;//待办工作的数量
@@ -79,6 +93,9 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
                     adminInfo=(AdminInfo)msg.obj;
                     adminName=adminInfo.getNAME();
+
+                    getNum("WDGZ");//我的关注
+
                     break;
 
                 case PROBLEM:
@@ -88,6 +105,42 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
                     Intent i=new Intent(mContext,OvertimeDialogActivity.class);
                     startActivity(i);
+
+                    break;
+
+                case SUCCESS_WDGZ_NUM://我的关注的数量
+
+                    followData=((List<MyFollowInfo>)(msg.obj));
+
+                    if(followData.size()!=0) {
+                        wdgzNumTv.setText(followData.get(0).getRecordCount()+"");
+                    }
+                    getNum("TZGG");//通知公告
+
+                    break;
+
+                case SUCCESS_TZGG_NUM://通知公告的数量
+
+                    tzggNumTv.setText(""+msg.obj);
+                    getNum("HYGL");//会议管理
+
+                    break;
+
+                case SUCCESS_HYGL_NUM://会议管理的数量
+
+                    hyglNumTv.setText(""+msg.obj);
+                    getNum("DBGZ");//待办工作
+                    break;
+
+                case SUCCESS_DBGZ_NUM://待办工作的数量
+
+                    dbgzNumTv.setText(""+msg.obj);
+                    getNum("DCDB");//督察督办
+                    break;
+
+                case SUCCESS_DCDB_NUM://督察督办的数量
+
+                    dcdbNumTv.setText(""+msg.obj);
 
                     break;
             }
@@ -123,20 +176,17 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
         myFollowIv.setOnClickListener(this);
         workBtn = (Button) findViewById(R.id.main_layout_work_btn);
         workBtn.setOnClickListener(this);
-        webView_image=new WebView(this);
         tvJdu= (TextView) findViewById(R.id.main_layout_tv_jdu);
         tvWdu= (TextView) findViewById(R.id.main_layout_tv_wdu);
         tvGdu= (TextView) findViewById(R.id.main_layout_tv_gdu);
 
+        wdgzNumTv= (TextView) findViewById(R.id.wdgz_num_tv);
         tzggNumTv= (TextView) findViewById(R.id.tzgg_num_tv);
         hyglNumTv= (TextView) findViewById(R.id.hygl_num_tv);
         dbgzNumTv= (TextView) findViewById(R.id.dbgz_num_tv);
         dcdbNumTv= (TextView) findViewById(R.id.dcdb_num_tv);
 
-        tzggNumTv.setText("1");
-        hyglNumTv.setText("2");
-        dbgzNumTv.setText("3");
-        dcdbNumTv.setText("4");
+
         getAdminInfo();
 
         getGpsInfo();//定位
@@ -294,6 +344,104 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
         mLocationClient.stopLocation();//停止定位后，本地定位服务并不会被销毁
         mLocationClient.onDestroy();//销毁定位客户端，同时销毁本地定位服务。
     }
+
+    private void getNum(final String mark){//获取通知公告，会议管理，待办工作，督察督办的数量
+        //我的关注的数量:
+       // http://web.youli.pw:8088/Json/First/Get_Attention.aspx?page=0&rows=1
+        //通知公告的数量:
+        //http://web.youli.pw:8088/Json/First/Get_News_Count.aspx
+        //会议管理的数量：
+        //http://web.youli.pw:8088/Json/First/Get_Meeting_Check.aspx
+        //待办工作：
+        //http://web.youli.pw:8088/Json/First/Get_Work_Notice_Check.aspx
+        //督察督办
+        //http://web.youli.pw:8088/Json/First/Get_Work_Notice_Done.aspx
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                String url = null;
+
+                if(TextUtils.equals(mark,"TZGG")) {
+
+                    url = MyOkHttpUtils.BaseUrl + "/Json/First/Get_News_Count.aspx";
+                }else if(TextUtils.equals(mark,"HYGL")){
+                    url = MyOkHttpUtils.BaseUrl + "/Json/First/Get_Meeting_Check.aspx";
+                }else if(TextUtils.equals(mark,"DBGZ")){
+                    url = MyOkHttpUtils.BaseUrl + "/Json/First/Get_Work_Notice_Check.aspx";
+                }else if(TextUtils.equals(mark,"DCDB")){
+                    url = MyOkHttpUtils.BaseUrl + "/Json/First/Get_Work_Notice_Done.aspx";
+                }else if(TextUtils.equals(mark,"WDGZ")){
+                    url = MyOkHttpUtils.BaseUrl + "/Json/First/Get_Attention.aspx?page=0&rows=1";
+                }
+
+
+
+                Response response=MyOkHttpUtils.okHttpGet(url);
+
+                Message msg=Message.obtain();
+
+                if(response!=null){
+
+                    if(response.body()!=null){
+
+                        try {
+                            String resStr=response.body().string();
+
+                            if(!TextUtils.equals(resStr,"")){
+
+                                try{
+
+
+                                    if(TextUtils.equals(mark,"WDGZ")){
+                                        Gson gson=new Gson();
+                                        msg.obj=gson.fromJson(resStr,new TypeToken<List<MyFollowInfo>>(){}.getType());
+                                        msg.what = SUCCESS_WDGZ_NUM;
+                                    }else {
+                                        msg.obj=resStr;
+                                        if (TextUtils.equals(mark, "TZGG")) {
+                                            msg.what = SUCCESS_TZGG_NUM;
+                                        } else if (TextUtils.equals(mark, "HYGL")) {
+                                            msg.what = SUCCESS_HYGL_NUM;
+                                        } else if (TextUtils.equals(mark, "DBGZ")) {
+                                            msg.what = SUCCESS_DBGZ_NUM;
+                                        } else if (TextUtils.equals(mark, "DCDB")) {
+                                            msg.what = SUCCESS_DCDB_NUM;
+                                        }
+                                    }
+                                }catch(Exception e){
+                                    Log.e("2017/11/13","登录超时了");
+                                    msg.what=OVERTIME;
+
+                                }
+
+
+
+                            }
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }else{
+                        msg.what=PROBLEM;
+                    }
+
+                }else{
+
+                    msg.what=PROBLEM;
+
+                }
+
+                mHandler.sendMessage(msg);
+
+            }
+
+
+        }).start();
+
+    }
+
 
     @Override
     public void onClick(View v) {

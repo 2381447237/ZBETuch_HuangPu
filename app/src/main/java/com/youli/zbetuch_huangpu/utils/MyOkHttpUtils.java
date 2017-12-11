@@ -49,7 +49,7 @@ public class MyOkHttpUtils {
 
         Request request=new Request.Builder().addHeader("cookie",cookies).url(url).build();
 
-        Log.e("2017/11/8","url="+url);
+
 
         Response response=null;
 

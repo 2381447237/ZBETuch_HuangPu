@@ -19,7 +19,7 @@
             android:id="@+id/item_my_follow_number_tv"
             android:paddingLeft="3dp"
             style="@style/resources_main_title"
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:text="编号" />
 
         <TextView
@@ -27,7 +27,7 @@
             android:paddingLeft="15dp"
             android:id="@+id/item_my_follow_name_tv"
             style="@style/resources_main_title"
-            android:layout_weight="1.2"
+            android:layout_weight="2"
             android:text="姓名" />
 
         <TextView
@@ -38,7 +38,25 @@
             android:layout_weight="5"
             android:text="身份证" />
 
+        <Button
+            android:id="@+id/btn_item_follow_details"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/button_selector"
+            style="@style/resources_main_title"
+            android:layout_weight="2"
+            android:layout_height="35dp"
+            android:textColor="#fff"
+            android:text="查看详情"/>
 
+        <Button
+            android:id="@+id/btn_item_follow_follow"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/button_selector"
+            style="@style/resources_main_title"
+            android:layout_weight="2"
+            android:layout_height="35dp"
+            android:textColor="#fff"
+            android:text="取消关注"/>
 
 
 

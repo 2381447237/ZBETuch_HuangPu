@@ -70,6 +70,7 @@
             </RadioGroup>
 
             <TextView
+                android:visibility="gone"
                 android:layout_gravity="bottom|end"
                 android:gravity="end"
                 android:id="@+id/tv_meet_manage_readnum"

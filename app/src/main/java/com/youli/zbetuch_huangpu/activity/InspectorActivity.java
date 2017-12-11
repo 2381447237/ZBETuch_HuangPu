@@ -186,15 +186,16 @@ public class InspectorActivity extends BaseActivity{
             }
         });
 
-        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-
-                showNewOrModifyDialog("modify",position);
-                return true;
-            }
-        });
+        //2017-12-8 功能暂时不要了
+//        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//
+//                showNewOrModifyDialog("modify",position);
+//                return true;
+//            }
+//        });
 
 
 

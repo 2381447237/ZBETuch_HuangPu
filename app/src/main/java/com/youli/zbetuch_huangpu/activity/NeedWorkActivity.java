@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -103,14 +102,14 @@ public class NeedWorkActivity extends BaseActivity implements RadioGroup.OnCheck
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 pageIndex=0;
-                Log.e("2017-12-5","下pageIndex="+pageIndex);
+
                 getNetWorkData(pageIndex);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 pageIndex++;
-                Log.e("2017-12-5","上pageIndex="+pageIndex);
+
                 getNetWorkData(pageIndex);
 
             }
@@ -134,7 +133,7 @@ public class NeedWorkActivity extends BaseActivity implements RadioGroup.OnCheck
                         }else if (rg.getCheckedRadioButtonId()==R.id.yi_meet_manage_history){
                             url= MyOkHttpUtils.BaseUrl+"/Json/First/Get_Work_Info.aspx?type=已完成&page="+page+"&rows=20";
                         }
-                        Log.e("----2017-12-4---","url="+url);
+
                         Response response=MyOkHttpUtils.okHttpGet(url);
 
                         try {
@@ -147,7 +146,7 @@ public class NeedWorkActivity extends BaseActivity implements RadioGroup.OnCheck
                                 msg.obj=gson.fromJson(infoStr,new TypeToken<List<StayInfo>>(){}.getType());
                                 mHandler.sendMessage(msg);
                             }catch (Exception e){
-                                Log.e("2017/11/13","登录超时了");
+
                                 msg.what=OVERTIME;
                                 mHandler.sendMessage(msg);
                             }
@@ -208,7 +207,7 @@ public class NeedWorkActivity extends BaseActivity implements RadioGroup.OnCheck
                     TextView stateTv = holder.getView(R.id.item_daiban_detail_idcard_tv);
                     stateTv.setText(data.get(position).getType());
                     TextView remTv = holder.getView(R.id.item_daiban_detail_juwei_tv);
-
+                    remTv.setText(data.get(position).getMark());
                     LinearLayout ll = holder.getView(R.id.item_daiban_detail_ll);
 
                     if (position % 2 == 0) {

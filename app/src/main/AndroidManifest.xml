@@ -112,7 +112,6 @@
             android:name=".naire.ShowPersionHistoryList"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-<<<<<<< HEAD
             android:windowSoftInputMode="adjustPan|stateHidden" >
         </activity>
         <activity android:name=".activity.MeetManageActivity"
@@ -122,26 +121,12 @@
         <activity android:name=".activity.InspectorActivity"
             android:screenOrientation="portrait"></activity><!--督察督办-->
         <activity android:name=".activity.NeedWorkActivity"
-            android:screenOrientation="portrait"></activity><!--待办工作-->
-=======
-            android:windowSoftInputMode="adjustPan|stateHidden">
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"><!--待办工作-->
         </activity>
-        <activity
-            android:name=".activity.MeetManageActivity"
-            android:screenOrientation="portrait"/> <!-- 会议管理 -->
-        <activity
-            android:name=".activity.MeetDetailActivity"
-            android:screenOrientation="portrait"/> <!-- 会议详情 -->
-        <activity
-            android:name=".activity.InspectorActivity"
-            android:screenOrientation="portrait"/> <!-- 督察督办 -->
-        <activity
-            android:name=".activity.NeedWorkActivity"
-            android:screenOrientation="portrait"/> <!-- 待办工作 -->
-        <!-- <service android:name=".naire.PersonService" -->
-        <!-- android:theme="@style/Theme.ActivityDialogStyle" -->
-        <!-- android:windowSoftInputMode="adjustPan|stateHidden" /> -->
->>>>>>> d64359b51cf226e49a6d83947744451fe0f278b2
+
+
+
 
         <service android:name=".naire.PersonService">
             <intent-filter>
@@ -156,23 +141,17 @@
 
         <activity
             android:name=".activity.NoticeBulletin"
-<<<<<<< HEAD
-            android:screenOrientation="portrait" /><!--通知公告-->
+          android:screenOrientation="portrait" /><!--通知公告-->
         <activity android:name=".activity.ContentActivity"
             android:screenOrientation="portrait"></activity><!--通知公告内容-->
         <activity android:name=".activity.InspectorDetailActivity"
             android:screenOrientation="portrait" ></activity><!--督察督办详情-->
         <activity android:name=".activity.MyFollowActivity"
             android:screenOrientation="portrait" ></activity><!--我的关注-->
-=======
-            android:screenOrientation="portrait"/> <!-- 通知公告 -->
-        <activity
-            android:name=".activity.ContentActivity"
-            android:screenOrientation="portrait"/> <!-- 通知公告内容 -->
+
         <activity android:name=".activity.NeedWebActivity"
             android:screenOrientation="portrait">
         </activity>
->>>>>>> d64359b51cf226e49a6d83947744451fe0f278b2
     </application>
 
 </manifest>

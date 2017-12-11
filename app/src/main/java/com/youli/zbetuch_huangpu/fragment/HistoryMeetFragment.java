@@ -130,6 +130,7 @@ public class HistoryMeetFragment extends BaseFragment{
 
                 Intent intent=new Intent(getActivity(), MeetDetailActivity.class);
                 intent.putExtra("mId",data.get(position-1).getID());
+                intent.putExtra("meetInfo",data.get(position-1));
                 startActivity(intent);
 
             }

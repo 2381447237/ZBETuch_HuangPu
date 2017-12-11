@@ -1,5 +1,7 @@
 package com.youli.zbetuch_huangpu.entity;
 
+import java.io.Serializable;
+
 /**
  * 作者: zhengbin on 2017/12/2.
  * <p>
@@ -17,11 +19,11 @@ package com.youli.zbetuch_huangpu.entity;
  * "METTING_STAFFS":null,"Checks":null}]
  */
 
-public class MeetInfo {
+public class MeetInfo implements Serializable{
 
     private int ID;
     private String TITLE;//会议主题
-    private String DOC;
+    private String DOC;//会议内容
     private String MEETING_ADD;//会议地址
     private String MEETING_TIME;//会议时间
     private int CREATE_STAFF;

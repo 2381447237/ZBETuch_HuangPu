@@ -38,7 +38,6 @@ public class NoticeBulletin extends BaseActivity implements AdapterView.OnItemCl
 
     private Context mContext=NoticeBulletin.this;
     private TextView tv,tv1;
-    private NoticeInfo noticeInfo;
     private PullToRefreshListView lv;
     private int pageIndex;
     private List<NoticeInfo> nList=new ArrayList<>();
@@ -119,7 +118,6 @@ public class NoticeBulletin extends BaseActivity implements AdapterView.OnItemCl
     }
 
     private void getNetWorkData(final int page){
-        Log.e("------------","page="+page);
 
         ProgressDialogUtils.showMyProgressDialog(this);
 
@@ -215,6 +213,7 @@ public class NoticeBulletin extends BaseActivity implements AdapterView.OnItemCl
             Intent intent=new Intent(this,ContentActivity.class);
             intent.putExtra("RDInfoo",nList.get(position-1).getID());
             intent.putExtra("Nr",nList.get(position-1).getTITLE());
+            intent.putExtra("Content",nList.get(position-1).getDOC());
             startActivity(intent);
         }
 }

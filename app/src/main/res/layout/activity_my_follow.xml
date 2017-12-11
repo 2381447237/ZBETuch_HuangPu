@@ -30,16 +30,18 @@
         android:orientation="horizontal">
 
         <TextView
+
             android:textColor="#000"
-            android:paddingLeft="3dp"
+            android:paddingLeft="8dp"
             style="@style/resources_main_title"
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:text="编号" />
 
         <TextView
+            android:paddingLeft="18dp"
             android:textColor="#000"
             style="@style/resources_main_title"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:text="姓名" />
 
         <TextView
@@ -48,7 +50,23 @@
             android:layout_weight="5"
             android:text="身份证" />
 
+        <Button
+            android:visibility="invisible"
+            android:layout_marginLeft="5dp"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="35dp"
 
+            />
+
+        <Button
+            android:visibility="invisible"
+            android:layout_marginLeft="5dp"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="35dp"
+
+            />
 
     </LinearLayout>
 

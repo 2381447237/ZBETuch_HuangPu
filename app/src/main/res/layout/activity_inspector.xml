@@ -11,6 +11,7 @@
         >
 
         <Button
+            android:visibility="gone"
             android:layout_centerVertical="true"
             android:id="@+id/inspector_new_btn"
             android:layout_width="30dp"

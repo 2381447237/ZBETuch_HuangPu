@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 /**
  * Created by sfhan on 2017/12/1.
+ *
+ * [{"ID":4,"TITLE":"人情味若群若翁群若","DOC":"沃尔沃群若群若群无","CREATE_TIME":"2017-12-08T10:33:15.91","CREATE_STAFF":1,"RecordCount":4,"NewImg":"new"}]
  */
 
 public class NoticeInfo implements Serializable {
@@ -23,6 +25,7 @@ public class NoticeInfo implements Serializable {
     private String CREATE_TIME;
     private int CREATE_STAFF;
     private int RecordCount;
+    private String NewImg;
 
     public int getID() {
         return ID;
@@ -70,5 +73,18 @@ public class NoticeInfo implements Serializable {
 
     public void setRecordCount(int RecordCount) {
         this.RecordCount = RecordCount;
+    }
+
+    public String getNewImg() {
+        return NewImg;
+    }
+
+    public void setNewImg(String newImg) {
+        NewImg = newImg;
+    }
+
+    @Override
+    public String toString() {
+        return DOC;
     }
 }

@@ -27,6 +27,7 @@ import com.youli.zbetuch_huangpu.activity.OvertimeDialogActivity;
 import com.youli.zbetuch_huangpu.adapter.CommonAdapter;
 import com.youli.zbetuch_huangpu.entity.CommonViewHolder;
 import com.youli.zbetuch_huangpu.entity.MeetInfo;
+import com.youli.zbetuch_huangpu.utils.MyDateUtils;
 import com.youli.zbetuch_huangpu.utils.MyOkHttpUtils;
 
 import java.util.ArrayList;
@@ -131,6 +132,8 @@ public class CurrentMeetFragment extends BaseFragment{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
               Intent intent=new Intent(getActivity(), MeetDetailActivity.class);
+                intent.putExtra("mId",data.get(position-1).getID());
+                intent.putExtra("meetInfo",data.get(position-1));
                 startActivity(intent);
 
             }
@@ -153,7 +156,7 @@ public class CurrentMeetFragment extends BaseFragment{
                 initDatas(PageIndex);
             }
         });
-
+        initDatas(PageIndex);
     }
 
     private void initDatas(final int pIndex){
@@ -224,11 +227,11 @@ public class CurrentMeetFragment extends BaseFragment{
                     TextView addressTv=holder.getView(R.id.item_meet_manage_address_tv);//会议地址
                     addressTv.setText(list.get(position).getMEETING_ADD());
                     TextView mTimeTv=holder.getView(R.id.item_meet_manage_mtime_tv);//会议时间
-                    mTimeTv.setText(list.get(position).getMEETING_TIME());
+                    mTimeTv.setText(MyDateUtils.stringToYMDHMS(list.get(position).getMEETING_TIME()));
                     TextView notifierTv=holder.getView(R.id.item_meet_manage_notifier_tv);//通知人
                     notifierTv.setText(list.get(position).getCREATE_STAFF_NAME());
                     TextView rTimeTv=holder.getView(R.id.item_meet_manage_rtime_tv);//发布时间
-                    rTimeTv.setText(list.get(position).getCREATE_DATE());
+                    rTimeTv.setText(MyDateUtils.stringToYMDHMS(list.get(position).getCREATE_DATE()));
                     LinearLayout ll = holder.getView(R.id.item_meet_manage_ll);
                     if (position % 2 == 0){
                         ll.setBackgroundResource(R.drawable.selector_questionnaire_click_blue);
@@ -244,7 +247,9 @@ public class CurrentMeetFragment extends BaseFragment{
 
             adapter.notifyDataSetChanged();
         }
-
+        if(lv.isRefreshing()) {
+            lv.onRefreshComplete();//停止刷新或加载更多
+        }
     }
 
 }
