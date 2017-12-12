@@ -44,7 +44,6 @@ public class MyOkHttpUtils {
      */
 
     public static Response okHttpGet(String url){
-
         getInstance();
 
         Request request=new Request.Builder().addHeader("cookie",cookies).url(url).build();
