@@ -29,6 +29,10 @@ import com.youli.zbetuch_huangpu.entity.MyFollowInfo;
 import com.youli.zbetuch_huangpu.utils.MyOkHttpUtils;
 import com.youli.zbetuch_huangpu.view.CircleImageView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -56,7 +60,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
     private List<MyFollowInfo> followData=new ArrayList<>();//我的关注的数据
 
-    private AdminInfo adminInfo;
+    public static AdminInfo adminInfo;
 
 
     private Intent intent;
@@ -113,7 +117,10 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
                     followData=((List<MyFollowInfo>)(msg.obj));
 
                     if(followData.size()!=0) {
+                        wdgzNumTv.setVisibility(View.VISIBLE);
                         wdgzNumTv.setText(followData.get(0).getRecordCount()+"");
+                    }else{
+                        wdgzNumTv.setVisibility(View.GONE);
                     }
                     getNum("TZGG");//通知公告
 
@@ -121,26 +128,43 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
                 case SUCCESS_TZGG_NUM://通知公告的数量
 
-                    tzggNumTv.setText(""+msg.obj);
+                    if(!TextUtils.equals("0",""+msg.obj)) {
+                        tzggNumTv.setText("" + msg.obj);
+                        tzggNumTv.setVisibility(View.VISIBLE);
+                    }else{
+                        tzggNumTv.setVisibility(View.GONE);
+                    }
                     getNum("HYGL");//会议管理
 
                     break;
 
                 case SUCCESS_HYGL_NUM://会议管理的数量
-
-                    hyglNumTv.setText(""+msg.obj);
+                    if(!TextUtils.equals("0",""+msg.obj)) {
+                        hyglNumTv.setText("" + msg.obj);
+                        hyglNumTv.setVisibility(View.VISIBLE);
+                    }else {
+                        hyglNumTv.setVisibility(View.GONE);
+                    }
                     getNum("DBGZ");//待办工作
                     break;
 
                 case SUCCESS_DBGZ_NUM://待办工作的数量
-
-                    dbgzNumTv.setText(""+msg.obj);
+                    if(!TextUtils.equals("0",""+msg.obj)) {
+                        dbgzNumTv.setText("" + msg.obj);
+                        dbgzNumTv.setVisibility(View.VISIBLE);
+                    }else{
+                        dbgzNumTv.setVisibility(View.GONE);
+                    }
                     getNum("DCDB");//督察督办
                     break;
 
                 case SUCCESS_DCDB_NUM://督察督办的数量
-
-                    dcdbNumTv.setText(""+msg.obj);
+                    if(!TextUtils.equals("0",""+msg.obj)) {
+                        dcdbNumTv.setText("" + msg.obj);
+                        dcdbNumTv.setVisibility(View.VISIBLE);
+                    }else{
+                        dcdbNumTv.setVisibility(View.GONE);
+                    }
 
                     break;
             }
@@ -152,6 +176,9 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
+
+        //注册事件
+        EventBus.getDefault().register(this);
 
         markStr="HomePageActivity";//通知权限的标记， 这句一定不能少
 
@@ -341,11 +368,17 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
     @Override
     public void onDestroy() {
         super.onDestroy();
+
+        //取消注册事件
+        EventBus.getDefault().unregister(this);
+
         mLocationClient.stopLocation();//停止定位后，本地定位服务并不会被销毁
         mLocationClient.onDestroy();//销毁定位客户端，同时销毁本地定位服务。
     }
 
-    private void getNum(final String mark){//获取通知公告，会议管理，待办工作，督察督办的数量
+    //这里我们的ThreadMode设置为MAIN，事件的处理会在UI线程中执行
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getNum(final String mark){//获取通知公告，会议管理，待办工作，督察督办的数量
         //我的关注的数量:
        // http://web.youli.pw:8088/Json/First/Get_Attention.aspx?page=0&rows=1
         //通知公告的数量:

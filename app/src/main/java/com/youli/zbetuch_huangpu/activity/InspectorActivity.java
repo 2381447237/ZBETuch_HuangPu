@@ -182,6 +182,7 @@ public class InspectorActivity extends BaseActivity{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent i=new Intent(mContext,InspectorDetailActivity.class);
+                i.putExtra("InInfo",data.get(position-1));
                 startActivity(i);
             }
         });

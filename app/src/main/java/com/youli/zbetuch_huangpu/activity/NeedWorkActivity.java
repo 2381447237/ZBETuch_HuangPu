@@ -184,14 +184,7 @@ public class NeedWorkActivity extends BaseActivity implements RadioGroup.OnCheck
 
 
     }
-//    private void setTypeId(){
-//        if (rg.getCheckedRadioButtonId()==R.id.wei_meet_manage_current){
-//            typeId="未完成";
-//        }else if (rg.getCheckedRadioButtonId()==R.id.yi_meet_manage_history){
-//            typeId="已完成";
-//        }
-//
-//    }
+
 
     private void lvsetAdapter(final List<StayInfo> data) {
         if (commonAdapter == null) {
@@ -234,7 +227,7 @@ public class NeedWorkActivity extends BaseActivity implements RadioGroup.OnCheck
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent mIntent=new Intent(mContext,NeedWebActivity.class);
         mIntent.putExtra("RDInfoo",nList.get(position-1).getId());
-        mIntent.putExtra("Db",nList.get(position-1).getTitle());
+        mIntent.putExtra("StayInfo",nList.get(position-1));
         startActivity(mIntent);
 
     }

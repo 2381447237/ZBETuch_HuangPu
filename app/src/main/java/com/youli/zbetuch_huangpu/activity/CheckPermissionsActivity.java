@@ -50,6 +50,10 @@ public class CheckPermissionsActivity extends BaseActivity {
 
 		if(TextUtils.equals(markStr,"HomePageActivity")){//判断是哪个界面，需要哪个权限
 			needPermissions= new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
+		}else if(TextUtils.equals(markStr,"MeetDetailActivity")){
+
+			needPermissions=new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
+
 		}
 
 

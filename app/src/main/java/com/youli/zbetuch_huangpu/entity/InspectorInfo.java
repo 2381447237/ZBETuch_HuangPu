@@ -1,5 +1,7 @@
 package com.youli.zbetuch_huangpu.entity;
 
+import java.io.Serializable;
+
 /**
  * 作者: zhengbin on 2017/12/4.
  * <p>
@@ -10,11 +12,13 @@ package com.youli.zbetuch_huangpu.entity;
  * http://web.youli.pw:8088/Json/First/Get_ManageWork.aspx?page=0&rows=1
  *
  * [{"id":3,"title":"测试","notice_time":"2017-12-01T00:00:00","create_date":"2017-12-02T15:58:23.887","type":"已完成"}]
+ *
+ *
  */
 
-public class InspectorInfo {
+public class InspectorInfo implements Serializable{
 
-    private String id;
+    private int id;
     private String title;//工作名称
     private String create_date;//创建时间
     private String notice_time;//完成时间
@@ -28,11 +32,11 @@ public class InspectorInfo {
         this.create_date = create_date;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

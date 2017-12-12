@@ -33,6 +33,7 @@
         >
 
         <TextView
+            android:textColor="#000"
             android:id="@+id/tv_meet_detail_name"
             android:textStyle="bold"
             android:layout_width="wrap_content"
@@ -43,14 +44,13 @@
 
         <Button
             android:textColor="#fff"
-            android:text="未读"
             android:id="@+id/btn_meet_detail_isread"
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/selector_ziyuan_detaillist"/>
+            android:background="@drawable/button_selector"/>
 
     </RelativeLayout>
 
@@ -82,6 +82,7 @@
                     />
 
                 <TextView
+                    android:textColor="#000"
                     android:id="@+id/tv_meet_detail_notifier"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -131,6 +132,7 @@
                     />
 
                 <TextView
+                    android:textColor="#000"
                     android:id="@+id/tv_meet_detail_mtime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -152,6 +154,7 @@
                     />
 
                 <TextView
+                    android:textColor="#000"
                     android:id="@+id/tv_meet_detail_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -175,11 +178,11 @@
                     android:text="附        件："
                     />
 
-                <!--<com.youli.zbetuch.jingan.view.MyListView-->
-                    <!--android:divider="@null"-->
-                    <!--android:id="@+id/lv_meetnotice_detail_appendix"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"></com.youli.zbetuch.jingan.view.MyListView>-->
+                <com.youli.zbetuch_huangpu.view.MyListView
+                    android:divider="@null"
+                    android:id="@+id/lv_meet_detail_appendix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></com.youli.zbetuch_huangpu.view.MyListView>
 
             </LinearLayout>
 
@@ -197,6 +200,7 @@
                     />
 
                 <TextView
+                    android:textColor="#000"
                     android:id="@+id/tv_meet_detail_ptime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -209,6 +213,7 @@
     </ScrollView>
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/tv_meetnotice_detail_notifier"
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
@@ -216,6 +221,7 @@
         />
 
     <View
+        android:visibility="gone"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
@@ -223,6 +229,7 @@
         android:background="#000000"/>
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/tv_meetnotice_detail_create_date"
         android:gravity="center_horizontal"
         android:layout_width="match_parent"

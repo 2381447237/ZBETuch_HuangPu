@@ -20,6 +20,7 @@
             />
 
         <TextView
+            android:visibility="gone"
             android:text="共20条"
             android:id="@+id/inspector_detail_num_tv"
             android:layout_width="wrap_content"

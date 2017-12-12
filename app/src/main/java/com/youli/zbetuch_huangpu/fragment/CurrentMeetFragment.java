@@ -132,7 +132,7 @@ public class CurrentMeetFragment extends BaseFragment{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
               Intent intent=new Intent(getActivity(), MeetDetailActivity.class);
-                intent.putExtra("mId",data.get(position-1).getID());
+
                 intent.putExtra("meetInfo",data.get(position-1));
                 startActivity(intent);
 
