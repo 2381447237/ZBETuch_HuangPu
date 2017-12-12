@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.IdRes;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,69 +46,72 @@ import okhttp3.Response;
  * Created by liutao on 2017/8/11.
  */
 
-public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickListener{
-
-
-    private Context mContext=ShiwuyeDetailActivity.this;
+public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
+    private boolean RHFL;    //人户分离
+    private String DCLX;   //调查类型
+    private ArrayAdapter<String> currStaAdapter;
+    private RadioGroup rag,textView_type;
+    private RadioButton rb1, rb2,radioGroup_men,radioGroup_phone;
+    private Context mContext = ShiwuyeDetailActivity.this;
     private boolean isCheck;
-    private Button diaochaBtn,submitBtn,detailInfoBtn,resultBtn;
-    private LinearLayout diaochaLl,shidengLi,shidengAndphenoLi,shoolLi,biyeLi;
-    private TextView titleTv,zjlxTv,hujiTypeTv,cjrTv,mdDateTv;
+    private Button diaochaBtn, submitBtn, detailInfoBtn, resultBtn;
+    private LinearLayout diaochaLl, shidengLi, shidengAndphenoLi, shoolLi, biyeLi,person_ren;
+    private TextView titleTv, zjlxTv, hujiTypeTv, cjrTv, mdDateTv;
     private ResourcesDetailInfo RDInfo;
-    private EditText sfzEt,nameEt,sexEt,birthdayEt,nationEt,educationEt,hujiAddressEt,
-            streetEt,jwEt,presentStatusEt,masterDateEt,presentIntentionEt,
-            shidengDateEt,shidengVidEt,phoneEt,diaocharenEt,remarksEt,diaochaDateEt,hujiTypeEt,isCjrEt,shoolEt,majorEt,biyeEt,qrzEt;
+    private EditText sfzEt, nameEt, sexEt, birthdayEt, nationEt, educationEt, hujiAddressEt,
+            streetEt, jwEt, presentStatusEt, masterDateEt, presentIntentionEt,
+            shidengDateEt, shidengVidEt, phoneEt, diaocharenEt, remarksEt, diaochaDateEt, hujiTypeEt, isCjrEt, shoolEt, majorEt, biyeEt, qrzEt;
 
     String ZJTYPE;
 
 
-    private Spinner currStaSp,currIntSp;
-    private String currIntStr,currStaStr;
-    private String [] currStaData,currIntData;
+    private Spinner currStaSp, currIntSp;
+    private String currIntStr, currStaStr;
+    private String[] currStaData, currIntData;
 
     private boolean isSave;//是否提交
 
-    private final int SUCCESS=10000;
-    private final int  PERSONINFO=10001;
-    private final int  NOPERSONINFO=10002;
-    private final int  PROBLEM=10004;
+    private final int SUCCESS = 10000;
+    private final int PERSONINFO = 10001;
+    private final int NOPERSONINFO = 10002;
+    private final int PROBLEM = 10004;
 
-    private List<PersonInfo> personInfos=new ArrayList<>();
+    private List<PersonInfo> personInfos = new ArrayList<>();
 
-    private List<LastInvest> lastInfo=new ArrayList<>();
+    private List<LastInvest> lastInfo = new ArrayList<>();
 
-    private Handler mHandler=new Handler(){
+    private Handler mHandler = new Handler() {
 
         @Override
         public void handleMessage(Message msg) {
 
-            switch (msg.what){
+            switch (msg.what) {
 
                 case SUCCESS:
 
-                    Toast.makeText(mContext,"提交成功",Toast.LENGTH_SHORT).show();
-                    isSave=true;
-                    setResult(ZiyuanDetailListActivity.ResultCode,null);
-                   // EventBus.getDefault().post(new ResourcesDetailInfo());
+                    Toast.makeText(mContext, "提交成功", Toast.LENGTH_SHORT).show();
+                    isSave = true;
+                    setResult(ZiyuanDetailListActivity.ResultCode, null);
+                    // EventBus.getDefault().post(new ResourcesDetailInfo());
                     break;
 
 
                 case PROBLEM:
 
-                    Toast.makeText(mContext,"提交失败",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "提交失败", Toast.LENGTH_SHORT).show();
 
                     break;
 
 
                 case NOPERSONINFO:
 
-                    Toast.makeText(mContext,"对不起,查无此人",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "对不起,查无此人", Toast.LENGTH_SHORT).show();
 
                     break;
 
                 case PERSONINFO:
 
-                    personInfos=(List<PersonInfo>)msg.obj;
+                    personInfos = (List<PersonInfo>) msg.obj;
 
 //                    Intent intent=new Intent(mContext,PersonInfoActivity.class);
 //                    intent.putExtra("personInfos", (Serializable) personInfos.get(0));
@@ -116,86 +122,94 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
 
         }
     };
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shiwuye_detail);
 
-        RDInfo=(ResourcesDetailInfo)getIntent().getSerializableExtra("RDInfo");
-        isCheck=getIntent().getBooleanExtra("IsCheck",false);
-
+        RDInfo = (ResourcesDetailInfo) getIntent().getSerializableExtra("RDInfo");
+        isCheck = getIntent().getBooleanExtra("IsCheck", false);
 
         initViews();
     }
 
 
+    private void initViews() {
+        person_ren= (LinearLayout) findViewById(R.id.person_ren);
 
+        rag = (RadioGroup) findViewById(R.id.radioGroup1);
+        rb1 = (RadioButton) findViewById(R.id.rd0);
+        rb2 = (RadioButton) findViewById(R.id.rd1);
+        rag.setOnCheckedChangeListener(this);
 
-    private void initViews(){
+        textView_type = (RadioGroup) findViewById(R.id.textView_type);
+        radioGroup_men = (RadioButton) findViewById(R.id.radioGroup_men);
+        radioGroup_phone = (RadioButton) findViewById(R.id.radioGroup_phone);
+        textView_type.setOnCheckedChangeListener(this);
 
-        diaochaBtn= (Button) findViewById(R.id.shiwuye_detail_diaocha_btn);
+        diaochaBtn = (Button) findViewById(R.id.shiwuye_detail_diaocha_btn);
         diaochaBtn.setOnClickListener(this);
-        submitBtn= (Button) findViewById(R.id.shiwuye_detail_submit_btn);
+        submitBtn = (Button) findViewById(R.id.shiwuye_detail_submit_btn);
         submitBtn.setOnClickListener(this);
-        detailInfoBtn= (Button) findViewById(R.id.shiwuye_detail_info_btn);
+        detailInfoBtn = (Button) findViewById(R.id.shiwuye_detail_info_btn);
         detailInfoBtn.setOnClickListener(this);
-          resultBtn= (Button) findViewById(R.id.shiwuye_detail_result_btn);
+        resultBtn = (Button) findViewById(R.id.shiwuye_detail_result_btn);
         resultBtn.setOnClickListener(this);
 
-        zjlxTv= (TextView) findViewById(R.id.shiwuye_detail_zjlx_tv);
+        zjlxTv = (TextView) findViewById(R.id.shiwuye_detail_zjlx_tv);
 
 
-        titleTv= (TextView) findViewById(R.id.shiwuye_detail_title_tv);
-        hujiTypeTv= (TextView) findViewById(R.id.shiwuye_detail_huji_type_tv);
-        cjrTv= (TextView) findViewById(R.id.shiwuye_detail_cjr_tv);
-        mdDateTv= (TextView) findViewById(R.id.shiwuye_detail_master_date_tv);
-        shidengLi= (LinearLayout) findViewById(R.id.shiwuye_detail_shideng_ll);
-        shidengAndphenoLi= (LinearLayout) findViewById(R.id.shiwuye_detail_shideng_and_phone_ll);
-        diaochaLl= (LinearLayout) findViewById(R.id.shiwuye_detail_diaocha_ll);
-       shoolLi= (LinearLayout) findViewById(R.id.shiwuye_detail_shool_ll);
-       biyeLi= (LinearLayout) findViewById(R.id.shiwuye_detail_biye_ll);
+        titleTv = (TextView) findViewById(R.id.shiwuye_detail_title_tv);
+        hujiTypeTv = (TextView) findViewById(R.id.shiwuye_detail_huji_type_tv);
+        cjrTv = (TextView) findViewById(R.id.shiwuye_detail_cjr_tv);
+        mdDateTv = (TextView) findViewById(R.id.shiwuye_detail_master_date_tv);
+        shidengLi = (LinearLayout) findViewById(R.id.shiwuye_detail_shideng_ll);
+        shidengAndphenoLi = (LinearLayout) findViewById(R.id.shiwuye_detail_shideng_and_phone_ll);
+        diaochaLl = (LinearLayout) findViewById(R.id.shiwuye_detail_diaocha_ll);
+        shoolLi = (LinearLayout) findViewById(R.id.shiwuye_detail_shool_ll);
+        biyeLi = (LinearLayout) findViewById(R.id.shiwuye_detail_biye_ll);
 
-        sfzEt= (EditText) findViewById(R.id.shiwuye_detail_sfz_et);
-        nameEt= (EditText) findViewById(R.id.shiwuye_detail_name_et);
-        sexEt= (EditText) findViewById(R.id.shiwuye_detail_sex_et);
-        birthdayEt= (EditText) findViewById(R.id.shiwuye_detail_birthday_et);
-        nationEt= (EditText) findViewById(R.id.shiwuye_detail_nation_et);
-        educationEt= (EditText) findViewById(R.id.shiwuye_detail_education_et);
-        hujiAddressEt= (EditText) findViewById(R.id.shiwuye_detail_huji_address_et);
-                streetEt= (EditText) findViewById(R.id.shiwuye_detail_street_et);
-        jwEt= (EditText) findViewById(R.id.shiwuye_detail_jw_et);
+        sfzEt = (EditText) findViewById(R.id.shiwuye_detail_sfz_et);
+        nameEt = (EditText) findViewById(R.id.shiwuye_detail_name_et);
+        sexEt = (EditText) findViewById(R.id.shiwuye_detail_sex_et);
+        birthdayEt = (EditText) findViewById(R.id.shiwuye_detail_birthday_et);
+        nationEt = (EditText) findViewById(R.id.shiwuye_detail_nation_et);
+        educationEt = (EditText) findViewById(R.id.shiwuye_detail_education_et);
+        hujiAddressEt = (EditText) findViewById(R.id.shiwuye_detail_huji_address_et);
+        streetEt = (EditText) findViewById(R.id.shiwuye_detail_street_et);
+        jwEt = (EditText) findViewById(R.id.shiwuye_detail_jw_et);
 
-        presentStatusEt= (EditText) findViewById(R.id.shiwuye_detail_present_status_et);
-        masterDateEt= (EditText) findViewById(R.id.shiwuye_detail_master_date_et);
-        presentIntentionEt= (EditText) findViewById(R.id.shiwuye_detail_present_intention_et);
-                shidengDateEt= (EditText) findViewById(R.id.shiwuye_detail_shideng_date_et);
-        shidengVidEt= (EditText) findViewById(R.id.shiwuye_detail_shideng_vid_et);
-        phoneEt= (EditText) findViewById(R.id.shiwuye_detail_phone_et);
-        diaocharenEt= (EditText) findViewById(R.id.shiwuye_detail_diaocharen_et);
-        remarksEt= (EditText) findViewById(R.id.shiwuye_detail_remarks_et);
-       shoolEt= (EditText) findViewById(R.id.shiwuye_detail_shool_et);
-        majorEt= (EditText) findViewById(R.id.shiwuye_detail_major_et);
-       biyeEt= (EditText) findViewById(R.id.shiwuye_detail_biye_et);
-       qrzEt= (EditText) findViewById(R.id.shiwuye_detail_qrz_et);
+        presentStatusEt = (EditText) findViewById(R.id.shiwuye_detail_present_status_et);
+        masterDateEt = (EditText) findViewById(R.id.shiwuye_detail_master_date_et);
+        presentIntentionEt = (EditText) findViewById(R.id.shiwuye_detail_present_intention_et);
+        shidengDateEt = (EditText) findViewById(R.id.shiwuye_detail_shideng_date_et);
+        shidengVidEt = (EditText) findViewById(R.id.shiwuye_detail_shideng_vid_et);
+        phoneEt = (EditText) findViewById(R.id.shiwuye_detail_phone_et);
+        diaocharenEt = (EditText) findViewById(R.id.shiwuye_detail_diaocharen_et);
+        remarksEt = (EditText) findViewById(R.id.shiwuye_detail_remarks_et);
+        shoolEt = (EditText) findViewById(R.id.shiwuye_detail_shool_et);
+        majorEt = (EditText) findViewById(R.id.shiwuye_detail_major_et);
+        biyeEt = (EditText) findViewById(R.id.shiwuye_detail_biye_et);
+        qrzEt = (EditText) findViewById(R.id.shiwuye_detail_qrz_et);
 
-         diaochaDateEt= (EditText) findViewById(R.id.shiwuye_detail_diaochadate_et);
-        hujiTypeEt= (EditText) findViewById(R.id.shiwuye_detail_huji_type_et);
-        isCjrEt= (EditText) findViewById(R.id.shiwuye_detail_is_cjr_et);
+        diaochaDateEt = (EditText) findViewById(R.id.shiwuye_detail_diaochadate_et);
+        hujiTypeEt = (EditText) findViewById(R.id.shiwuye_detail_huji_type_et);
+        isCjrEt = (EditText) findViewById(R.id.shiwuye_detail_is_cjr_et);
 
-        currStaSp= (Spinner) findViewById(R.id.sp_shiwuye_detail_curr_sta);
-        currIntSp= (Spinner) findViewById(R.id.sp_shiwuye_detail_curr_int);
+        currStaSp = (Spinner) findViewById(R.id.sp_shiwuye_detail_curr_sta);
+        currIntSp = (Spinner) findViewById(R.id.sp_shiwuye_detail_curr_int);
 
         initData();
 
     }
 
 
-
-    private void initData(){
+    private void initData() {
 
         diaocharenEt.setText(HomePageActivity.adminName);
 
-        if(isCheck){
+        if (isCheck) {
             diaochaLl.setVisibility(View.VISIBLE);
             submitBtn.setClickable(false);
             submitBtn.setBackgroundResource(R.drawable.button_enabled);
@@ -203,16 +217,16 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
             remarksEt.setFocusable(false);
             remarksEt.setText(RDInfo.getDCBZ());
             remarksEt.setTextColor(Color.parseColor("#c0c0c0"));
-        }else{
+        } else {
             remarksEt.setTextColor(Color.parseColor("#000000"));
             remarksEt.setFocusable(true);
-
             diaochaLl.setVisibility(View.GONE);
             submitBtn.setClickable(true);
         }
 
-        if(RDInfo.getDCID()==1){
-           currStaData=getResources().getStringArray(R.array.resources_shiye_status);
+        if (RDInfo.getDCID() == 1) {
+            person_ren.setVisibility(View.GONE);
+            currStaData = getResources().getStringArray(R.array.resources_shiye_status);
             titleTv.setText("失业详细");
             shidengAndphenoLi.setVisibility(View.VISIBLE);
             shidengLi.setVisibility(View.VISIBLE);
@@ -227,8 +241,8 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
             shidengDateEt.setText(RDInfo.getZJSYDJDATE().split("T")[0]);//最近失业登记日期
             shidengVidEt.setText(RDInfo.getSYDJYXQ().split("T")[0]);//失业登记有效期
 
-        }else if((RDInfo.getDCID()==2)){
-            currStaData=getResources().getStringArray(R.array.resources_wuye_status);
+        } else if ((RDInfo.getDCID() == 2)) {
+            currStaData = getResources().getStringArray(R.array.resources_wuye_status);
             titleTv.setText("无业详细");
             hujiTypeTv.setText("是否已核");
             hujiTypeEt.setText(RDInfo.getSFYH());//是否已核
@@ -240,8 +254,8 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
             shidengLi.setVisibility(View.INVISIBLE);
             mdDateTv.setText("摸底日期");
             masterDateEt.setText(RDInfo.getMDDATE());//摸底日期
-        }else if((RDInfo.getDCID()==3)){
-            currStaData=getResources().getStringArray(R.array.resources_wuye_status);
+        } else if ((RDInfo.getDCID() == 3)) {
+            currStaData = getResources().getStringArray(R.array.resources_wuye_status);
             titleTv.setText("应届生详细");
             shidengAndphenoLi.setVisibility(View.GONE);
             shoolLi.setVisibility(View.VISIBLE);
@@ -258,60 +272,63 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
             qrzEt.setText(RDInfo.getSFQRZ());//是否全日制
         }
 
-      String  sg=RDInfo.getZJLX();
-        if (sg.length()<=2)
-        {
-            char item1 =  sg.charAt(0);
-            char item2 =  sg.charAt(1);
-            ZJTYPE=item1+"    "+item2;
+        String sg = RDInfo.getZJLX();
+        if (sg.length() <= 2) {
+            char item1 = sg.charAt(0);
+            char item2 = sg.charAt(1);
+            ZJTYPE = item1 + "    " + item2;
 
-        }else if (sg.length()<=3)
-        {
-            char item1 =  sg.charAt(0);
-            char item2 =  sg.charAt(1);
-            char item3 =  sg.charAt(2);
-            ZJTYPE=item1+"  "+item2+"  "+item3;
+        } else if (sg.length() <= 3) {
+            char item1 = sg.charAt(0);
+            char item2 = sg.charAt(1);
+            char item3 = sg.charAt(2);
+            ZJTYPE = item1 + "  " + item2 + "  " + item3;
         }
         zjlxTv.setText(ZJTYPE);//证件类型
         sfzEt.setText(RDInfo.getZJHM());//身份证
-       nameEt.setText(RDInfo.getXM());//姓名
+        nameEt.setText(RDInfo.getXM());//姓名
         sexEt.setText(RDInfo.getGENDER());//性别
         birthdayEt.setText(RDInfo.getCSDATE().split("T")[0]);//出生日期
         nationEt.setText(RDInfo.getMINZU());//民族
         educationEt.setText(RDInfo.getWHCD());//文化程度
         hujiAddressEt.setText(RDInfo.getHKDZ());//户口地址
-                streetEt.setText(RDInfo.getJDMC());//街道
+        streetEt.setText(RDInfo.getJDMC());//街道
         jwEt.setText(RDInfo.getJWMC());//居委
         presentStatusEt.setText(RDInfo.getMQZK());//目前状况
 
         presentIntentionEt.setText(RDInfo.getDQYX());//当前意向
         phoneEt.setText(RDInfo.getLXDH());//联系电话
         Calendar c = Calendar.getInstance();
-        diaochaDateEt.setText(c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH)+1) + "-" + c.get(Calendar.DAY_OF_MONTH));//调查日期
+        diaochaDateEt.setText(c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH) + 1) + "-" + c.get(Calendar.DAY_OF_MONTH));//调查日期
 
 
+        currStaAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currStaData);
+        currStaSp.setAdapter(currStaAdapter);
 
-        ArrayAdapter<String> currStaAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,currStaData);
-       currStaSp.setAdapter(currStaAdapter);
 
-
-        currIntData=getResources().getStringArray(R.array.resources_wuye_yixiang);
-        ArrayAdapter<String> currIntAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,currIntData);
+        currIntData = getResources().getStringArray(R.array.resources_wuye_yixiang);
+        ArrayAdapter<String> currIntAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currIntData);
         currIntSp.setAdapter(currIntAdapter);
 
-        if(isCheck){
+        if (isCheck) {
             spinnerSetSelection("new");
             currIntSp.setEnabled(false);
             currStaSp.setEnabled(false);
-        }else{
+            rb1.setEnabled(false);
+            rb2.setEnabled(false);
+            radioGroup_phone.setEnabled(false);
+            radioGroup_men.setEnabled(false);
+        } else {
             currIntSp.setEnabled(true);
             currStaSp.setEnabled(true);
+            radioGroup_phone.setEnabled(true);
+            radioGroup_men.setEnabled(true);
         }
 
         currIntSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                currIntStr=(String)currIntSp.getSelectedItem();
+                currIntStr = (String) currIntSp.getSelectedItem();
             }
 
             @Override
@@ -322,7 +339,7 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
         currStaSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                currStaStr=(String)currStaSp.getSelectedItem();
+                currStaStr = (String) currStaSp.getSelectedItem();
             }
 
             @Override
@@ -346,20 +363,34 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
                 break;
 
             case R.id.shiwuye_detail_submit_btn://提交
-
-                if(TextUtils.equals((String)currStaSp.getSelectedItem(),"请选择")){
-                    Toast.makeText(this,"请选择目前状况!",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(TextUtils.equals((String)currIntSp.getSelectedItem(),"请选择")){
-                    Toast.makeText(this,"请选择当前意向!",Toast.LENGTH_SHORT).show();
-                    return;
+                if (RDInfo.getDCID() !=1){
+                    if (rag.getCheckedRadioButtonId() != rb1.getId() && rag.getCheckedRadioButtonId() != rb2.getId()) {
+                        Toast.makeText(this, "请选择是否人户分离", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
 
 
-                if(isSave){
-                    Toast.makeText(this,"已经提交过了，不能重复提交",Toast.LENGTH_SHORT).show();
-                }else{
+
+                if (textView_type.getCheckedRadioButtonId() != radioGroup_men.getId() && textView_type.getCheckedRadioButtonId() != radioGroup_phone.getId()) {
+                    Toast.makeText(this, "请选择调查类型", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
+                if (TextUtils.equals((String) currStaSp.getSelectedItem(), "请选择")) {
+                    Toast.makeText(this, "请选择目前状况!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.equals((String) currIntSp.getSelectedItem(), "请选择")) {
+                    Toast.makeText(this, "请选择当前意向!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
+                if (isSave) {
+                    Toast.makeText(this, "已经提交过了，不能重复提交", Toast.LENGTH_SHORT).show();
+                } else {
                     showSubmitDialog();
                 }
 
@@ -367,7 +398,7 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
 
             case R.id.shiwuye_detail_result_btn://调查结果同上
 
-                 spinnerSetSelection("old");
+                spinnerSetSelection("old");
 
 
                 break;
@@ -381,105 +412,84 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
 
     }
 
-    private void spinnerSetSelection(String type){
-
-
-
-
-        for(int i=0; i<currStaData.length;i++){
-
-            if(TextUtils.equals("old",type)){
-
-                if(TextUtils.equals(RDInfo.getMQZK(),currStaData[i])){
-
+    private void spinnerSetSelection(String type) {
+        for (int i = 0; i < currStaData.length; i++) {
+            if (TextUtils.equals("old", type)) {
+                if (TextUtils.equals(RDInfo.getMQZK(), currStaData[i])) {
                     currStaSp.setSelection(i);
-
                 }
-
-            }else{
-
-                if(TextUtils.equals(RDInfo.getMQZK_NEW(),currStaData[i])){
-
+            } else {
+                if (TextUtils.equals(RDInfo.getMQZK_NEW(), currStaData[i])) {
                     currStaSp.setSelection(i);
-
                 }
-
             }
-
-
-
         }
 
-        for(int i=0; i<currIntData.length;i++){
-
-            if(TextUtils.equals("old",type)){
-
-                if(TextUtils.equals(RDInfo.getDQYX(),currIntData[i])){
-
+        for (int i = 0; i < currIntData.length; i++) {
+            if (TextUtils.equals("old", type)) {
+                if (TextUtils.equals(RDInfo.getDQYX(), currIntData[i])) {
                     currIntSp.setSelection(i);
-
                 }
-
-
-
-            }else{
-
-                if(TextUtils.equals(RDInfo.getDQYX_NEW(),currIntData[i])){
-
+            } else {
+                if (TextUtils.equals(RDInfo.getDQYX_NEW(), currIntData[i])) {
                     currIntSp.setSelection(i);
-
                 }
-
             }
-
         }
+
+        if (RDInfo.isRHFL()==true){
+            rag.check(R.id.rd0);
+        }else if (RDInfo.isRHFL()==false){
+            rag.check(R.id.rd1);
+        }
+
+        if (TextUtils.equals(RDInfo.getDCLX(),"上门调查")){
+            textView_type.check(R.id.radioGroup_men);
+
+        }else if(TextUtils.equals(RDInfo.getDCLX(),"电话调查")){
+            textView_type.check(R.id.radioGroup_phone);
+        }
+
+
+
 
     }
 
 
-    private void showSubmitDialog(){
+    private void showSubmitDialog() {
 
-        final AlertDialog.Builder builder=new  AlertDialog.Builder(this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("温馨提示");
         builder.setMessage("确定保存此信息吗?");
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-                    new Thread(
-
-                            new Runnable() {
-                                @Override
-                                public void run() {
-                                    submitInfo(RDInfo.getDCID());
-                                }
+                new Thread(
+                        new Runnable() {
+                            @Override
+                            public void run() {
+                                submitInfo(RDInfo.getDCID());
                             }
-
-                    ).start();
-
+                        }
+                ).start();
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
             }
         });
         builder.show();
     }
 
-    private void submitInfo(int DCID){
+    private void submitInfo(int DCID) {
         String url = null;
         //Set_Resource_Survey_Detil_SY.aspx 参数 MDID 明细id ,DCBZ 调查备注,MQZK_NEW 调查的目前状况,DQYX_NEW  调查的当前意向
-        if(DCID==1) {
-
-           url = MyOkHttpUtils.BaseUrl + "/Json/Set_Resource_Survey_Detil_SY.aspx";
-
-        }else if(DCID==2){
-
-           url = MyOkHttpUtils.BaseUrl + "/Json/Set_Resource_Survey_Detil_WY.aspx";
-
-        }else if(DCID==3){
+        if (DCID == 1) {
+            url = MyOkHttpUtils.BaseUrl + "/Json/Set_Resource_Survey_Detil_SY.aspx";
+        } else if (DCID == 2) {
+            url = MyOkHttpUtils.BaseUrl + "/Json/Set_Resource_Survey_Detil_WY.aspx";
+        } else if (DCID == 3) {
             url = MyOkHttpUtils.BaseUrl + "/Json/Set_Resource_Survey_Detil_YJS.aspx";
         }
 //
@@ -490,90 +500,91 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
 //        dataMap.put("MQZK_NEW",currStaStr);
 //        dataMap.put("DQYX_NEW",currIntStr);
 
-   //     Log.e("2017/11/9","dataMap=="+dataMap);
+        //     Log.e("2017/11/9","dataMap=="+dataMap);
 
-          //  Response response=MyOkHttpUtils.okHttpPost(url,RDInfo.getMDID()+"",remarksEt.getText().toString(),currStaStr,currIntStr);
+        //  Response response=MyOkHttpUtils.okHttpPost(url,RDInfo.getMDID()+"",remarksEt.getText().toString(),currStaStr,currIntStr);
 
-        Response response=MyOkHttpUtils.okHttpGet(url+"?MDID="+RDInfo.getMDID()+"&DCBZ="+remarksEt.getText().toString()+
-        "&MQZK_NEW="+currStaStr+"&DQYX_NEW="+currIntStr);
+        Response response = MyOkHttpUtils.okHttpGet(url + "?MDID=" + RDInfo.getMDID() + "&DCBZ=" + remarksEt.getText().toString() +
+                "&MQZK_NEW=" + currStaStr + "&DQYX_NEW=" + currIntStr+"&DCLX="+DCLX+"&RHFL="+RHFL);
 
 
 
-            try {
-                Message msg=Message.obtain();
-                if(response!=null) {
-
-                    String resStr = response.body().string();
-
-                    Log.e("2017/11/9","提交=="+resStr);
-
-                    if(TextUtils.equals("True",resStr)){
-
-                        msg.what=SUCCESS;
-                        mHandler.sendMessage(msg);
-
-                    }else{
-                        msg.what=PROBLEM;
-                        mHandler.sendMessage(msg);
-                    }
-                }else{
-
-                    msg.what=PROBLEM;
+        try {
+            Message msg = Message.obtain();
+            if (response != null) {
+                String resStr = response.body().string();
+                Log.e("2017/11/9", "提交==" + resStr);
+                if (TextUtils.equals("True", resStr)) {
+                    msg.what = SUCCESS;
                     mHandler.sendMessage(msg);
-
+                } else {
+                    msg.what = PROBLEM;
+                    mHandler.sendMessage(msg);
                 }
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
+            } else {
+                msg.what = PROBLEM;
+                mHandler.sendMessage(msg);
             }
-
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
-    private void getPersonInfo(){
-       // http://web.youli.pw:89/Json/Get_BASIC_INFORMATION.aspx?sfz=310101198711030515
+    private void getPersonInfo() {
+        // http://web.youli.pw:89/Json/Get_BASIC_INFORMATION.aspx?sfz=310101198711030515
         new Thread(
-
                 new Runnable() {
                     @Override
                     public void run() {
-
-                        String url=MyOkHttpUtils.BaseUrl+"/Json/Get_BASIC_INFORMATION.aspx?sfz="+RDInfo.getZJHM();
-
-                        Response response=MyOkHttpUtils.okHttpGet(url);
-
-                        if(response!=null){
-
+                        String url = MyOkHttpUtils.BaseUrl + "/Json/Get_BASIC_INFORMATION.aspx?sfz=" + RDInfo.getZJHM();
+                        Response response = MyOkHttpUtils.okHttpGet(url);
+                        if (response != null) {
                             try {
-                                String strRes=response.body().string();
-
-                                Message msg=Message.obtain();
-                                if(TextUtils.equals(strRes,"[null]")){
-
-
-                                    msg.what=NOPERSONINFO;
+                                String strRes = response.body().string();
+                                Message msg = Message.obtain();
+                                if (TextUtils.equals(strRes, "[null]")) {
+                                    msg.what = NOPERSONINFO;
                                     mHandler.sendMessage(msg);
-
-                                }else{
-
-                                    Gson gson=new Gson();
-                                    msg.obj=gson.fromJson(strRes,new TypeToken<List<PersonInfo>>(){}.getType());
-                                    msg.what=PERSONINFO;
+                                } else {
+                                    Gson gson = new Gson();
+                                    msg.obj = gson.fromJson(strRes, new TypeToken<List<PersonInfo>>() {
+                                    }.getType());
+                                    msg.what = PERSONINFO;
                                     mHandler.sendMessage(msg);
-
                                 }
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
-
                         }
-
                     }
                 }
-
         ).start();
-
     }
 
 
+    @Override
+    public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+        switch (group.getId()){
+            case R.id.radioGroup1:
+                if (rag.getCheckedRadioButtonId() == rb1.getId()) {
+                    currStaData = getResources().getStringArray(R.array.resources_wuye_status);
+                    RHFL=true;
+                } else if (rag.getCheckedRadioButtonId() == rb2.getId()) {
+                    currStaData = getResources().getStringArray(R.array.resources_wuye_status_ren);
+                    RHFL=false;
+                }
+                currStaAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currStaData);
+                currStaSp.setAdapter(currStaAdapter);
+                break;
+            case R.id.textView_type:
+                if (textView_type.getCheckedRadioButtonId() == radioGroup_men.getId()) {
+                    DCLX="上门调查";
+                } else if (textView_type.getCheckedRadioButtonId() == radioGroup_phone.getId()) {
+                    DCLX="电话调查";
+                }
+                break;
+
+        }
+
+    }
 }

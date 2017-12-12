@@ -82,7 +82,28 @@ public class ResourcesDetailInfo implements Serializable {
 
     private String DCBZ;//调查备注(失业，无业，应届生)
 
+    private boolean RHFL;    //人户分离
+
+    private String DCLX;   //调查类型
+
     private int RecordCount;
+
+    public boolean isRHFL() {
+        return RHFL;
+    }
+
+    public void setRHFL(boolean RHFL) {
+        this.RHFL = RHFL;
+    }
+
+    public String getDCLX() {
+        return DCLX;
+    }
+
+    public void setDCLX(String DCLX) {
+        this.DCLX = DCLX;
+    }
+
 
 
     public String getCSDATE() {
