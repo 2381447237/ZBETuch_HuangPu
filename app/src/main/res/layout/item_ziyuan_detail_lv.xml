@@ -42,6 +42,15 @@
 
         <TextView
             android:textColor="#666666"
+            android:id="@+id/item_ziyuan_detail_hkdz_tv"
+            style="@style/gradeate_list_titletext"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:textColor="#666666"
             android:id="@+id/item_ziyuan_detail_juwei_tv"
             style="@style/gradeate_list_titletext"
             android:layout_width="0dp"

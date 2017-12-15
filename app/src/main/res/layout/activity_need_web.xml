@@ -70,12 +70,30 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#AFCEEC">
+      >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:orientation="vertical"
+            >
+
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:src="@drawable/tz"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             >
 
@@ -100,11 +118,40 @@
                     />
 
             </LinearLayout>
+            <View
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cccccc"/>
+
+            </LinearLayout>
+
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:src="@drawable/content"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
             <LinearLayout
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
                 android:layout_width="match_parent"
+                android:minHeight="480dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
@@ -114,20 +161,43 @@
                     android:text="工作内容："
                     />
 
-                <!--<TextView-->
-                <!--android:id="@+id/tv_meet_detail_content"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--/>-->
+
 
                 <WebView
-                    android:background="#AFCEEC"
+                    android:background="#FAFAFA"
                     android:id="@+id/wv_need_web"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     ></WebView>
 
             </LinearLayout>
+            <View
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cccccc"/>
+
+            </LinearLayout>
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:src="@drawable/fbsj"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
             <LinearLayout
                 android:paddingLeft="10dp"
@@ -151,10 +221,32 @@
 
             </LinearLayout>
 
+            <View
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cccccc"/>
 
+</LinearLayout>
+</LinearLayout>
 
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:src="@drawable/fj"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
             <LinearLayout
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
@@ -176,6 +268,32 @@
                     android:layout_height="wrap_content"></com.youli.zbetuch_huangpu.view.MyListView>
 
             </LinearLayout>
+            <View
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cccccc"/>
+            </LinearLayout>
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:src="@drawable/hysj"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
             <LinearLayout
                 android:paddingLeft="10dp"
@@ -198,6 +316,14 @@
                     />
 
             </LinearLayout>
+            <View
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cccccc"/>
+        </LinearLayout>
+
+        </LinearLayout>
 
         </LinearLayout>
 

@@ -225,7 +225,7 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
         }
 
         if (RDInfo.getDCID() == 1) {
-            person_ren.setVisibility(View.GONE);
+           // person_ren.setVisibility(View.GONE);
             currStaData = getResources().getStringArray(R.array.resources_shiye_status);
             titleTv.setText("失业详细");
             shidengAndphenoLi.setVisibility(View.VISIBLE);
@@ -292,8 +292,8 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
         nationEt.setText(RDInfo.getMINZU());//民族
         educationEt.setText(RDInfo.getWHCD());//文化程度
         hujiAddressEt.setText(RDInfo.getHKDZ());//户口地址
-        streetEt.setText(RDInfo.getJDMC());//街道
-        jwEt.setText(RDInfo.getJWMC());//居委
+        streetEt.setText(RDInfo.getHJJDMC());//街道
+        jwEt.setText(RDInfo.getHJJWMC());//居委
         presentStatusEt.setText(RDInfo.getMQZK());//目前状况
 
         presentIntentionEt.setText(RDInfo.getDQYX());//当前意向
@@ -363,12 +363,12 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
                 break;
 
             case R.id.shiwuye_detail_submit_btn://提交
-                if (RDInfo.getDCID() !=1){
+             //   if (RDInfo.getDCID() !=1){
                     if (rag.getCheckedRadioButtonId() != rb1.getId() && rag.getCheckedRadioButtonId() != rb2.getId()) {
                         Toast.makeText(this, "请选择是否人户分离", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                }
+             //   }
 
 
 
@@ -424,6 +424,10 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
                 }
             }
         }
+
+        currStaAdapter.notifyDataSetChanged();
+//        currStaAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currStaData);
+//        currStaSp.setAdapter(currStaAdapter);
 
         for (int i = 0; i < currIntData.length; i++) {
             if (TextUtils.equals("old", type)) {
@@ -564,26 +568,35 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
 
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-        switch (group.getId()){
+
+        if(!isCheck){
+
+        switch (group.getId()) {
             case R.id.radioGroup1:
-                if (rag.getCheckedRadioButtonId() == rb1.getId()) {
-                    currStaData = getResources().getStringArray(R.array.resources_wuye_status);
-                    RHFL=true;
-                } else if (rag.getCheckedRadioButtonId() == rb2.getId()) {
-                    currStaData = getResources().getStringArray(R.array.resources_wuye_status_ren);
-                    RHFL=false;
-                }
-                currStaAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currStaData);
-                currStaSp.setAdapter(currStaAdapter);
+
+                    if (rag.getCheckedRadioButtonId() == rb1.getId()) {
+                        if (RDInfo.getDCID() !=1) {
+                            currStaData = getResources().getStringArray(R.array.resources_wuye_status);
+                        }
+                        RHFL = true;
+                    } else if (rag.getCheckedRadioButtonId() == rb2.getId()) {
+                        if (RDInfo.getDCID() !=1) {
+                            currStaData = getResources().getStringArray(R.array.resources_wuye_status_ren);
+                        }
+                        RHFL = false;
+                    }
+                    currStaAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currStaData);
+                    currStaSp.setAdapter(currStaAdapter);
+
                 break;
             case R.id.textView_type:
                 if (textView_type.getCheckedRadioButtonId() == radioGroup_men.getId()) {
-                    DCLX="上门调查";
+                    DCLX = "上门调查";
                 } else if (textView_type.getCheckedRadioButtonId() == radioGroup_phone.getId()) {
-                    DCLX="电话调查";
+                    DCLX = "电话调查";
                 }
                 break;
-
+        }
         }
 
     }

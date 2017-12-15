@@ -52,7 +52,8 @@ public class InspectorDetailActivity extends BaseActivity{
 
     private Context mContext=this;
 
-    private PullToRefreshListView lv;
+  //  private PullToRefreshListView lv;
+    private ListView lv;
     private List<InspectorDetailInfo> data=new ArrayList<>();
     private CommonAdapter adapter;
 
@@ -80,14 +81,14 @@ public class InspectorDetailActivity extends BaseActivity{
                     break;
                 case PROBLEM:
                     Toast.makeText(mContext,"网络不给力",Toast.LENGTH_SHORT).show();
-                    if(lv.isRefreshing()) {
-                        lv.onRefreshComplete();//停止刷新或加载更多
-                    }
+//                    if(lv.isRefreshing()) {
+//                        lv.onRefreshComplete();//停止刷新或加载更多
+//                    }
                     break;
                 case SUCCEED_NODATA:
-                    if(lv.isRefreshing()) {
-                        lv.onRefreshComplete();//停止刷新或加载更多
-                    }
+//                    if(lv.isRefreshing()) {
+//                        lv.onRefreshComplete();//停止刷新或加载更多
+//                    }
                     break;
                 case OVERTIME:
 
@@ -117,25 +118,25 @@ public class InspectorDetailActivity extends BaseActivity{
     private void initViews(){
 
 
-        lv= (PullToRefreshListView) findViewById(R.id.lv_inspector_detail);
-        lv.setMode(PullToRefreshBase.Mode.BOTH);
-        lv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
-            @Override
-            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-
-                //刷新
-                PageIndex=0;
-                initDatas(PageIndex);
-            }
-
-            @Override
-            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-
-                //加载更多
-                PageIndex++;
-                initDatas(PageIndex);
-            }
-        });
+        lv= (ListView) findViewById(R.id.lv_inspector_detail);
+//        lv.setMode(PullToRefreshBase.Mode.BOTH);
+//        lv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+//            @Override
+//            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+//
+//                //刷新
+//                PageIndex=0;
+//                initDatas(PageIndex);
+//            }
+//
+//            @Override
+//            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+//
+//                //加载更多
+//                PageIndex++;
+//                initDatas(PageIndex);
+//            }
+//        });
 
         initDatas(PageIndex);
 
@@ -201,22 +202,22 @@ public class InspectorDetailActivity extends BaseActivity{
 
         if(adapter==null){
 
-            adapter=new CommonAdapter<InspectorDetailInfo>(mContext,list,R.layout.item_inspector_lv) {
+            adapter=new CommonAdapter<InspectorDetailInfo>(mContext,list,R.layout.item_inspector_detail_lv) {
                 @Override
                 public void convert(CommonViewHolder holder, InspectorDetailInfo item, int position) {
 
-                    TextView noTv=holder.getView(R.id.item_inspector_number_tv);//编号
+                    TextView noTv=holder.getView(R.id.item_inspector_detail_number_tv);//编号
                     noTv.setText((position+1)+"");
-                    TextView nameTv=holder.getView(R.id.item_inspector_name_tv);//姓名
+                    TextView nameTv=holder.getView(R.id.item_inspector_detail_name_tv);//姓名
                     nameTv.setText(item.getName());
-                    TextView createTimeTv=holder.getView(R.id.item_inspector_create_time_tv);//状态
+                    TextView createTimeTv=holder.getView(R.id.item_inspector_detail_create_time_tv);//状态
                     createTimeTv.setText(item.getType());
-                    TextView comTimeTv=holder.getView(R.id.item_inspector_com_time_tv);//备注
+                    TextView comTimeTv=holder.getView(R.id.item_inspector_detail_com_time_tv);//备注
                     comTimeTv.setText(item.getMark());
-                    TextView stateTv=holder.getView(R.id.item_inspector_state_tv);//时间
+                    TextView stateTv=holder.getView(R.id.item_inspector_detail_state_tv);//时间
                     stateTv.setText(MyDateUtils.stringToYMD(item.getCheck_date()));
 
-                    LinearLayout ll = holder.getView(R.id.item_inspector_ll);
+                    LinearLayout ll = holder.getView(R.id.item_inspector_detail_ll);
                     if (position % 2 == 0){
                         ll.setBackgroundResource(R.drawable.selector_questionnaire_click_blue);
                     }else {
@@ -233,9 +234,9 @@ public class InspectorDetailActivity extends BaseActivity{
             adapter.notifyDataSetChanged();
 
         }
-        if(lv.isRefreshing()) {
-            lv.onRefreshComplete();//停止刷新或加载更多
-        }
+//        if(lv.isRefreshing()) {
+//            lv.onRefreshComplete();//停止刷新或加载更多
+//        }
 
     }
 }

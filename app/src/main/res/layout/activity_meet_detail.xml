@@ -20,12 +20,6 @@
 
     </RelativeLayout>
 
-    <!--<WebView-->
-        <!--android:visibility="gone"-->
-        <!--android:id="@+id/wv_meet_detail"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="1"></WebView>-->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -45,7 +39,7 @@
         <Button
             android:textColor="#fff"
             android:id="@+id/btn_meet_detail_isread"
-            android:layout_width="40dp"
+            android:layout_width="50dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
@@ -59,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#AFCEEC">
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,7 +69,25 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+                <ImageView
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/tz"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <LinearLayout
+                        android:paddingLeft="10dp"
+                        android:paddingTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
                 <TextView
+                  android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="通  知  人："
@@ -89,6 +101,16 @@
                     />
 
             </LinearLayout>
+                    <View
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#cccccc"/>
+                </LinearLayout>
+
+
+   </LinearLayout>
+
 
             <LinearLayout
                 android:paddingLeft="10dp"
@@ -97,26 +119,67 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+                <ImageView
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <LinearLayout
+                        android:paddingLeft="10dp"
+                        android:paddingTop="10dp"
+                        android:layout_width="match_parent"
+                        android:minHeight="480dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="会议内容："
                     />
 
-                <!--<TextView-->
-                    <!--android:id="@+id/tv_meet_detail_content"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--/>-->
+
 
                 <WebView
-                    android:background="#AFCEEC"
+                    android:background="#fafafa"
                     android:id="@+id/wv_meet_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     ></WebView>
 
             </LinearLayout>
+            <View
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cccccc"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:src="@drawable/hysj"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
             <LinearLayout
                 android:paddingLeft="10dp"
@@ -139,6 +202,35 @@
                     />
 
             </LinearLayout>
+            <View
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cccccc"/>
+
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:src="@drawable/hydd"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
             <LinearLayout
                 android:paddingLeft="10dp"
@@ -162,7 +254,35 @@
 
             </LinearLayout>
 
+            <View
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cccccc"/>
 
+        </LinearLayout>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:src="@drawable/fj"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
             <LinearLayout
                 android:paddingLeft="10dp"
@@ -185,6 +305,34 @@
                     android:layout_height="wrap_content"></com.youli.zbetuch_huangpu.view.MyListView>
 
             </LinearLayout>
+            <View
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cccccc"/>
+
+            </LinearLayout>
+
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:src="@drawable/fbsj"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
             <LinearLayout
                 android:paddingLeft="10dp"
@@ -207,9 +355,14 @@
                     />
 
             </LinearLayout>
-
+            <View
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cccccc"/>
         </LinearLayout>
-
+        </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 
     <TextView

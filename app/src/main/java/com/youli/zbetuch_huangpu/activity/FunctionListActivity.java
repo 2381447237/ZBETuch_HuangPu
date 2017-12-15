@@ -117,7 +117,7 @@ public class FunctionListActivity extends BaseActivity {
 //                .drawable.wjdc, R.drawable.ggwj};
 
         myIcons = new int[]{
-                R.drawable.zzdc,R.drawable.zxdc,
+                R.drawable.zydc,R.drawable.zxdc,R.drawable.zzcx
         };
 //                R.drawable.gerenxinxi, R.drawable.zpxx, R.drawable.tjbb,
 //                R.drawable.yjbys, R.drawable.zzdc, R.drawable.xcms,

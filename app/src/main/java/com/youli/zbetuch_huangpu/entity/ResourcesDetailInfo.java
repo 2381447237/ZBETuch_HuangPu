@@ -10,6 +10,10 @@ import java.io.Serializable;
 // "WHCD":"大学本科(简称大学)","HKDZ":"厦门路115号507室","LXDH":"18930607783","MQZK":"有劳动收入","MDDATE":"20170817","DQYX":"就业条件较好","SFCJR":"否","
 // SFYH":"否","JDMC":"南京东路街道","JWMC":"贵州居委","SFWCDC":false,"DCDATE":null,"DCRID":-1,"DCRXM":"","MQZK_NEW":"","DQYX_NEW":"","DCBZ":"","RecordCount":328}]
 
+    //[{"MDID":1,"DCID":2,"ZJLX":"身份证","ZJHM":"210403197906080927","XM":"王丹","GENDER":"女","MINZU":"汉族","CSDATE":"19790608",
+// "WHCD":"大学本科(简称大学)","HKDZ":"厦门路115号507室","LXDH":"18930607783","MQZK":"有劳动收入","MDDATE":"20170817","DQYX":"就业条件较好","SFCJR":"否",
+// "SFYH":"否","HJJDMC":"南京东路街道","HJJWMC":"贵州居委","SFWCDC":true,"DCDATE":"2017-11-14T16:33:27.593","DCRID":1,"DCRXM":"admin","MQZK_NEW":"有劳动收入","DQYX_NEW":"就业条件较好","DCBZ":"","DCLX":null,"RHFL":null,"RecordCount":328}]
+
 public class ResourcesDetailInfo implements Serializable {
 
     private int MDID;//名单ID(失业，无业，应届生)
@@ -64,9 +68,17 @@ public class ResourcesDetailInfo implements Serializable {
 
     private String SFYH;//是否已核(无业)
 
-    private String JDMC;//街道名称(失业，无业，应届生)
+    private String HJJDMC;//街道名称(失业，无业，应届生)
 
-    private String JWMC;//居委名称(失业，无业，应届生)
+    private String HJJWMC;//居委名称(失业，无业，应届生)
+
+    public String getHJJWMC() {
+        return HJJWMC;
+    }
+
+    public void setHJJWMC(String HJJWMC) {
+        this.HJJWMC = HJJWMC;
+    }
 
     private boolean SFWCDC;//是否已完成调查(0=否;1=是)(失业，无业，应届生)
 
@@ -194,20 +206,12 @@ public class ResourcesDetailInfo implements Serializable {
         this.HKDZ = HKDZ;
     }
 
-    public String getJDMC() {
-        return JDMC;
+    public String getHJJDMC() {
+        return HJJDMC;
     }
 
-    public void setJDMC(String JDMC) {
-        this.JDMC = JDMC;
-    }
-
-    public String getJWMC() {
-        return JWMC;
-    }
-
-    public void setJWMC(String JWMC) {
-        this.JWMC = JWMC;
+    public void setHJJDMC(String HJJDMC) {
+        this.HJJDMC = HJJDMC;
     }
 
     public String getJYZT() {

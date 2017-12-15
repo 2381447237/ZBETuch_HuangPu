@@ -153,7 +153,8 @@
         <activity android:name=".activity.ContentActivity"
             android:screenOrientation="portrait"></activity><!--通知公告内容-->
         <activity android:name=".activity.InspectorDetailActivity"
-            android:screenOrientation="portrait" ></activity><!--督察督办详情-->
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.ActivityDialogStyle"></activity><!--督察督办详情-->
         <activity android:name=".activity.MyFollowActivity"
             android:screenOrientation="portrait" ></activity><!--我的关注-->
 

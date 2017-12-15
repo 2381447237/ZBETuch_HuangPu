@@ -216,7 +216,7 @@ public class MeetDetailActivity extends BaseActivity implements View.OnClickList
         web.getSettings().setTextSize(WebSettings.TextSize.LARGEST);//设置字体大小
         web.setWebViewClient(new WebViewClient());
 
-        web.setBackgroundColor(Color.parseColor("#AFCEEC")); // 设置背景色
+        web.setBackgroundColor(Color.parseColor("#FAFAFA")); // 设置背景色
         web.getBackground().setAlpha(255); // 设置填充透明度 范围：0-255
         web.loadDataWithBaseURL(null,meetInfo.getDOC(),"text/html", "UTF-8", null);
 

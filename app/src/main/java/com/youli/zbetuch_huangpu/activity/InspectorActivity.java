@@ -272,9 +272,9 @@ public class InspectorActivity extends BaseActivity{
                     TextView nameTv=holder.getView(R.id.item_inspector_name_tv);//工作名称
                     nameTv.setText(item.getTitle());
                     TextView createTimeTv=holder.getView(R.id.item_inspector_create_time_tv);//创建时间
-                    createTimeTv.setText(MyDateUtils.stringToYMDHMS(item.getCreate_date()));
+                    createTimeTv.setText(MyDateUtils.stringToYMD(item.getCreate_date()));
                     TextView comTimeTv=holder.getView(R.id.item_inspector_com_time_tv);//完成时间
-                    comTimeTv.setText(MyDateUtils.stringToYMDHMS(item.getNotice_time()));
+                    comTimeTv.setText(MyDateUtils.stringToYMD(item.getNotice_time()));
                     TextView stateTv=holder.getView(R.id.item_inspector_state_tv);//完成状态
                     stateTv.setText(item.getType());
 
