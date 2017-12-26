@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -134,6 +135,8 @@ public class NeedWorkActivity extends BaseActivity implements RadioGroup.OnCheck
                             url= MyOkHttpUtils.BaseUrl+"/Json/First/Get_Work_Info.aspx?type=已完成&page="+page+"&rows=20";
                         }
 
+                        Log.e("2017-12-20","url="+url);
+
                         Response response=MyOkHttpUtils.okHttpGet(url);
 
                         try {
@@ -173,12 +176,12 @@ public class NeedWorkActivity extends BaseActivity implements RadioGroup.OnCheck
         switch (checkedId){
             case R.id.wei_meet_manage_current:
              //   rg.check(R.id.wei_meet_manage_current);
-                getNetWorkData(pageIndex);
+                getNetWorkData(0);
 
                 break;
             case R.id.yi_meet_manage_history:
                // rg.check(R.id.yi_meet_manage_history);
-                getNetWorkData(pageIndex);
+                getNetWorkData(0);
                 break;
         }
 

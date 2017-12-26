@@ -3,9 +3,11 @@ package com.youli.zbetuch_huangpu.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.youli.zbetuch_huangpu.R;
 import com.youli.zbetuch_huangpu.utils.AlertDialogUtils;
@@ -24,6 +26,7 @@ public class OvertimeDialogActivity extends BaseActivity{
 
     private AlertDialogUtils adu;
     private Context mContext=OvertimeDialogActivity.this;
+    private String mark;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,14 +34,22 @@ public class OvertimeDialogActivity extends BaseActivity{
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_overtime_dialog);
 
-         initViews();
+        mark=getIntent().getStringExtra("gps");
+
+         initViews(mark);
     }
 
-    private void initViews(){
+    private void initViews(String mark){
 
         adu=new AlertDialogUtils(this,R.layout.overtime_dialog,R.style.dialog);
 
         adu.showAlertDialog();
+
+        TextView tv= (TextView) adu.getAduView().findViewById(R.id.overtime_title_tv);
+        if(TextUtils.equals(mark,"gps")){
+            tv.setText("GPS未打开，请您重新登录！");
+        }
+
 
         Button btnSure= (Button) adu.getAduView().findViewById(R.id.btn_overtime_sure);
         btnSure.setOnClickListener(new View.OnClickListener() {

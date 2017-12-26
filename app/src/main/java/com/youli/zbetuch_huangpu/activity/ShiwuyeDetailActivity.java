@@ -73,8 +73,9 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
 
     private final int SUCCESS = 10000;
     private final int PERSONINFO = 10001;
-    private final int NOPERSONINFO = 10002;
-    private final int PROBLEM = 10004;
+    private final int SUBMIT_ADDRESS=10002;
+    private final int NOPERSONINFO = 10003;
+    private final int PROBLEM = 10005;
 
     private List<PersonInfo> personInfos = new ArrayList<>();
 
@@ -89,12 +90,25 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
 
                 case SUCCESS:
 
+
+                    new Thread(
+                            new Runnable() {
+                                @Override
+                                public void run() {
+                                    submitInfo(RDInfo.getDCID(),"address");//提交经纬度
+                                }
+                            }
+                    ).start();
+
+                    break;
+
+
+                case SUBMIT_ADDRESS://提交经纬度
                     Toast.makeText(mContext, "提交成功", Toast.LENGTH_SHORT).show();
                     isSave = true;
                     setResult(ZiyuanDetailListActivity.ResultCode, null);
                     // EventBus.getDefault().post(new ResourcesDetailInfo());
                     break;
-
 
                 case PROBLEM:
 
@@ -472,7 +486,7 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
                         new Runnable() {
                             @Override
                             public void run() {
-                                submitInfo(RDInfo.getDCID());
+                                submitInfo(RDInfo.getDCID(),"detail");
                             }
                         }
                 ).start();
@@ -486,31 +500,39 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
         builder.show();
     }
 
-    private void submitInfo(int DCID) {
+    private void submitInfo(int DCID,String mark) {
         String url = null;
+        Response response=null;
         //Set_Resource_Survey_Detil_SY.aspx 参数 MDID 明细id ,DCBZ 调查备注,MQZK_NEW 调查的目前状况,DQYX_NEW  调查的当前意向
-        if (DCID == 1) {
-            url = MyOkHttpUtils.BaseUrl + "/Json/Set_Resource_Survey_Detil_SY.aspx";
-        } else if (DCID == 2) {
-            url = MyOkHttpUtils.BaseUrl + "/Json/Set_Resource_Survey_Detil_WY.aspx";
-        } else if (DCID == 3) {
-            url = MyOkHttpUtils.BaseUrl + "/Json/Set_Resource_Survey_Detil_YJS.aspx";
+
+        if(TextUtils.equals(mark,"detail")) {
+
+            if (DCID == 1) {
+                url = MyOkHttpUtils.BaseUrl + "/Json/Set_Resource_Survey_Detil_SY.aspx";
+            } else if (DCID == 2) {
+                url = MyOkHttpUtils.BaseUrl + "/Json/Set_Resource_Survey_Detil_WY.aspx";
+            } else if (DCID == 3) {
+                url = MyOkHttpUtils.BaseUrl + "/Json/Set_Resource_Survey_Detil_YJS.aspx";
+            }
+
+
+
+            response = MyOkHttpUtils.okHttpGet(url + "?MDID=" + RDInfo.getMDID() + "&DCBZ=" + remarksEt.getText().toString() +
+                    "&MQZK_NEW=" + currStaStr + "&DQYX_NEW=" + currIntStr + "&DCLX=" + DCLX + "&RHFL=" + RHFL);
+        }else if(TextUtils.equals(mark,"address")){
+
+            if (DCID == 1) {
+                url = MyOkHttpUtils.BaseUrl + "/Json/Set_GPS_Staff_Log.aspx?sfz="+RDInfo.getZJHM()+"&detail=失业调查&gps="+HomePageActivity.jDuStr+","+HomePageActivity.wDuStr;
+            } else if (DCID == 2) {
+                url = MyOkHttpUtils.BaseUrl + "/Json/Set_GPS_Staff_Log.aspx?sfz="+RDInfo.getZJHM()+"&detail=无业调查&gps="+HomePageActivity.jDuStr+","+HomePageActivity.wDuStr;
+            } else if (DCID == 3) {
+                url = MyOkHttpUtils.BaseUrl + "/Json/Set_GPS_Staff_Log.aspx?sfz="+RDInfo.getZJHM()+"&detail=应届生调查&gps="+HomePageActivity.jDuStr+","+HomePageActivity.wDuStr;
+            }
+            response = MyOkHttpUtils.okHttpGet(url);
+
+            Log.e("2017-12-18","url="+url);
+
         }
-//
-//        Map<String ,String> dataMap=new HashMap<>();
-//
-//        dataMap.put("MDID",RDInfo.getMDID()+"");
-//        dataMap.put("DCBZ",remarksEt.getText().toString());
-//        dataMap.put("MQZK_NEW",currStaStr);
-//        dataMap.put("DQYX_NEW",currIntStr);
-
-        //     Log.e("2017/11/9","dataMap=="+dataMap);
-
-        //  Response response=MyOkHttpUtils.okHttpPost(url,RDInfo.getMDID()+"",remarksEt.getText().toString(),currStaStr,currIntStr);
-
-        Response response = MyOkHttpUtils.okHttpGet(url + "?MDID=" + RDInfo.getMDID() + "&DCBZ=" + remarksEt.getText().toString() +
-                "&MQZK_NEW=" + currStaStr + "&DQYX_NEW=" + currIntStr+"&DCLX="+DCLX+"&RHFL="+RHFL);
-
 
 
         try {
@@ -518,10 +540,17 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
             if (response != null) {
                 String resStr = response.body().string();
                 Log.e("2017/11/9", "提交==" + resStr);
-                if (TextUtils.equals("True", resStr)) {
+                if (TextUtils.equals("True", resStr)&&TextUtils.equals(mark,"detail")) {
                     msg.what = SUCCESS;
                     mHandler.sendMessage(msg);
-                } else {
+
+                }
+                if (TextUtils.equals("True", resStr)&&TextUtils.equals(mark,"address")) {
+                    msg.what = SUBMIT_ADDRESS;
+                    mHandler.sendMessage(msg);
+                }
+
+               if(!TextUtils.equals("True", resStr)) {
                     msg.what = PROBLEM;
                     mHandler.sendMessage(msg);
                 }

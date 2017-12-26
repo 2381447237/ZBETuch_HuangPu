@@ -3,6 +3,7 @@ package com.youli.zbetuch_huangpu.activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,11 +31,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     private EditText et_userPassword;
     private EditText et_userName;
-    private TextView tv_about;
+    private TextView tv_about,tv_title;
     private Button btn_login;
     private final int SUCCEED=10000;
     private final int  PROBLEM=10001;
-    private int info_num;
     private LocationManager locationManager;
     private Handler mHandler=new Handler(){
 
@@ -82,6 +82,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     //初始化控件
     private void initUI() {
         tv_about = (TextView) findViewById(R.id.tv_login_about);
+        tv_title= (TextView) findViewById(R.id.login_title);
+
+        //给标题设置字体
+        Typeface type=Typeface.createFromAsset(getApplicationContext().getAssets(),"STXINGKA.TTF");
+        tv_title.setTypeface(type);
+
         et_userName = (EditText) findViewById(R.id.et_user_name);
         String localUserName = SharedPreferencesUtils.getString("userName");
         if (localUserName != null) {
@@ -92,6 +98,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
         tv_about.setOnClickListener(this);
         btn_login.setOnClickListener(this);
+
+        if(!TextUtils.equals(et_userName.getText().toString().trim(),"")){
+            et_userPassword.requestFocus();
+        }
+
     }
 
     //显示关于Dialog
@@ -128,15 +139,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 if(TextUtils.equals("",userNameStr)||TextUtils.equals("",passwordStr)){
                     Toast.makeText(this,"用户名或密码不能为空",Toast.LENGTH_SHORT).show();
                 }else{
-                    if (info_num<5&&
-                            (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) != true)) {
+                    if ((locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) != true)) {
                         Toast.makeText(LoginActivity.this, "请打开GPS定位！",
                                 Toast.LENGTH_SHORT).show();
                         Intent callGPSSettingIntent = new Intent(
                                 android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
 
                         startActivity(callGPSSettingIntent);
-                        info_num++;
+
                     } else {
                         //登录
                         login(userNameStr, passwordStr);

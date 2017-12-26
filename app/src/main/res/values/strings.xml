@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">ZBETuch_huangpu</string>
-    <string name="title">社区就业保障服务系统</string>
+    <string name="app_name">黄浦区社区就业保障服务信息管理系统</string>
+    <!--<string name="title">社区就业保障服务系统</string>-->
+    <string name="title">黄浦区社区就业保障服务信息管理系统</string>
 </resources>

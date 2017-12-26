@@ -10,6 +10,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -40,6 +42,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.youli.zbetuch_huangpu.R;
 import com.youli.zbetuch_huangpu.activity.BaseActivity;
+import com.youli.zbetuch_huangpu.activity.HomePageActivity;
 import com.youli.zbetuch_huangpu.utils.MyOkHttpUtils;
 import com.youli.zbetuch_huangpu.utils.SharedPreferencesUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -56,6 +59,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -66,8 +70,13 @@ import java.util.List;
 import java.util.Map;
 
 import okhttp3.Call;
+import okhttp3.Response;
 
 public class WenJuanDetailActivity extends BaseActivity implements IActivity {
+
+
+	private final int SUBMIT_ADDRESS=10001;
+	private final int PROBLEM = 10002;
 
 	private Button btn_star;//开始答题
 	private Button btn_upload;//提交
@@ -126,6 +135,15 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
     private List<FamilyInfo> listInfo=new ArrayList<FamilyInfo>();
    private WenJuanPersonInfo wjPInfo;
    private ProgressDialog dialog;
+
+	private Handler mHandler=new Handler(){
+
+		@Override
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+		}
+	};
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -331,7 +349,9 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 													PersonTask.UPLOADWENJUAN_SET_WENJUAN,
 													params);
 											PersonService.newTask(task);
-											
+											Log.e("2017-12-19","提交答案");
+
+											submitGPSInfo();//提交经纬度
 										}
 										WenJuanDetailActivity.this.finish();
 									}
@@ -1651,7 +1671,7 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 		
 		//提交答案
 		private void postJson_WenJuan(final String url,final Map<String,Object> data) {
-			Log.e("2017/10/26","提交答案=========");
+
 				final HttpClient client = new DefaultHttpClient();
 
 				final int myHOMEID;
@@ -1664,7 +1684,7 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 
 			final String strhttp = MyOkHttpUtils.BaseUrl + url+"?ID="+myHOMEID;
 
-			Log.e("2017/11/30","url=="+strhttp);
+
 			new Thread(
 
 					new Runnable() {
@@ -1688,9 +1708,9 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 						}
 
 					HttpResponse response = client.execute(post);
-					Log.e("2017/11/30","来来来来");
+
 					if (response.getStatusLine().getStatusCode() == 200) {
-						Log.e("2017/11/30","去去去去");
+
             runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
@@ -1751,14 +1771,10 @@ public class WenJuanDetailActivity extends BaseActivity implements IActivity {
 							.getActivityByName("WenJuanPersonActivity");
 				
 					if (activity != null) {
-						
-			
-						
-					activity.refresh(WenJuanPersonActivity.REFRESH_INFO,
-							arg0);
+						activity.refresh(WenJuanPersonActivity.REFRESH_INFO, arg0);
 					}
 					
-					
+					submitGPSInfo();//提交经纬度
 				}
 				
 				@Override
@@ -1972,5 +1988,48 @@ OkHttpUtils.post().url(MyOkHttpUtils.BaseUrl+ShowPersionDetailInfo.familyListUrl
 		dialog.setMessage("数据信息加载中...");
 		dialog.show();
 	}
-	
+
+
+	private void submitGPSInfo() {//提交经纬度
+
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+
+
+				String url = MyOkHttpUtils.BaseUrl + "/Json/Set_GPS_Staff_Log.aspx?sfz=" + wjPInfo.getSFZ() + "&detail=专项调查&gps=" + HomePageActivity.jDuStr + "," + HomePageActivity.wDuStr;
+
+
+				Response response = MyOkHttpUtils.okHttpGet(url);
+
+				Log.e("2017-12-19", "专项调查url=" + url);
+
+
+				try {
+					Message msg = Message.obtain();
+					if (response != null) {
+						String resStr = response.body().string();
+						Log.e("2017-12-19", "专项调查提交==" + resStr);
+
+						if (TextUtils.equals("True", resStr)) {
+							msg.what = SUBMIT_ADDRESS;
+							mHandler.sendMessage(msg);
+						} else {
+							msg.what = PROBLEM;
+							mHandler.sendMessage(msg);
+						}
+
+
+					} else {
+						msg.what = PROBLEM;
+						mHandler.sendMessage(msg);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+		}).start();
+	}
+
 }

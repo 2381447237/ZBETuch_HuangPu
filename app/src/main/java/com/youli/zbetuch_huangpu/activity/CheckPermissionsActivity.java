@@ -146,38 +146,6 @@ public class CheckPermissionsActivity extends BaseActivity {
 		}
 	}
 
-//	/**
-//	 * 显示提示信息
-//	 *
-//	 * @since 2.5.0
-//	 *
-//	 */
-//	private void showMissingPermissionDialog() {
-//		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//		builder.setTitle(R.string.notifyTitle);
-//		builder.setMessage(R.string.notifyMsg);
-//
-//		// 拒绝, 退出应用
-//		builder.setNegativeButton(R.string.cancel,
-//				new DialogInterface.OnClickListener() {
-//					@Override
-//					public void onClick(DialogInterface dialog, int which) {
-//						finish();
-//					}
-//				});
-//
-//		builder.setPositiveButton(R.string.setting,
-//				new DialogInterface.OnClickListener() {
-//					@Override
-//					public void onClick(DialogInterface dialog, int which) {
-//						startAppSettings();
-//					}
-//				});
-//
-//		builder.setCancelable(false);
-//
-//		builder.show();
-//	}
 
 	/**
 	 *  启动应用的设置
@@ -191,14 +159,5 @@ public class CheckPermissionsActivity extends BaseActivity {
 		intent.setData(Uri.parse("package:" + getPackageName()));
 		startActivity(intent);
 	}
-	
-//	@Override
-//	public boolean onKeyDown(int keyCode, KeyEvent event) {
-//		if(keyCode == KeyEvent.KEYCODE_BACK){
-//			this.finish();
-//			return true;
-//		}
-//		return super.onKeyDown(keyCode, event);
-//	}
 		
 }

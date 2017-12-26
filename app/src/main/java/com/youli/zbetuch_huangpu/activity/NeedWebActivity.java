@@ -385,8 +385,24 @@ public class NeedWebActivity extends BaseActivity implements View.OnClickListene
 
             case R.id.btn_need_web_finish://已完成
 
+                final AlertDialog.Builder builder=new AlertDialog.Builder(mContext);
+                builder.setMessage("您确定保存吗?");
+                builder.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                getOrSetButtonState("set","");
+
+                    }
+                });
+                builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        getOrSetButtonState("set","");
+                    }
+                });
+                builder.show();
+
                 break;
 
 

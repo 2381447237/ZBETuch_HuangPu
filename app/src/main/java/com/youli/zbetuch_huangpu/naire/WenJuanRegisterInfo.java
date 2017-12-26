@@ -6,6 +6,8 @@ import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +29,7 @@ import com.youli.zbetuch_huangpu.utils.SharedPreferencesUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -34,8 +37,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 import okhttp3.Call;
+import okhttp3.Response;
 
 public class WenJuanRegisterInfo extends BaseActivity implements OnClickListener{
+
+
+	private final int SUBMIT_ADDRESS=10001;
+	private final int PROBLEM = 10002;
 
 	private Button backBtn,nextBtn;
 	
@@ -51,6 +59,31 @@ public class WenJuanRegisterInfo extends BaseActivity implements OnClickListener
 	private IActivity activity = null;
 	private List<FamilyInfo> listInfo=new ArrayList<FamilyInfo>();
 	private FamilyInfo fInfo;
+
+	private Handler mHandler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+
+			switch (msg.what) {
+
+
+				case SUBMIT_ADDRESS://提交经纬度
+					addRefresh();
+					break;
+
+				case PROBLEM:
+
+					Toast.makeText(WenJuanRegisterInfo.this, "提交失败", Toast.LENGTH_SHORT).show();
+
+					break;
+
+
+			}
+
+		}
+	};
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -376,7 +409,7 @@ private void showDialog(){
 			@Override
 			public void onResponse(final String str) {
 
-				addRefresh();
+				submitInfo();//提交经纬度
 			}
 			
 			@Override
@@ -385,57 +418,48 @@ private void showDialog(){
 			}
 		});
 	}
-	
-private void registerInfo2(){
-	String cookies = SharedPreferencesUtils.getString("cookie");
-		OkHttpUtils.post().url(MyOkHttpUtils.BaseUrl+registerInfoUrl).addParams("TYPE",1+"").addParams("NAME",info.getNAME())
-		.addParams("SFZ",info.getSFZ()).addParams("LXR",contactsStr).addParams("LXDF",phoneStr)
-		.addParams("JZNUM",personStr+"").addParams("NAN",manStr+"").addParams("NV",womanStr+"").addParams("ZS",sixteenStr+"").addParams("ID",info.getID()+"")
-		.addParams("XSQ",areaStr).addParams("XZJD",streetStr).addParams("SQJWC",villageStr).addParams("SQR",interviewerStr)
-		.addParams("ADRESS",addressStr).addParams("QUESTIONMASTERID",getIntent().getIntExtra("QUESTIONMASTERID", 0)+"")
-		.addHeader("cookie", cookies)
-		.build().execute(new StringCallback() {
-			
+
+
+	private void submitInfo() {
+
+		new Thread(new Runnable() {
 			@Override
-			public void onResponse(final String str) {
+			public void run() {
 
-				
-				runOnUiThread(new  Runnable() {
-					public void run() {
-						
-						Gson gson=new Gson();
-						
-						WenJuanPersonInfo wjpIf=gson.fromJson(str,WenJuanPersonInfo.class);
-						myHOMEID=wjpIf.getID();
+				String	url = MyOkHttpUtils.BaseUrl + "/Json/Set_GPS_Staff_Log.aspx?sfz="+info.getSFZ()+"&detail=专项调查中的登记人数&gps="+ HomePageActivity.jDuStr+","+HomePageActivity.wDuStr;
 
-						Intent showIntent = new Intent(WenJuanRegisterInfo.this,
-								WenJuanDetailActivity.class);
-						showIntent.putExtra("pid", info.getID());
-						showIntent.putExtra("info", info);
-						showIntent.putExtra("NO", info.getNO());
-						showIntent.putExtra("sname", contactsStr);
-						showIntent.putExtra("position", position);
-						showIntent.putExtra("rb", true);
-						showIntent.putExtra("QUESTIONMASTERID",getIntent().getIntExtra("QUESTIONMASTERID", 0));
-						showIntent.putExtra("myHOMEID", myHOMEID);
-						showIntent.putExtra("ISJYSTATUS", getIntent().getBooleanExtra("ISJYSTATUS", false));
-						
-						startActivity(showIntent);
-						finish();
-						addRefresh();
+				Log.e("2017-12-18","专项调查中的登记人数url="+url);
+
+				Response response = MyOkHttpUtils.okHttpGet(url);
+
+				try {
+					Message msg = Message.obtain();
+					if (response != null) {
+						String resStr = response.body().string();
+						Log.e("2017/11/9", "提交==" + resStr);
+
+						if (TextUtils.equals("True", resStr)) {
+							msg.what = SUBMIT_ADDRESS;
+
+						}else{
+							msg.what = PROBLEM;
+						}
+
+
+					} else {
+						msg.what = PROBLEM;
 
 					}
-				});
-				
-			}
-			
-			@Override
-			public void onError(Call arg0, Exception arg1) {
 
-				Toast.makeText(WenJuanRegisterInfo.this,"网络不给力",Toast.LENGTH_SHORT).show();
+					mHandler.sendMessage(msg);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
 			}
-		});
+		}).start();
 	}
+
 
 private void addRefresh(){
 	String cookies = SharedPreferencesUtils.getString("cookie");

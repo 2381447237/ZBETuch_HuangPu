@@ -4,29 +4,29 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.location.GpsSatellite;
+import android.location.GpsStatus;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.youli.zbetuch_huangpu.R;
 import com.youli.zbetuch_huangpu.entity.AdminInfo;
-import com.youli.zbetuch_huangpu.entity.InspectorInfo;
 import com.youli.zbetuch_huangpu.entity.MyFollowInfo;
 import com.youli.zbetuch_huangpu.utils.MyOkHttpUtils;
+import com.youli.zbetuch_huangpu.utils.SharedPreferencesUtils;
 import com.youli.zbetuch_huangpu.view.CircleImageView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -34,9 +34,8 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import okhttp3.Response;
@@ -75,16 +74,22 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
     private ImageView myFollowIv;//我的关注
     private TextView tvJdu,tvWdu,tvGdu;//经度，纬度，高度
 
-    private TextView wdgzNumTv;//我的关注的数量
+    private TextView titieTv,wdgzNumTv;//我的关注的数量
     private TextView tzggNumTv;//通知公告的数量
     private TextView hyglNumTv;//会议管理的数量
     private TextView dbgzNumTv;//待办工作的数量
     private TextView dcdbNumTv;//督察督办的数量
 
-    //声明AMapLocationClient类对象
-    private AMapLocationClient mLocationClient;
-    //声明AMapLocationClientOption对象
-    private AMapLocationClientOption mLocationOption;
+    private LocationManager locationManager;
+    private String provider;
+
+    private Handler gpsHandler;//用来检测gps是否打开
+
+    private int getGPSTime=500;//获取GPS经纬度的时间间隔，默认是500ms
+
+    public  static String jDuStr,wDuStr;//要上传的经度和纬度
+
+
     private Handler mHandler=new Handler(){
 
         @Override
@@ -182,13 +187,25 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
         markStr="HomePageActivity";//通知权限的标记， 这句一定不能少
 
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        gpsHandler=new Handler();
+        gpsHandler.post(r);
+        gpsHandler.post(rGps);
         initViews();
+
 
 
     }
 
 
     private void initViews(){
+
+        titieTv= (TextView) findViewById(R.id.main_layout_title_tv);
+        //给标题设置字体
+        Typeface type=Typeface.createFromAsset(getApplicationContext().getAssets(),"STXINGKA.TTF");
+        titieTv.setTypeface(type);
+
         notice= (ImageView) findViewById(R.id.notice);
         notice.setOnClickListener(this);
         ivHead= (CircleImageView) findViewById(R.id.iv_activity_homepage_head);
@@ -216,7 +233,13 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
         getAdminInfo();
 
-        getGpsInfo();//定位
+ //这都
+//        if(MyOkHttpUtils.BaseUrl.contains("192.168")){//内网
+//              getAddress();//手机自带的GPS定位，没网也可以定位
+//        }else{//外网
+//            getGpsInfo();//高德地图定位，必须要有网络才能定位（2017-12-15注释了）
+//        }
+
     }
 
     //获取管理员的信息
@@ -242,8 +265,6 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
                                 try {
                                     String resStr=response.body().string();
 
-                                    Log.e("2017/11/8",resStr);
-
                                     if(!TextUtils.equals(resStr,"")){
 
                                         Gson gson=new Gson();
@@ -253,7 +274,6 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
                                             msg.what=SUCCESS_ADMIN_INFO;
                                         }catch(Exception e){
-                                            Log.e("2017/11/13","登录超时了");
                                             msg.what=OVERTIME;
 
                                         }
@@ -286,84 +306,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
     }
 
 
-    private void getGpsInfo(){
 
-        //初始化定位
-        mLocationClient = new AMapLocationClient(getApplicationContext());
-        //设置定位回调监听
-        mLocationClient.setLocationListener(new AMapLocationListener() {
-            @Override
-            public void onLocationChanged(AMapLocation aMapLocation) {
-
-                if(aMapLocation!=null){
-
-                    if(aMapLocation.getErrorCode()==0){
-                        //可在其中解析amapLocation获取相应内容。
-
-                        aMapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见定位类型表
-                        aMapLocation.getLatitude();//获取纬度
-                        aMapLocation.getLongitude();//获取经度
-                        aMapLocation.getAccuracy();//获取精度信息
-                        aMapLocation.getAddress();//地址，如果option中设置isNeedAddress为false，则没有此结果，网络定位结果中会有地址信息，GPS定位不返回地址信息。
-                        aMapLocation.getCountry();//国家信息
-                        aMapLocation.getProvince();//省信息
-                        aMapLocation.getCity();//城市信息
-                        aMapLocation.getDistrict();//城区信息
-                        aMapLocation.getStreet();//街道信息
-                        aMapLocation.getStreetNum();//街道门牌号信息
-                        aMapLocation.getCityCode();//城市编码
-                        aMapLocation.getAdCode();//地区编码
-                        aMapLocation.getAoiName();//获取当前定位点的AOI信息
-                        aMapLocation.getBuildingId();//获取当前室内定位的建筑物Id
-                        aMapLocation.getFloor();//获取当前室内定位的楼层
-                        aMapLocation.getGpsAccuracyStatus();//获取GPS的当前状态
-                        //获取定位时间
-                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                        Date date = new Date(aMapLocation.getTime());
-                        df.format(date);
-                        tvJdu.setText("经度:"+(int)aMapLocation.getLongitude());
-                        tvWdu.setText("纬度:"+(int)aMapLocation.getLatitude());
-                        tvGdu.setText("高度:"+aMapLocation.getAltitude()+"米");
-                    }else{
-                        //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
-                        Log.e("AmapError","location Error, ErrCode:"
-                                + aMapLocation.getErrorCode() + ", errInfo:"
-                                + aMapLocation.getErrorInfo());
-                    }
-                }
-
-            }
-        });
-
-        //初始化AMapLocationClientOption对象
-        mLocationOption = new AMapLocationClientOption();
-        //设置定位模式为AMapLocationMode.Hight_Accuracy，高精度模式。
-        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-
-//        //设置定位模式为AMapLocationMode.Battery_Saving，低功耗模式。
-//        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Battery_Saving);
-
-        //设置定位间隔,单位毫秒,默认为2000ms，最低1000ms。
-        mLocationOption.setInterval(1000);
-
-        //设置是否返回地址信息（默认返回地址信息）
-        mLocationOption.setNeedAddress(true);
-
-        //设置是否允许模拟位置,默认为true，允许模拟位置
-        mLocationOption.setMockEnable(true);
-
-        //单位是毫秒，默认30000毫秒，建议超时时间不要低于8000毫秒。
-        mLocationOption.setHttpTimeOut(20000);
-
-        //关闭缓存机制
-        mLocationOption.setLocationCacheEnable(false);
-
-        //给定位客户端对象设置定位参数
-        mLocationClient.setLocationOption(mLocationOption);
-        //启动定位
-        mLocationClient.startLocation();
-
-    }
 
     @Override
     public void onDestroy() {
@@ -372,8 +315,13 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
         //取消注册事件
         EventBus.getDefault().unregister(this);
 
-        mLocationClient.stopLocation();//停止定位后，本地定位服务并不会被销毁
-        mLocationClient.onDestroy();//销毁定位客户端，同时销毁本地定位服务。
+
+
+        if (locationManager != null) {
+            //关闭程序时将监听器移除
+
+            locationManager.removeUpdates(locationListener);
+        }
     }
 
     //这里我们的ThreadMode设置为MAIN，事件的处理会在UI线程中执行
@@ -443,7 +391,6 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
                                         }
                                     }
                                 }catch(Exception e){
-                                    Log.e("2017/11/13","登录超时了");
                                     msg.what=OVERTIME;
 
                                 }
@@ -520,6 +467,89 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
         }
 
     }
+
+
+    private void getAddress(){
+
+        List<String> providerList = locationManager.getProviders(true);
+        if (providerList.contains(LocationManager.GPS_PROVIDER)) {
+            provider = LocationManager.GPS_PROVIDER;
+        } else if (providerList.contains(LocationManager.NETWORK_PROVIDER)) {
+            provider = LocationManager.NETWORK_PROVIDER;
+        } else {
+//            Toast.makeText(MainActivity.this, "no Location provider to use",
+//                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Location location = locationManager.getLastKnownLocation(provider);
+
+        if (location != null) {
+            getGPSTime=1000*60*5;//5分钟
+            //显示位置
+            showLocations(location);
+
+        }else{
+
+            getGPSTime=500;//500ms
+
+            String spJdu=SharedPreferencesUtils.getString("jDu");//sp取经度
+            String spWdu=SharedPreferencesUtils.getString("wDu");//sp取纬度
+
+            if(!TextUtils.equals(spJdu,"")&&!TextUtils.equals(spWdu,"")) {
+
+                tvJdu.setText("经度:" + (new Double(Double.parseDouble(spJdu))).intValue());//String先转Double，再转int
+                tvWdu.setText("纬度:" + (new Double(Double.parseDouble(spWdu))).intValue());//String先转Double，再转int
+            }
+            jDuStr=spJdu;//要上传的经度
+            wDuStr=spWdu;//要上传的纬度
+        }
+        locationManager.requestLocationUpdates(provider, getGPSTime, 0, locationListener);
+        //绑定监听状态
+      //  locationManager.addGpsStatusListener(listener);//可以获取卫星的数量
+    }
+
+
+    LocationListener locationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(Location location) {
+            //更新当前位置
+            showLocations(location);
+
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+    };
+
+    private void showLocations(Location location) {
+
+        tvJdu.setText("经度:"+(int)location.getLongitude());
+        tvWdu.setText("纬度:"+(int)location.getLatitude());
+
+        tvGdu.setText("高度:"+location.getAltitude()+"米");
+
+
+        jDuStr=location.getLongitude()+"";//要上传的经度
+        wDuStr=location.getLatitude()+"";//要上传的纬度
+
+        SharedPreferencesUtils.putString("jDu",String.valueOf(location.getLongitude()));//sp存经度
+        SharedPreferencesUtils.putString("wDu",String.valueOf(location.getLatitude()));//sp存纬度
+    }
+
+
     @Override
     public void onBackPressed() {
 
@@ -528,7 +558,9 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                //移除Handler
+                gpsHandler.removeCallbacks(r);
+                gpsHandler.removeCallbacks(rGps);
                 ActivityController.finishAll();
             }
         });
@@ -540,5 +572,90 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
         });
         builder.show();
     }
+
+
+    /**
+     * 判断GPS是否开启，GPS或者AGPS开启一个就认为是开启的
+     *
+     * @param context
+     * @return true 表示开启
+     */
+    private  boolean isOPen(final Context context) {
+
+        // 通过GPS卫星定位，定位级别可以精确到街（通过24颗卫星定位，在室外和空旷的地方定位准确、速度快）
+        boolean gps = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        if (gps) {
+            return true;
+        }
+
+        return false;
+    }
+
+    Runnable r=new Runnable() {
+        @Override
+        public void run() {
+            gpsHandler.postDelayed(this,2000);//2秒钟检测一次gps
+            if(isOPen(getApplicationContext())){
+              //  Toast.makeText(getApplicationContext(),"GPS可用",Toast.LENGTH_SHORT).show();
+            }else{
+              //  Toast.makeText(getApplicationContext(),"GPS不可用",Toast.LENGTH_SHORT).show();
+                //移除Handler
+                gpsHandler.removeCallbacks(r);
+                Intent i=new Intent(mContext,OvertimeDialogActivity.class);
+                i.putExtra("gps","gps");
+                startActivity(i);
+
+            }
+        }
+    };
+
+    Runnable rGps=new Runnable() {
+        @Override
+        public void run() {
+
+
+            gpsHandler.postDelayed(this,getGPSTime);//刷新gps
+
+            getAddress();
+
+        }
+    };
+
+    //状态监听
+    GpsStatus.Listener listener = new GpsStatus.Listener() {
+        public void onGpsStatusChanged(int event) {
+            switch (event) {
+                //第一次定位
+                case GpsStatus.GPS_EVENT_FIRST_FIX:
+                  //  Log.i("2017-12-17", "第一次定位");
+                    break;
+                //卫星状态改变
+                case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
+                  //  Log.i("2017-12-17", "卫星状态改变");
+                    //获取当前状态
+                    GpsStatus gpsStatus=locationManager.getGpsStatus(null);
+                    //获取卫星颗数的默认最大值
+                    int maxSatellites = gpsStatus.getMaxSatellites();
+                    //创建一个迭代器保存所有卫星
+                    Iterator<GpsSatellite> iters = gpsStatus.getSatellites().iterator();
+                    int count = 0;
+                    while (iters.hasNext() && count <= maxSatellites) {
+                        GpsSatellite s = iters.next();
+                        count++;
+                    }
+                  //  Log.i("2017-12-18", "搜索到："+count+"颗卫星");
+                    break;
+                //定位启动
+                case GpsStatus.GPS_EVENT_STARTED:
+                   // Log.i("2017-12-17", "定位启动");
+                    break;
+                //定位结束
+                case GpsStatus.GPS_EVENT_STOPPED:
+                  //  Log.i("2017-12-17", "定位结束");
+                    break;
+            }
+        };
+    };
 
 }

@@ -427,6 +427,7 @@ OkHttpUtils.post().url(MyOkHttpUtils.BaseUrl+answerUrl).addParams("HOMEID", list
 						ShowWenJuanMarkActivity.class);
 				intent.putExtra("pid", String.valueOf(info.getID()));
 				intent.putExtra("position", position);
+			intent.putExtra("sfz", info.getSFZ());
 				startActivity(intent);
 			break;
 

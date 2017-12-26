@@ -2,6 +2,7 @@ package com.youli.zbetuch_huangpu.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.youli.zbetuch_huangpu.R;
@@ -31,7 +33,7 @@ public class FunctionListActivity extends BaseActivity {
     private ViewPager viewPager;
     private List<ImageView> pointViewList;
     private int[] myIcons;
-
+    private TextView tvTitle;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,12 @@ public class FunctionListActivity extends BaseActivity {
     }
 
     private void initUi(){
+
+        tvTitle= (TextView) findViewById(R.id.tv_title_function_list);
+        //给标题设置字体
+        Typeface type=Typeface.createFromAsset(getApplicationContext().getAssets(),"STXINGKA.TTF");
+        tvTitle.setTypeface(type);
+
 
         viewPager= (ViewPager) findViewById(R.id.view_pager_function_list);
         viewPager.setAdapter(new FunctionPageAdapter(viewList));
@@ -71,7 +79,10 @@ public class FunctionListActivity extends BaseActivity {
                                     intent=new Intent(mContext,ShowWenJuanActivity.class);//专项调查
                                     startActivity(intent);
                                     break;
-
+                                case 2:
+                                    intent=new Intent(mContext,PolicyQueryActivity.class);//政策查询
+                                    startActivity(intent);
+                                    break;
                             }
                             break;
 //                        case 1:

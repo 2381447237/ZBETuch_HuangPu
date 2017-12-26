@@ -83,7 +83,7 @@
                 android:id="@+id/ziyuandiaocha_query_btn"
                 android:background="@drawable/button_selector"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="37dp"
                 android:text="查询"/>
         </LinearLayout>
 
