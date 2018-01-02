@@ -5,6 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#f1f1f1">
 
+
+
     <RelativeLayout
         android:padding="10dp"
         android:background="@drawable/shape_homepage_title_rl"
@@ -28,11 +30,64 @@
 
     </RelativeLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f1f1f1">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
+        <RelativeLayout
+            android:layout_marginTop="5dp"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="位置信息"/>
+
+            <ImageView
+                android:id="@+id/iv_admin_info_gps"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:src="@drawable/jt"
+                android:layout_alignParentRight="true"/>
+
+
+            <TextView
+                android:id="@+id/tv_admin_info_wdu"
+                android:textColor="#cccccc"
+                android:layout_toLeftOf="@id/iv_admin_info_gps"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                />
+            <TextView
+                android:paddingRight="10dp"
+                android:id="@+id/tv_admin_info_jdu"
+                android:textColor="#cccccc"
+                android:layout_toLeftOf="@id/tv_admin_info_wdu"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                />
+        </RelativeLayout>
 
        <RelativeLayout
            android:layout_marginTop="5dp"
@@ -59,8 +114,8 @@
            <com.youli.zbetuch_huangpu.view.CircleImageView
                android:id="@+id/iv_admin_info_head"
                android:layout_toLeftOf="@id/iv_admin_info_head_arrow"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
+               android:layout_width="45dp"
+               android:layout_height="45dp"
                android:src="@drawable/personhead"
                app:civ_border_color="#ffffff"
                app:civ_border_width="1dp"
@@ -404,5 +459,6 @@
 
 
     </LinearLayout>
-
+    </LinearLayout>
+    </ScrollView>
 </LinearLayout>

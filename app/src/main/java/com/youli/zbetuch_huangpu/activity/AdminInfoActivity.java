@@ -1,14 +1,29 @@
 package com.youli.zbetuch_huangpu.activity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.youli.zbetuch_huangpu.R;
 import com.youli.zbetuch_huangpu.entity.AdminInfo;
+import com.youli.zbetuch_huangpu.entity.MyFollowInfo;
+import com.youli.zbetuch_huangpu.utils.IOUtil;
+import com.youli.zbetuch_huangpu.utils.MyOkHttpUtils;
 import com.youli.zbetuch_huangpu.view.CircleImageView;
+
+import java.io.InputStream;
+import java.util.List;
+
+import okhttp3.Response;
 
 /**
  * 作者: zhengbin on 2017/9/22.
@@ -19,6 +34,15 @@ import com.youli.zbetuch_huangpu.view.CircleImageView;
  */
 
 public class AdminInfoActivity extends BaseActivity implements View.OnClickListener{
+
+
+    private Context mContext=this;
+
+
+    private final int SUCCESS_ADMIN_PIC=10001;//头像
+    private final int PROBLEM=10002;
+    private final int OVERTIME=10003;//登录超时
+
 
     private ImageView ivBack;
     private CircleImageView ivHead;//头像
@@ -32,8 +56,45 @@ public class AdminInfoActivity extends BaseActivity implements View.OnClickListe
     private TextView tvDepart;//所属部门
     private TextView tvStreet;//街道
     private TextView tvIMEI;//IMEI
+    private TextView tvJdu;//经度
+    private TextView tvWdu;//纬度
 
     private AdminInfo aInfo;
+
+    private byte [] picByte;
+
+    private Handler gpsHandler;//
+
+    private Handler mHandler=new Handler(){
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            switch (msg.what){
+
+
+
+                case PROBLEM:
+                    Toast.makeText(mContext, "网络不给力", Toast.LENGTH_SHORT).show();
+                    break;
+                case OVERTIME:
+
+                    Intent i=new Intent(mContext,OvertimeDialogActivity.class);
+                    startActivity(i);
+
+                    break;
+
+
+                case SUCCESS_ADMIN_PIC://头像
+
+                    ivHead.setImageBitmap((Bitmap) msg.obj);
+
+                    break;
+            }
+
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +104,9 @@ public class AdminInfoActivity extends BaseActivity implements View.OnClickListe
         aInfo=(AdminInfo)getIntent().getSerializableExtra("ADMININFO");
 
         initViews();
+        getPic();//获取头像
+        gpsHandler=new Handler();
+        gpsHandler.post(r);
     }
 
     private void initViews(){
@@ -50,6 +114,7 @@ public class AdminInfoActivity extends BaseActivity implements View.OnClickListe
         ivBack= (ImageView) findViewById(R.id.iv_admin_info_back);
         ivBack.setOnClickListener(this);
         ivHead= (CircleImageView) findViewById(R.id.iv_admin_info_head);
+        ivHead.setOnClickListener(this);
         tvOperatorNo= (TextView) findViewById(R.id.tv_admin_info_operator_no);
         tvOperatorNo.setText(aInfo.getINPUT_CODE());
         tvName= (TextView) findViewById(R.id.tv_admin_info_name);
@@ -77,6 +142,17 @@ public class AdminInfoActivity extends BaseActivity implements View.OnClickListe
         tvStreet.setText(aInfo.getJD());
         tvIMEI= (TextView) findViewById(R.id.tv_admin_info_imei);
         tvIMEI.setText(aInfo.getIMEI());
+
+        tvJdu= (TextView) findViewById(R.id.tv_admin_info_jdu);
+        tvJdu.setText("经度:    ");
+        tvWdu= (TextView) findViewById(R.id.tv_admin_info_wdu);
+        tvWdu.setText("纬度:    ");
+
+        if(HomePageActivity.jDuStr.contains(".")&&HomePageActivity.wDuStr.contains(".")) {
+
+            tvJdu.setText("经度:" + HomePageActivity.jDuStr.substring(0, HomePageActivity.jDuStr.indexOf(".")));//截取小数点前面的
+            tvWdu.setText("纬度:" + HomePageActivity.wDuStr.substring(0, HomePageActivity.wDuStr.indexOf(".")));
+        }
     }
 
     @Override
@@ -85,13 +161,77 @@ public class AdminInfoActivity extends BaseActivity implements View.OnClickListe
         switch (v.getId()){
 
             case R.id.iv_admin_info_back:
-
+                //移除Handler
+                gpsHandler.removeCallbacks(r);
                 finish();
 
                 break;
 
 
+            case R.id.iv_admin_info_head:
+
+                Intent i=new Intent(mContext,AdminPicActivity.class);
+                i.putExtra("pic",picByte);
+                startActivity(i);
+
+                break;
+
         }
 
     }
+
+    Runnable r=new Runnable() {
+        @Override
+        public void run() {
+
+            gpsHandler.postDelayed(r,5000);
+
+            if(HomePageActivity.jDuStr.contains(".")&&HomePageActivity.wDuStr.contains(".")) {
+
+                tvJdu.setText("经度:" + HomePageActivity.jDuStr.substring(0, HomePageActivity.jDuStr.indexOf(".")));//截取小数点前面的
+                tvWdu.setText("纬度:" + HomePageActivity.wDuStr.substring(0, HomePageActivity.wDuStr.indexOf(".")));
+            }
+        }
+    };
+
+    private void  getPic(){
+
+        // http://web.youli.pw:8088/Json/GetStaffPic.aspx?staff=1
+        new Thread(
+
+                new Runnable() {
+                    @Override
+                    public void run() {
+
+                        String urlPic = MyOkHttpUtils.BaseUrl+"/Json/GetStaffPic.aspx?staff="+aInfo.getID();
+                        Response response = MyOkHttpUtils.okHttpGet(urlPic);
+                        try {
+                            Message msg = Message.obtain();
+
+                            if (response != null) {
+                                InputStream is = response.body().byteStream();
+
+                                byte[] picData = IOUtil.getBytesByStream(is);
+                                picByte=picData;
+                                Bitmap btp = BitmapFactory.decodeByteArray(picData, 0, picData.length);
+
+                                msg.obj = btp;
+                                msg.what = SUCCESS_ADMIN_PIC;
+                                mHandler.sendMessage(msg);
+
+                            } else {
+
+                                // sendProblemMessage(msg);
+
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+        ).start();
+
+    }
+
 }

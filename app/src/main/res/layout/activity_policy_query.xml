@@ -81,6 +81,8 @@
     </LinearLayout>
 
     <ExpandableListView
+        android:dividerHeight="0.8dp"
+        android:divider="#eeeeee"
         android:groupIndicator="@null"
         android:id="@+id/policy_query_elv"
         android:layout_width="match_parent"

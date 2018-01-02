@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
    <RelativeLayout
-       android:padding="10dp"
+       android:padding="2.5dp"
+
        android:background="@drawable/shape_homepage_title_rl"
        android:layout_width="match_parent"
        android:layout_height="wrap_content">
@@ -18,7 +19,7 @@
            android:src="@drawable/personhead"
            app:civ_border_color="#ffffff"
            app:civ_border_width="1dp"
-           android:layout_marginLeft="5dp"
+           android:layout_marginLeft="15dp"
            />
 
        <!--<TextView-->
@@ -44,10 +45,10 @@
            android:layout_height="wrap_content"
            android:text="@string/title"
            android:textColor="@color/white"
-           android:textSize="24dp"
+           android:textSize="22sp"
            />
            <LinearLayout
-
+               android:visibility="gone"
                android:layout_gravity="center"
                android:layout_centerHorizontal="true"
                android:layout_width="wrap_content"
@@ -84,6 +85,7 @@
        </LinearLayout>
 
        <Button
+           android:visibility="gone"
            android:layout_margin="5dp"
            android:layout_alignParentRight="true"
            android:id="@+id/main_layout_work_btn"
@@ -120,6 +122,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <RelativeLayout
+                    android:paddingBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <ImageView
+                        android:id="@+id/homepage_zydc_iv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/zydc1"/>
+                    <TextView
+                        android:layout_marginRight="100dp"
+                        android:singleLine="true"
+                        android:paddingBottom="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="20sp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffffff"/>
+
+
+                </RelativeLayout>
 
               <RelativeLayout
                   android:paddingBottom="10dp"

@@ -32,8 +32,7 @@ import com.youli.zbetuch_huangpu.entity.LastInvest;
 import com.youli.zbetuch_huangpu.entity.PersonInfo;
 import com.youli.zbetuch_huangpu.entity.ResourcesDetailInfo;
 import com.youli.zbetuch_huangpu.utils.MyOkHttpUtils;
-
-import org.greenrobot.eventbus.EventBus;
+import com.youli.zbetuch_huangpu.utils.MyToast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -81,6 +80,8 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
 
     private List<LastInvest> lastInfo = new ArrayList<>();
 
+    private String mark;
+
     private Handler mHandler = new Handler() {
 
         @Override
@@ -95,7 +96,7 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
                             new Runnable() {
                                 @Override
                                 public void run() {
-                                    submitInfo(RDInfo.getDCID(),"address");//提交经纬度
+                                    submitInfo(mark,"address");//提交经纬度
                                 }
                             }
                     ).start();
@@ -107,6 +108,7 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
                     Toast.makeText(mContext, "提交成功", Toast.LENGTH_SHORT).show();
                     isSave = true;
                     setResult(ZiyuanDetailListActivity.ResultCode, null);
+                    finish();
                     // EventBus.getDefault().post(new ResourcesDetailInfo());
                     break;
 
@@ -144,6 +146,10 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
 
         RDInfo = (ResourcesDetailInfo) getIntent().getSerializableExtra("RDInfo");
         isCheck = getIntent().getBooleanExtra("IsCheck", false);
+
+        mark=getIntent().getStringExtra("mark");
+
+        Log.e("2017-12-29","mark="+mark);
 
         initViews();
     }
@@ -238,7 +244,7 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
             submitBtn.setClickable(true);
         }
 
-        if (RDInfo.getDCID() == 1) {
+        if (TextUtils.equals("失业",mark)) {
            // person_ren.setVisibility(View.GONE);
             currStaData = getResources().getStringArray(R.array.resources_shiye_status);
             titleTv.setText("失业详细");
@@ -255,7 +261,7 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
             shidengDateEt.setText(RDInfo.getZJSYDJDATE().split("T")[0]);//最近失业登记日期
             shidengVidEt.setText(RDInfo.getSYDJYXQ().split("T")[0]);//失业登记有效期
 
-        } else if ((RDInfo.getDCID() == 2)) {
+        } else if (TextUtils.equals("无业",mark)) {
             currStaData = getResources().getStringArray(R.array.resources_wuye_status);
             titleTv.setText("无业详细");
             hujiTypeTv.setText("是否已核");
@@ -268,7 +274,7 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
             shidengLi.setVisibility(View.INVISIBLE);
             mdDateTv.setText("摸底日期");
             masterDateEt.setText(RDInfo.getMDDATE());//摸底日期
-        } else if ((RDInfo.getDCID() == 3)) {
+        } else if (TextUtils.equals("应届生",mark)) {
             currStaData = getResources().getStringArray(R.array.resources_wuye_status);
             titleTv.setText("应届生详细");
             shidengAndphenoLi.setVisibility(View.GONE);
@@ -315,10 +321,10 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
         Calendar c = Calendar.getInstance();
         diaochaDateEt.setText(c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH) + 1) + "-" + c.get(Calendar.DAY_OF_MONTH));//调查日期
 
-
-        currStaAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currStaData);
-        currStaSp.setAdapter(currStaAdapter);
-
+       if(currStaData!=null) {
+           currStaAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currStaData);
+           currStaSp.setAdapter(currStaAdapter);
+       }
 
         currIntData = getResources().getStringArray(R.array.resources_wuye_yixiang);
         ArrayAdapter<String> currIntAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currIntData);
@@ -379,7 +385,9 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
             case R.id.shiwuye_detail_submit_btn://提交
              //   if (RDInfo.getDCID() !=1){
                     if (rag.getCheckedRadioButtonId() != rb1.getId() && rag.getCheckedRadioButtonId() != rb2.getId()) {
-                        Toast.makeText(this, "请选择是否人户分离", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(this, "请选择是否人户分离", Toast.LENGTH_SHORT).show();
+                        MyToast.makeText(this,"请选择是否人户分离",1000).show();
+
                         return;
                     }
              //   }
@@ -387,23 +395,27 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
 
 
                 if (textView_type.getCheckedRadioButtonId() != radioGroup_men.getId() && textView_type.getCheckedRadioButtonId() != radioGroup_phone.getId()) {
-                    Toast.makeText(this, "请选择调查类型", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(this, "请选择调查类型", Toast.LENGTH_SHORT).show();
+                    MyToast.makeText(this,"请选择调查类型",1000).show();
                     return;
                 }
 
 
                 if (TextUtils.equals((String) currStaSp.getSelectedItem(), "请选择")) {
-                    Toast.makeText(this, "请选择目前状况!", Toast.LENGTH_SHORT).show();
+                //    Toast.makeText(this, "请选择目前状况!", Toast.LENGTH_SHORT).show();
+                    MyToast.makeText(this,"请选择目前状况!",1000).show();
                     return;
                 }
                 if (TextUtils.equals((String) currIntSp.getSelectedItem(), "请选择")) {
-                    Toast.makeText(this, "请选择当前意向!", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(this, "请选择当前意向!", Toast.LENGTH_SHORT).show();
+                    MyToast.makeText(this,"请选择当前意向!",1000).show();
                     return;
                 }
 
 
                 if (isSave) {
                     Toast.makeText(this, "已经提交过了，不能重复提交", Toast.LENGTH_SHORT).show();
+                   // MyToast.makeText(this,"请选择调查类型",1000).show();
                 } else {
                     showSubmitDialog();
                 }
@@ -486,7 +498,7 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
                         new Runnable() {
                             @Override
                             public void run() {
-                                submitInfo(RDInfo.getDCID(),"detail");
+                                submitInfo(mark,"detail");
                             }
                         }
                 ).start();
@@ -500,18 +512,18 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
         builder.show();
     }
 
-    private void submitInfo(int DCID,String mark) {
+    private void submitInfo(String type,String mark) {
         String url = null;
         Response response=null;
         //Set_Resource_Survey_Detil_SY.aspx 参数 MDID 明细id ,DCBZ 调查备注,MQZK_NEW 调查的目前状况,DQYX_NEW  调查的当前意向
 
         if(TextUtils.equals(mark,"detail")) {
 
-            if (DCID == 1) {
+            if (TextUtils.equals("失业",type)) {
                 url = MyOkHttpUtils.BaseUrl + "/Json/Set_Resource_Survey_Detil_SY.aspx";
-            } else if (DCID == 2) {
+            } else if (TextUtils.equals("无业",type)) {
                 url = MyOkHttpUtils.BaseUrl + "/Json/Set_Resource_Survey_Detil_WY.aspx";
-            } else if (DCID == 3) {
+            } else if (TextUtils.equals("应届生",type)) {
                 url = MyOkHttpUtils.BaseUrl + "/Json/Set_Resource_Survey_Detil_YJS.aspx";
             }
 
@@ -521,11 +533,11 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
                     "&MQZK_NEW=" + currStaStr + "&DQYX_NEW=" + currIntStr + "&DCLX=" + DCLX + "&RHFL=" + RHFL);
         }else if(TextUtils.equals(mark,"address")){
 
-            if (DCID == 1) {
+            if (TextUtils.equals("失业",type)) {
                 url = MyOkHttpUtils.BaseUrl + "/Json/Set_GPS_Staff_Log.aspx?sfz="+RDInfo.getZJHM()+"&detail=失业调查&gps="+HomePageActivity.jDuStr+","+HomePageActivity.wDuStr;
-            } else if (DCID == 2) {
+            } else if (TextUtils.equals("无业",type)) {
                 url = MyOkHttpUtils.BaseUrl + "/Json/Set_GPS_Staff_Log.aspx?sfz="+RDInfo.getZJHM()+"&detail=无业调查&gps="+HomePageActivity.jDuStr+","+HomePageActivity.wDuStr;
-            } else if (DCID == 3) {
+            } else if (TextUtils.equals("应届生",type)) {
                 url = MyOkHttpUtils.BaseUrl + "/Json/Set_GPS_Staff_Log.aspx?sfz="+RDInfo.getZJHM()+"&detail=应届生调查&gps="+HomePageActivity.jDuStr+","+HomePageActivity.wDuStr;
             }
             response = MyOkHttpUtils.okHttpGet(url);
@@ -604,12 +616,12 @@ public class ShiwuyeDetailActivity extends BaseActivity implements View.OnClickL
             case R.id.radioGroup1:
 
                     if (rag.getCheckedRadioButtonId() == rb1.getId()) {
-                        if (RDInfo.getDCID() !=1) {
+                        if (!TextUtils.equals("失业",mark)) {
                             currStaData = getResources().getStringArray(R.array.resources_wuye_status);
                         }
                         RHFL = true;
                     } else if (rag.getCheckedRadioButtonId() == rb2.getId()) {
-                        if (RDInfo.getDCID() !=1) {
+                        if (!TextUtils.equals("失业",mark)) {
                             currStaData = getResources().getStringArray(R.array.resources_wuye_status_ren);
                         }
                         RHFL = false;

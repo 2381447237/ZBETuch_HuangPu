@@ -69,6 +69,7 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
     public final static int RequestCode=111111;
     public final static int ResultCode=222222;
 
+
     //public ResourcesDetailInfo eventBus;
 
     private Handler mHandler=new Handler(){
@@ -401,7 +402,7 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
         Intent intent=new Intent(this,ShiwuyeDetailActivity.class);
         intent.putExtra("RDInfo",dInfo.get(position-1));
         intent.putExtra("IsCheck",isCheck);
-
+        intent.putExtra("mark",rInfo.getDclx());
        startActivityForResult(intent,RequestCode);
 
     }

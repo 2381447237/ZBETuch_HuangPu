@@ -12,7 +12,6 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.youli.zbetuch_huangpu.R;
 import com.youli.zbetuch_huangpu.adapter.FunctionPageAdapter;

@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
@@ -14,6 +16,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,6 +28,7 @@ import com.google.gson.reflect.TypeToken;
 import com.youli.zbetuch_huangpu.R;
 import com.youli.zbetuch_huangpu.entity.AdminInfo;
 import com.youli.zbetuch_huangpu.entity.MyFollowInfo;
+import com.youli.zbetuch_huangpu.utils.IOUtil;
 import com.youli.zbetuch_huangpu.utils.MyOkHttpUtils;
 import com.youli.zbetuch_huangpu.utils.SharedPreferencesUtils;
 import com.youli.zbetuch_huangpu.view.CircleImageView;
@@ -34,6 +38,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -43,7 +48,6 @@ import okhttp3.Response;
 
 //首页
 public class HomePageActivity extends CheckPermissionsActivity implements View.OnClickListener{
-//IMBI
 
     private Context mContext=this;
 
@@ -56,6 +60,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
     private final int SUCCESS_DBGZ_NUM=10006;//待办工作的数量
     private final int SUCCESS_DCDB_NUM=10007;//督察督办的数量
     private final int SUCCESS_WDGZ_NUM=10008;//我的关注的数量
+    private final int SUCCESS_ADMIN_PIC=10009;//头像
 
     private List<MyFollowInfo> followData=new ArrayList<>();//我的关注的数据
 
@@ -72,6 +77,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
     private ImageView needWorkIv;//待办工作
     private ImageView inspectorIv;//督察督办
     private ImageView myFollowIv;//我的关注
+    private ImageView zydcIv;//资源调查
     private TextView tvJdu,tvWdu,tvGdu;//经度，纬度，高度
 
     private TextView titieTv,wdgzNumTv;//我的关注的数量
@@ -89,7 +95,6 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
     public  static String jDuStr,wDuStr;//要上传的经度和纬度
 
-
     private Handler mHandler=new Handler(){
 
         @Override
@@ -102,7 +107,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
                     adminInfo=(AdminInfo)msg.obj;
                     adminName=adminInfo.getNAME();
-
+                    getPic();//获取头像
                     getNum("WDGZ");//我的关注
 
                     break;
@@ -172,6 +177,12 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
                     }
 
                     break;
+
+                case SUCCESS_ADMIN_PIC://头像
+
+                    ivHead.setImageBitmap((Bitmap) msg.obj);
+
+                    break;
             }
 
         }
@@ -218,6 +229,8 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
         inspectorIv.setOnClickListener(this);
         myFollowIv= (ImageView) findViewById(R.id.homepage_my_follow_iv);
         myFollowIv.setOnClickListener(this);
+        zydcIv= (ImageView) findViewById(R.id.homepage_zydc_iv);
+        zydcIv.setOnClickListener(this);
         workBtn = (Button) findViewById(R.id.main_layout_work_btn);
         workBtn.setOnClickListener(this);
         tvJdu= (TextView) findViewById(R.id.main_layout_tv_jdu);
@@ -230,15 +243,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
         dbgzNumTv= (TextView) findViewById(R.id.dbgz_num_tv);
         dcdbNumTv= (TextView) findViewById(R.id.dcdb_num_tv);
 
-
         getAdminInfo();
-
- //这都
-//        if(MyOkHttpUtils.BaseUrl.contains("192.168")){//内网
-//              getAddress();//手机自带的GPS定位，没网也可以定位
-//        }else{//外网
-//            getGpsInfo();//高德地图定位，必须要有网络才能定位（2017-12-15注释了）
-//        }
 
     }
 
@@ -464,6 +469,11 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
                 intent = new Intent(this,MyFollowActivity.class);
                 startActivity(intent);
                 break;
+
+            case R.id.homepage_zydc_iv://资源调查
+                intent=new Intent(this,FunctionListActivity.class);
+                startActivity(intent);
+                break;
         }
 
     }
@@ -503,6 +513,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
             }
             jDuStr=spJdu;//要上传的经度
             wDuStr=spWdu;//要上传的纬度
+
         }
         locationManager.requestLocationUpdates(provider, getGPSTime, 0, locationListener);
         //绑定监听状态
@@ -544,6 +555,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
         jDuStr=location.getLongitude()+"";//要上传的经度
         wDuStr=location.getLatitude()+"";//要上传的纬度
+
 
         SharedPreferencesUtils.putString("jDu",String.valueOf(location.getLongitude()));//sp存经度
         SharedPreferencesUtils.putString("wDu",String.valueOf(location.getLatitude()));//sp存纬度
@@ -657,5 +669,48 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
             }
         };
     };
+
+
+    private void  getPic(){
+
+       // http://web.youli.pw:8088/Json/GetStaffPic.aspx?staff=1
+        new Thread(
+
+
+
+                new Runnable() {
+                    @Override
+                    public void run() {
+
+                        String urlPic =MyOkHttpUtils.BaseUrl+"/Json/GetStaffPic.aspx?staff="+adminInfo.getID();
+                        Response response = MyOkHttpUtils.okHttpGet(urlPic);
+                        try {
+                            Message msg = Message.obtain();
+
+                            if (response != null) {
+                                InputStream is = response.body().byteStream();
+
+                                byte[] picData = IOUtil.getBytesByStream(is);
+
+                                Bitmap btp = BitmapFactory.decodeByteArray(picData, 0, picData.length);
+
+                                msg.obj = btp;
+                                msg.what = SUCCESS_ADMIN_PIC;
+                                mHandler.sendMessage(msg);
+
+                            } else {
+
+                               // sendProblemMessage(msg);
+
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+        ).start();
+
+    }
 
 }
