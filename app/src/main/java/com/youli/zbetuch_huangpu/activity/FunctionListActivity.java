@@ -82,6 +82,16 @@ public class FunctionListActivity extends BaseActivity {
                                     intent=new Intent(mContext,PolicyQueryActivity.class);//政策查询
                                     startActivity(intent);
                                     break;
+                                case 3:
+                                    intent=new Intent(mContext,OperationActivity.class);//操作说明
+                                    startActivity(intent);
+                                    break;
+                                case 4:
+                                    intent=new Intent(mContext, PersonalInfoQuery.class);//个人信息
+                                    startActivity(intent);
+                                    break;
+
+
                             }
                             break;
 //                        case 1:
@@ -127,7 +137,7 @@ public class FunctionListActivity extends BaseActivity {
 //                .drawable.wjdc, R.drawable.ggwj};
 
         myIcons = new int[]{
-                R.drawable.zydc,R.drawable.zxdc,R.drawable.zzcx
+                R.drawable.zydc,R.drawable.zxdc,R.drawable.zzcx,R.drawable.ccs,R.drawable.gerenxinxi
         };
 //                R.drawable.gerenxinxi, R.drawable.zpxx, R.drawable.tjbb,
 //                R.drawable.yjbys, R.drawable.zzdc, R.drawable.xcms,
