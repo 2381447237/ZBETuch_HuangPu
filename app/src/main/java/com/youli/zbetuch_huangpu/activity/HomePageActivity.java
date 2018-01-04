@@ -15,6 +15,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -107,6 +108,20 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
                     adminInfo=(AdminInfo)msg.obj;
                     adminName=adminInfo.getNAME();
+
+                    if(adminInfo.isSTOP()){//判断账号是否被启用
+                        gpsHandler.removeCallbacks(rState);
+                        Intent i=new Intent(mContext,OvertimeDialogActivity.class);
+                        i.putExtra("type","state");
+                        startActivity(i);
+                        return;
+                    }
+
+//                    if(!getImei(adminInfo.getIMEI())){//获取IMEI号
+//                        gpsHandler.removeCallbacks(rState);
+//                        return;
+//                    }
+
                     getPic();//获取头像
                     getNum("WDGZ");//我的关注
 
@@ -203,6 +218,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
         gpsHandler=new Handler();
         gpsHandler.post(r);
         gpsHandler.post(rGps);
+        gpsHandler.post(rState);
         initViews();
 
 
@@ -243,7 +259,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
         dbgzNumTv= (TextView) findViewById(R.id.dbgz_num_tv);
         dcdbNumTv= (TextView) findViewById(R.id.dcdb_num_tv);
 
-        getAdminInfo();
+        //getAdminInfo();
 
     }
 
@@ -506,10 +522,16 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
             String spJdu=SharedPreferencesUtils.getString("jDu");//sp取经度
             String spWdu=SharedPreferencesUtils.getString("wDu");//sp取纬度
 
+
+            Log.e("2018-1-3111","经度="+spJdu);
+            Log.e("2018-1-3111","纬度="+spWdu);
+
             if(!TextUtils.equals(spJdu,"")&&!TextUtils.equals(spWdu,"")) {
 
                 tvJdu.setText("经度:" + (new Double(Double.parseDouble(spJdu))).intValue());//String先转Double，再转int
                 tvWdu.setText("纬度:" + (new Double(Double.parseDouble(spWdu))).intValue());//String先转Double，再转int
+                tvJdu.setText("经度:" + spJdu);//String先转Double，再转int
+                tvWdu.setText("纬度:" + spWdu);//String先转Double，再转int
             }
             jDuStr=spJdu;//要上传的经度
             wDuStr=spWdu;//要上传的纬度
@@ -517,7 +539,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
         }
         locationManager.requestLocationUpdates(provider, getGPSTime, 0, locationListener);
         //绑定监听状态
-      //  locationManager.addGpsStatusListener(listener);//可以获取卫星的数量
+        locationManager.addGpsStatusListener(listener);//可以获取卫星的数量
     }
 
 
@@ -547,8 +569,8 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
     private void showLocations(Location location) {
 
-        tvJdu.setText("经度:"+(int)location.getLongitude());
-        tvWdu.setText("纬度:"+(int)location.getLatitude());
+        tvJdu.setText("经度:"+location.getLongitude());
+        tvWdu.setText("纬度:"+location.getLatitude());
 
         tvGdu.setText("高度:"+location.getAltitude()+"米");
 
@@ -556,6 +578,8 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
         jDuStr=location.getLongitude()+"";//要上传的经度
         wDuStr=location.getLatitude()+"";//要上传的纬度
 
+        Log.e("2018-1-3","经度="+location.getLongitude());
+        Log.e("2018-1-3","纬度="+location.getLatitude());
 
         SharedPreferencesUtils.putString("jDu",String.valueOf(location.getLongitude()));//sp存经度
         SharedPreferencesUtils.putString("wDu",String.valueOf(location.getLatitude()));//sp存纬度
@@ -573,6 +597,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
                 //移除Handler
                 gpsHandler.removeCallbacks(r);
                 gpsHandler.removeCallbacks(rGps);
+                gpsHandler.removeCallbacks(rState);
                 ActivityController.finishAll();
             }
         });
@@ -604,6 +629,15 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
         return false;
     }
 
+
+    Runnable rState=new Runnable() {
+        @Override
+        public void run() {
+            gpsHandler.postDelayed(this,500);//0.5秒钟检测一次状态
+            getAdminInfo();
+        }
+    };
+
     Runnable r=new Runnable() {
         @Override
         public void run() {
@@ -615,7 +649,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
                 //移除Handler
                 gpsHandler.removeCallbacks(r);
                 Intent i=new Intent(mContext,OvertimeDialogActivity.class);
-                i.putExtra("gps","gps");
+                i.putExtra("type","gps");
                 startActivity(i);
 
             }
@@ -656,7 +690,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
                         GpsSatellite s = iters.next();
                         count++;
                     }
-                  //  Log.i("2017-12-18", "搜索到："+count+"颗卫星");
+                   Log.e("2018-1-3", "搜索到："+count+"颗卫星");
                     break;
                 //定位启动
                 case GpsStatus.GPS_EVENT_STARTED:
@@ -711,6 +745,22 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
         ).start();
 
+    }
+
+    private boolean getImei(String adminImei){
+
+        TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+        String imei = tm.getDeviceId();
+
+        if(!TextUtils.equals(adminImei,imei)){
+            Intent i=new Intent(mContext,OvertimeDialogActivity.class);
+            i.putExtra("type","imei");
+            startActivity(i);
+
+            return  false;
+        }
+
+        return  true;
     }
 
 }

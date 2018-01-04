@@ -34,7 +34,7 @@ public class OvertimeDialogActivity extends BaseActivity{
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_overtime_dialog);
 
-        mark=getIntent().getStringExtra("gps");
+        mark=getIntent().getStringExtra("type");
 
          initViews(mark);
     }
@@ -48,6 +48,10 @@ public class OvertimeDialogActivity extends BaseActivity{
         TextView tv= (TextView) adu.getAduView().findViewById(R.id.overtime_title_tv);
         if(TextUtils.equals(mark,"gps")){
             tv.setText("GPS未打开，请您重新登录！");
+        }else if(TextUtils.equals(mark,"imei")){
+            tv.setText("IMEI号码不正确，请您重新登录！");
+        }else if(TextUtils.equals(mark,"state")){
+            tv.setText("此账号已停用，请您重新登录！");
         }
 
 

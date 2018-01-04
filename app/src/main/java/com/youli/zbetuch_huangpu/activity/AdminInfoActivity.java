@@ -152,6 +152,8 @@ public class AdminInfoActivity extends BaseActivity implements View.OnClickListe
 
             tvJdu.setText("经度:" + HomePageActivity.jDuStr.substring(0, HomePageActivity.jDuStr.indexOf(".")));//截取小数点前面的
             tvWdu.setText("纬度:" + HomePageActivity.wDuStr.substring(0, HomePageActivity.wDuStr.indexOf(".")));
+            tvJdu.setText("经度:" + HomePageActivity.jDuStr);
+            tvWdu.setText("纬度:" + HomePageActivity.wDuStr);
         }
     }
 
@@ -190,6 +192,8 @@ public class AdminInfoActivity extends BaseActivity implements View.OnClickListe
 
                 tvJdu.setText("经度:" + HomePageActivity.jDuStr.substring(0, HomePageActivity.jDuStr.indexOf(".")));//截取小数点前面的
                 tvWdu.setText("纬度:" + HomePageActivity.wDuStr.substring(0, HomePageActivity.wDuStr.indexOf(".")));
+                tvJdu.setText("经度:" + HomePageActivity.jDuStr);//截取小数点前面的
+                tvWdu.setText("纬度:" + HomePageActivity.wDuStr);
             }
         }
     };

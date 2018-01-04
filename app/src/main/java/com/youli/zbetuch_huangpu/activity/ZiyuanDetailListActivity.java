@@ -316,11 +316,7 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
 
 
                     LinearLayout ll = holder.getView(R.id.item_ziyuan_detail_ll);
-//                    if (position % 2 == 0) {
-//                        ll.setBackgroundResource(R.drawable.selector_ziyuandiaocha_item1);
-//                    } else {
-//                        ll.setBackgroundResource(R.drawable.selector_ziyuandiaocha_item2);
-//                    }
+
                     if (position % 2 == 0){
                         ll.setBackgroundResource(R.drawable.selector_questionnaire_click_blue);
                     }else {

@@ -39,72 +39,69 @@
                 android:layout_centerInParent="true"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:text="查询"
+                android:text="查 询"
                 android:gravity="center"
                 android:background="@drawable/shape_homepage_title_rl"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="8dp"
-            android:background="#fff"
-            >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="身份证 : "
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:orientation="horizontal"
+                android:background="#fff"
+                android:layout_weight="2"
+                android:gravity="center_vertical">
 
-            <!--<EditText-->
-                <!--android:hint="123"-->
-                <!--android:singleLine="true"-->
-                <!--android:id="@+id/et_id_num"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginRight="15dp"-->
-                <!--android:layout_weight="4"-->
-                <!--android:background="@drawable/login_textbg"-->
-                <!--android:textSize="16sp"/>-->
-            <!---->
-            <EditText
-                android:padding="2dp"
-                android:singleLine="true"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:text="身  份  证  : "
+                    android:layout_marginLeft="6dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <EditText
                 android:id="@+id/et_id_num"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/shape_ziyuan_detail_et"
-                android:textSize="16sp"
-                android:layout_weight="4"/>
-            <Button
-                android:id="@+id/btn_scanning"
-                android:layout_width="40dp"
-                android:layout_height="26dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/button_selector"
-                android:text="扫描"/>
+                android:textColor="#7D7D7D"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="15"
+                    android:background="@drawable/shape_ziyuan_detail_et"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:layout_marginRight="15dp"
+                    />
 
-            <Button
-                android:id="@+id/btn_query_id_num"
-                android:layout_width="40dp"
-                android:layout_height="26dp"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@+id/view"
-                android:background="@drawable/button_selector"
-                android:text="查询"/>
-        </LinearLayout>
+                <Button
+                    android:textColor="#ffff"
+                    android:id="@+id/btn_scanning"
+                    android:layout_width="40dp"
+                    android:layout_height="26dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/button_selector"
+                    android:text="扫描"/>
+
+                <Button
+                    android:textColor="#ffff"
+                    android:id="@+id/btn_query_id_num"
+                    android:layout_width="40dp"
+                    android:layout_height="26dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toRightOf="@+id/view"
+                    android:background="@drawable/button_selector"
+                    android:text="查询"/>
+            </LinearLayout>
+
 
         </LinearLayout>
 
     </RelativeLayout>
-    <!--android:background="@drawable/bk1"-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -112,17 +109,7 @@
         android:layout_marginRight="10dp"
         android:orientation="vertical">
 
-        <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@drawable/lt">-->
 
-        <!--<ImageView-->
-        <!--android:layout_width="106dp"-->
-        <!--android:layout_height="38dp"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:background="@drawable/at"/>-->
-        <!--</RelativeLayout>-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -149,6 +136,7 @@
 
                 <!--姓名-->
                 <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
@@ -159,23 +147,23 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text=" 姓       名 :"
+                        android:text=" 姓        名 :"
                         android:layout_marginLeft="6dp"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <EditText
+                        android:textColor="#7D7D7D"
                         android:id="@+id/et_personal_name"
                         android:layout_width="0dp"
-                        android:layout_height="30sp"
+                        android:layout_height="32dp"
                         android:layout_weight="10"
-                        android:background="@drawable/login_textbg"
-                        android:gravity="center_vertical"
+                        android:background="@drawable/shape_ziyuan_detail_et"
                         android:inputType="text"
                         android:maxLines="1"
-                        android:text="张学友"
                         android:textSize="16sp"
+                        android:gravity="center"
                         android:layout_marginRight="15dp"
                         />
                 </LinearLayout>
@@ -193,7 +181,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="3"
                             android:gravity="center_vertical"
-                            android:text=" 性       别 :"
+                            android:text=" 性        别 :"
                             android:layout_marginLeft="6dp"
                             android:textColor="@android:color/black"
                             android:textStyle="bold"
@@ -201,6 +189,7 @@
                             />
 
                         <Spinner
+                            android:gravity="center"
                             android:id="@+id/spinner_sex"
                             style="@android:style/Widget.Spinner"
                             android:layout_width="0dp"
@@ -212,6 +201,39 @@
                             android:textSize="16sp"
                             android:layout_marginRight="15dp"
                             />
+                </LinearLayout>
+
+                <!--文化程度-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="center_vertical"
+                        android:text=" 文化程度 :"
+                        android:layout_marginLeft="6dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        style="@android:style/Widget.Spinner"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@drawable/spinner_bg"
+                        android:prompt="@string/spinner_title"
+                        android:spinnerMode="dialog"
+                        android:textSize="16sp"
+                        android:layout_marginRight="15dp"
+                        />
+
                 </LinearLayout>
 
                 <!--年龄段-->
@@ -227,23 +249,25 @@
                         android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:gravity="center_vertical"
-                        android:text="年  龄  段 :"
+                        android:text=" 年  龄  段 :"
                         android:layout_marginLeft="6dp"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <EditText
+                        android:textColor="#7D7D7D"
                         android:id="@+id/et_age_from"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="32dp"
                         android:layout_weight="4"
-                        android:background="@drawable/login_textbg"
-                        android:gravity="center_vertical"
+                        android:background="@drawable/shape_ziyuan_detail_et"
+                        android:gravity="center"
                         android:inputType="number"
                         android:maxLines="1"
-                        android:text="25"
-                        android:textSize="17.0sp" />
+                        android:textSize="16sp"
+                        />
+
 
                     <TextView
                         android:layout_width="0dp"
@@ -251,39 +275,97 @@
                         android:layout_weight="2"
                         android:gravity="center"
                         android:text=" 至 "
-                        android:textSize="17dp" />
+                        android:textSize="17sp" />
 
                     <EditText
+                        android:textColor="#7D7D7D"
                         android:id="@+id/et_age_to"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="32dp"
                         android:layout_weight="4"
-                        android:background="@drawable/login_textbg"
-                        android:gravity="center_vertical"
+                        android:background="@drawable/shape_ziyuan_detail_et"
+                        android:gravity="center"
                         android:inputType="number"
                         android:maxLines="1"
-                        android:text="45"
-                        android:textSize="17.0sp"
-                        android:layout_marginRight="15dp"/>
+                        android:textSize="16sp"
+                        android:layout_marginRight="15dp"
+                        />
+
 
                 </LinearLayout>
 
-                <!--区县-->
+                <!--失业月数-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_gravity="center_vertical"
                     android:layout_marginTop="10dp"
-                    android:layout_weight="2">
+                    android:layout_weight="2"
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:gravity="center_vertical"
-                        android:text=" 区          县 :"
+                        android:text=" 失业月数 :"
                         android:layout_marginLeft="6dp"
                         android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:textColor="#7D7D7D"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="4"
+                        android:background="@drawable/shape_ziyuan_detail_et"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:textSize="16sp"
+
+                        />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text=" 至 "
+                        android:textSize="17sp" />
+                    <EditText
+                        android:textColor="#7D7D7D"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="4"
+                        android:background="@drawable/shape_ziyuan_detail_et"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:textSize="16sp"
+                        android:layout_marginRight="15dp"
+                        />
+
+
+                </LinearLayout>
+                <!--区县-->
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="center_vertical"
+                        android:text=" 区        县 :"
+                        android:layout_marginLeft="6dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <Spinner
@@ -295,9 +377,10 @@
                         android:background="@drawable/spinner_bg"
                         android:prompt="@string/spinner_title"
                         android:spinnerMode="dialog"
-                        android:textSize="17.0sp"
+                        android:textSize="16sp"
                         android:layout_marginRight="15dp"
                         />
+
                 </LinearLayout>
                 <!--街道-->
                 <LinearLayout
@@ -327,7 +410,7 @@
                         android:background="@drawable/spinner_bg"
                         android:prompt="@string/spinner_title"
                         android:spinnerMode="dialog"
-                        android:textSize="17.0sp"
+                        android:textSize="16sp"
                         android:layout_marginRight="15dp"
                         />
 
@@ -360,45 +443,10 @@
                         android:background="@drawable/spinner_bg"
                         android:prompt="@string/spinner_title"
                         android:spinnerMode="dialog"
-                        android:textSize="17.0sp"
-                        android:layout_marginRight="15dp"
-                        />
-
-
-                </LinearLayout>
-
-                <!--标识-->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="2"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:gravity="center_vertical"
-                        android:text=" 标        识 :"
-                        android:layout_marginLeft="6dp"
-                        android:textColor="@android:color/black"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:id="@+id/spinner_identifying"
-                        style="@android:style/Widget.Spinner"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="10"
-                        android:background="@drawable/spinner_bg"
-                        android:prompt="@string/spinner_title"
-                        android:spinnerMode="dialog"
-                        android:textSize="17.0sp"
                         android:layout_marginRight="15dp"
                         />
+
 
                 </LinearLayout>
 
@@ -411,6 +459,7 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:gravity="center_vertical"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
@@ -429,7 +478,7 @@
                         android:background="@drawable/spinner_bg"
                         android:prompt="@string/spinner_title"
                         android:spinnerMode="dialog"
-                        android:textSize="17.0sp"
+                        android:textSize="16sp"
                         android:layout_marginRight="15dp"
                         />
 
@@ -444,6 +493,7 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:gravity="center_vertical"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
@@ -462,7 +512,7 @@
                         android:background="@drawable/spinner_bg"
                         android:prompt="@string/spinner_title"
                         android:spinnerMode="dialog"
-                        android:textSize="17.0sp"
+                        android:textSize="16sp"
                         android:layout_marginRight="15dp"
                         />
 
@@ -476,10 +526,11 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:gravity="center_vertical"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
-                        android:text=" 摸底情况 :"
+                        android:text=" 目前状况 :"
                         android:layout_marginLeft="6dp"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
@@ -494,7 +545,7 @@
                         android:background="@drawable/spinner_bg"
                         android:prompt="@string/spinner_title"
                         android:spinnerMode="dialog"
-                        android:textSize="17.0sp"
+                        android:textSize="16sp"
                         android:layout_marginRight="15dp"
                         />
 

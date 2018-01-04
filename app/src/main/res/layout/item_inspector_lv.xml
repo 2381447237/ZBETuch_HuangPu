@@ -9,7 +9,8 @@
     <LinearLayout
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
-        android:padding="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,9 +18,8 @@
         <TextView
             android:textColor="#666666"
             android:id="@+id/item_inspector_number_tv"
-            android:paddingLeft="3dp"
             style="@style/resources_main_title"
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:text="编号" />
 
         <TextView
@@ -27,7 +27,6 @@
             android:id="@+id/item_inspector_name_tv"
             style="@style/resources_main_title"
             android:layout_weight="3"
-            android:paddingLeft="25dp"
             android:text="工作名称" />
 
         <TextView
@@ -36,7 +35,6 @@
             android:id="@+id/item_inspector_create_time_tv"
             style="@style/resources_main_title"
             android:layout_weight="3"
-            android:paddingLeft="20dp"
             android:text="创建时间" />
 
         <TextView
@@ -44,7 +42,6 @@
             android:id="@+id/item_inspector_com_time_tv"
             style="@style/resources_main_title"
             android:layout_weight="3"
-            android:paddingLeft="20dp"
             android:text="完成时间" />
 
         <TextView

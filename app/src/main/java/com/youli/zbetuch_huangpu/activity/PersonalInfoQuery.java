@@ -4,9 +4,12 @@ package com.youli.zbetuch_huangpu.activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 
+import android.content.Intent;
 import android.os.Looper;
 import android.os.Message;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,6 +25,7 @@ import java.util.List;
 import okhttp3.Response;
 
 public class PersonalInfoQuery extends BaseActivity implements View.OnClickListener{
+
     private static final int REQUEST_CODE_CAMERA = 9999;
 
     private final int SUCCEED=10000;
@@ -38,7 +42,6 @@ public class PersonalInfoQuery extends BaseActivity implements View.OnClickListe
     private Spinner spinner_neighborhood_committee;
     private EditText et_age_from;
     private EditText et_age_to;
-    private Spinner spinner_identifying;
     private Spinner spinner_status;
     private Spinner spinner_situation;
     private Spinner spinner_current_intent;
@@ -73,7 +76,6 @@ public class PersonalInfoQuery extends BaseActivity implements View.OnClickListe
                 .spinner_neighborhood_committee);
         et_age_from = (EditText) findViewById(R.id.et_age_from);
         et_age_to = (EditText) findViewById(R.id.et_age_to);
-        spinner_identifying = (Spinner) findViewById(R.id.spinner_identifying);
         spinner_status = (Spinner) findViewById(R.id.spinner_status);
         spinner_current_intent = (Spinner) findViewById(R.id.spinner_current_intent);
         spinner_situation = (Spinner) findViewById(R.id.spinner_current_situation);
@@ -90,8 +92,6 @@ public class PersonalInfoQuery extends BaseActivity implements View.OnClickListe
         btn_query_id_num.setOnClickListener(this);
         //性别 Spinner
         setSpinner(spinner_sex, R.array.spinner_sex);
-        //标识 Spinner
-        setSpinner(spinner_identifying, R.array.spinner_identifying);
         //状态 Spinner
         setSpinner(spinner_status, R.array.spinner_status);
         //当前意向
@@ -143,39 +143,42 @@ public class PersonalInfoQuery extends BaseActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_query_id_num://查询
-                final String id_card_num = et_id_num.getText().toString().trim();
-                if (id_card_num.isEmpty()) {
+                final String sfzStr = et_id_num.getText().toString().trim();
+                if (sfzStr.isEmpty()) {
                     Toast.makeText(this, "身份证号码不能为空", Toast.LENGTH_SHORT).show();
-                    //et_id_num.setText("");
-                    return;
-                } else if (id_card_num.length() < 18) {
+
+                } else if (sfzStr.length() < 18) {
                     Toast.makeText(this, "对不起，您所输入的身份证号码有误，请重新输入", Toast.LENGTH_SHORT).show();
-                    // et_id_num.setText("");
-                    return;
+
                 } else {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            String url = MyOkHttpUtils.BaseUrl + "/Json/Get_BASIC_INFORMATION" +
-                                    ".aspx?sfz=" + id_card_num;
-                            Response response = MyOkHttpUtils.okHttpGet(url);
-                            try {
-                                String result = response.body().string().trim();
-                                if (result.equals("[null]")) {
-                                    Looper.prepare();
-                                    Toast.makeText(mContext, "对不起，查无此人", Toast.LENGTH_SHORT).show();
-                                    Looper.loop();
-                                } else {
-                                    // TODO 解析数据并传递给下一个Activity
-                                    Gson gson=new Gson();
-                                    Message msg=Message.obtain();
-                                }
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }).start();
+
+                    Intent i=new Intent(mContext,PersonInfoListActivity.class);
+                    i.putExtra("sfz",sfzStr);
+                    startActivity(i);
+
                 }
+                break;
+
+            case R.id.btn_condition_query:
+
+                String sexStr = null;//性别
+
+                if(TextUtils.equals(spinner_sex.getSelectedItem().toString(),"全部")){
+                    sexStr="";
+                }else{
+                    sexStr=spinner_sex.getSelectedItem().toString();
+                }
+
+                if(cb_resource.isChecked()){
+                    Toast.makeText(mContext,"选中",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(mContext,"没选中",Toast.LENGTH_SHORT).show();
+                }
+
+                Intent i=new Intent(mContext,PersonInfoListActivity.class);
+                i.putExtra("param","&xm="+et_personName.getText().toString().trim()+"&rows=20&gender="+sexStr+"&whcd=&hjjd=&hjjw=&nld_ks="+et_age_from.getText().toString()+"&ndl_js="+et_age_to.getText().toString()+"&jyzt=&dcmqzk_last=&dcdqyx_last=&rbl_gq=&syys_ks=&syys_js=");
+                startActivity(i);
+
                 break;
         }
     }

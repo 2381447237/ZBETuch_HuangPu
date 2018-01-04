@@ -118,7 +118,6 @@
             android:name=".naire.ShowPersionHistoryList"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-
             android:windowSoftInputMode="adjustPan|stateHidden" >
         </activity>
         <activity android:name=".activity.MeetManageActivity"
@@ -173,10 +172,14 @@
 
         <activity
             android:name=".activity.PersonalInfoQuery"
-            android:screenOrientation="portrait" />
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+
         <activity android:name=".activity.OperationActivity"
             android:screenOrientation="portrait" />
-
+        <activity android:name=".activity.PersonInfoListActivity"
+            android:screenOrientation="portrait" /><!--个人信息列表-->
     </application>
 
 </manifest>
