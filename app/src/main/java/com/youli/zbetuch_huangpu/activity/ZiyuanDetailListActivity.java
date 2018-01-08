@@ -8,6 +8,7 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -15,6 +16,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.youli.zbetuch_huangpu.R;
 import com.youli.zbetuch_huangpu.adapter.CommonAdapter;
 import com.youli.zbetuch_huangpu.entity.CommonViewHolder;
@@ -29,6 +32,7 @@ import com.youli.zbetuch_huangpu.entity.ResourcesDetailInfo;
 import com.youli.zbetuch_huangpu.entity.ResourcesInfo;
 import com.youli.zbetuch_huangpu.utils.MyOkHttpUtils;
 import com.youli.zbetuch_huangpu.utils.ProgressDialogUtils;
+import com.youli.zbetuch_huangpu.view.MyListView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -56,7 +60,11 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
     private int pageIndex;
     private ResourcesInfo rInfo;
     private TextView totalTv,noDataTv;
-    private PullToRefreshListView lv;
+
+    private PullToRefreshScrollView hsv;
+    private MyListView lv;
+    private View header;
+
     private RadioGroup rg;
     private List<ResourcesDetailInfo> dInfo=new ArrayList<>();
     private CommonAdapter commonAdapter;
@@ -108,8 +116,8 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
                     break;
                 case NODATA:
 
-                    if (lv.isRefreshing()) { //isRefreshing boolean类型 判断listview是否在刷新
-                        lv.onRefreshComplete();  //onRefreshComplete如果listview在刷新就停止
+                    if (hsv.isRefreshing()) { //isRefreshing boolean类型 判断listview是否在刷新
+                        hsv.onRefreshComplete();  //onRefreshComplete如果listview在刷新就停止
                     }
 
                     break;
@@ -156,39 +164,36 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
             typeTv.setText("应届生调查");
         }
 
-        lv= (PullToRefreshListView) findViewById(R.id.ziyuan_detail_lv);
-        lv.setMode(PullToRefreshBase.Mode.BOTH);
+        hsv= (PullToRefreshScrollView) findViewById(R.id.hsv_job_info);
+        hsv.setMode(PullToRefreshBase.Mode.BOTH);
 
-
-        lv.setOnItemClickListener(this);
 
         getNetWorkData(rInfo.getDcid(),rInfo.getDclx(),typeId,"null",pageIndex);
 
-        lv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+        hsv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ScrollView>() {
             @Override
-            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+            public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
                 pageIndex=0;
                 if(sfzStr==null){
                     getNetWorkData(rInfo.getDcid(),rInfo.getDclx(),typeId,"null",pageIndex);
                 }else{
                     getNetWorkData(rInfo.getDcid(),rInfo.getDclx(),typeId,sfzStr,pageIndex);
                 }
-
             }
-
             @Override
-            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-
+            public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
                 pageIndex++;
-
                 if(sfzStr==null){
                     getNetWorkData(rInfo.getDcid(),rInfo.getDclx(),typeId,"null",pageIndex);
                 }else{
                     getNetWorkData(rInfo.getDcid(),rInfo.getDclx(),typeId,sfzStr,pageIndex);
                 }
-
             }
         });
+        lv= (MyListView) findViewById(R.id.lv_job_info);
+        header= LayoutInflater.from(this).inflate(R.layout.ziyuanlist_hear,lv,false);
+        lv.addHeaderView(header);
+        lv.setOnItemClickListener(this);
     }
 
     //身份证查询:
@@ -332,8 +337,8 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
             commonAdapter.notifyDataSetChanged();
 
         }
-        if (lv.isRefreshing()) {
-            lv.onRefreshComplete();
+        if (hsv.isRefreshing()) {
+            hsv.onRefreshComplete();
         }
         totalTv.setText("总共" + data.get(0).getRecordCount() + "条数据");
     }

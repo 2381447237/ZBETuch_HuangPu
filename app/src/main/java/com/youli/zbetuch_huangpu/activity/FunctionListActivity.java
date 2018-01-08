@@ -90,29 +90,13 @@ public class FunctionListActivity extends BaseActivity {
                                     intent=new Intent(mContext, PersonalInfoQuery.class);//个人信息
                                     startActivity(intent);
                                     break;
-
-
+                                case 5:
+                                    intent=new Intent(mContext,ModifyPassword.class);//修改密码
+                                    startActivity(intent);
+                                    break;
                             }
                             break;
-//                        case 1:
-//                            switch (position) {
-//                                case 9:
-//                                    //关注列表
-//                                    intent=new Intent(FunctionListActivity.this,FollowListActivity.class);
-//                                    startActivity(intent);
-//                                    break;
-//                            }
-//                            break;
-//                        case 2:
-//                            switch (position) {
-//                                case 0:
-//                                    //修改密码
-//                                    intent=new Intent(FunctionListActivity.this,ChangePwdActivity.class);
-//                                    startActivity(intent);
-//
-//                                    break;
-//                            }
-//                            break;
+
                     }
                 }
             });
@@ -137,7 +121,9 @@ public class FunctionListActivity extends BaseActivity {
 //                .drawable.wjdc, R.drawable.ggwj};
 
         myIcons = new int[]{
-                R.drawable.zydc,R.drawable.zxdc,R.drawable.zzcx,R.drawable.ccs,R.drawable.gerenxinxi
+                R.drawable.zydc,R.drawable.zxdc,R.drawable.zzcx,
+                R.drawable.ccs,R.drawable.gerenxinxi,R.drawable.xgmm
+
         };
 //                R.drawable.gerenxinxi, R.drawable.zpxx, R.drawable.tjbb,
 //                R.drawable.yjbys, R.drawable.zzdc, R.drawable.xcms,
