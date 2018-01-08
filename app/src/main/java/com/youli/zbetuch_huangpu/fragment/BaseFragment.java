@@ -11,6 +11,8 @@ import android.view.View;
  * 邮箱:2381447237@qq.com
  * <p>
  * github:2381447237
+ *
+ * 不配合viewPager时候，使用的懒加载
  */
 
 public abstract class BaseFragment extends Fragment{

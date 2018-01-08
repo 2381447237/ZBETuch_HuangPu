@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,6 +63,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
     private final int SUCCESS_DCDB_NUM=10007;//督察督办的数量
     private final int SUCCESS_WDGZ_NUM=10008;//我的关注的数量
     private final int SUCCESS_ADMIN_PIC=10009;//头像
+    private final int SUCCESS_YZY=10010;//援助员
 
     private List<MyFollowInfo> followData=new ArrayList<>();//我的关注的数据
 
@@ -81,6 +83,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
     private ImageView zydcIv;//资源调查
     private TextView tvJdu,tvWdu,tvGdu;//经度，纬度，高度
 
+    private RelativeLayout inspectorRl;
     private TextView titieTv,wdgzNumTv;//我的关注的数量
     private TextView tzggNumTv;//通知公告的数量
     private TextView hyglNumTv;//会议管理的数量
@@ -108,7 +111,6 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
                     adminInfo=(AdminInfo)msg.obj;
                     adminName=adminInfo.getNAME();
-
                     if(adminInfo.isSTOP()){//判断账号是否被启用
                         gpsHandler.removeCallbacks(rState);
                         Intent i=new Intent(mContext,OvertimeDialogActivity.class);
@@ -117,10 +119,10 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
                         return;
                     }
 
-//                    if(!getImei(adminInfo.getIMEI())){//获取IMEI号
-//                        gpsHandler.removeCallbacks(rState);
-//                        return;
-//                    }
+                    if(!getImei(adminInfo.getIMEI())){//获取IMEI号
+                        gpsHandler.removeCallbacks(rState);
+                        return;
+                    }
 
                     getPic();//获取头像
                     getNum("WDGZ");//我的关注
@@ -198,6 +200,17 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
                     ivHead.setImageBitmap((Bitmap) msg.obj);
 
                     break;
+
+                case SUCCESS_YZY://援助员
+
+                    if(TextUtils.equals(msg.obj+"","True")){
+                    inspectorRl.setVisibility(View.GONE);
+                    }else if(TextUtils.equals(msg.obj+"","False")){
+                        inspectorRl.setVisibility(View.VISIBLE);
+                    }
+
+
+                    break;
             }
 
         }
@@ -258,8 +271,57 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
         hyglNumTv= (TextView) findViewById(R.id.hygl_num_tv);
         dbgzNumTv= (TextView) findViewById(R.id.dbgz_num_tv);
         dcdbNumTv= (TextView) findViewById(R.id.dcdb_num_tv);
-
+        inspectorRl= (RelativeLayout) findViewById(R.id.homepage_inspector_rl);
         //getAdminInfo();
+
+        getYzy();//获取是否援助员
+
+    }
+
+    private void getYzy(){
+        new Thread(
+
+
+                new Runnable() {
+                    @Override
+                    public void run() {
+                    //http://web.youli.pw:8088/Json/Get_Check_YZY.aspx
+                        String url= MyOkHttpUtils.BaseUrl+"/Json/Get_Check_YZY.aspx";
+
+                        Response response=MyOkHttpUtils.okHttpGet(url);
+
+                        Message msg=Message.obtain();
+
+                        if(response!=null){
+
+                            try {
+                                String str=response.body().string();
+
+                                if(!TextUtils.equals(str,"")){
+                                    msg.obj=str;
+                                    msg.what=SUCCESS_YZY;
+                                }
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                Log.e("2017/11/13","登录超时了");
+                                msg.what=OVERTIME;
+
+                            }
+
+                        }else{
+
+                            msg.what=PROBLEM;
+
+                        }
+
+                        mHandler.sendMessage(msg);
+
+                    }
+                }
+
+
+        ).start();
 
     }
 
@@ -633,7 +695,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
     Runnable rState=new Runnable() {
         @Override
         public void run() {
-            gpsHandler.postDelayed(this,500);//0.5秒钟检测一次状态
+            gpsHandler.postDelayed(this,5*60*1000);//5分钟检测一次状态
             getAdminInfo();
         }
     };
@@ -691,6 +753,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
                         count++;
                     }
                    Log.e("2018-1-3", "搜索到："+count+"颗卫星");
+                    SharedPreferencesUtils.putString("wx",String.valueOf(count));//卫星
                     break;
                 //定位启动
                 case GpsStatus.GPS_EVENT_STARTED:

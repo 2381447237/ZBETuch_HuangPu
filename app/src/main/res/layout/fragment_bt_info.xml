@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:background="@drawable/title2"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:textColor="#000"
+            android:paddingLeft="3dp"
+            style="@style/resources_main_title"
+            android:layout_width="wrap_content"
+            android:text="编号" />
+
+        <TextView
+            android:textColor="#000"
+            style="@style/resources_main_title"
+            android:layout_weight="3"
+            android:text="支付年月" />
+
+        <TextView
+            android:textColor="#000"
+            style="@style/resources_main_title"
+            android:layout_weight="2"
+            android:text="补贴项目名称" />
+
+        <TextView
+            android:textColor="#000"
+            style="@style/resources_main_title"
+            android:layout_weight="3"
+            android:text="补贴金额" />
+
+        <TextView
+            android:textColor="#000"
+            style="@style/resources_main_title"
+            android:layout_weight="2"
+            android:text="补贴性质" />
+
+
+    </LinearLayout>
+
+
+    <ListView
+        android:dividerHeight="1dp"
+        android:divider="#dbdbdb"
+        android:id="@+id/fragment_bt_info_lv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></ListView>
+
+</LinearLayout>

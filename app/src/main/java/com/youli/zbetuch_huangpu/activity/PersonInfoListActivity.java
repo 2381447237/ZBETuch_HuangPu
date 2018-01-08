@@ -8,6 +8,7 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -130,7 +131,13 @@ public class PersonInfoListActivity extends BaseActivity{
         lv= (PullToRefreshListView) findViewById(R.id.lv_person_info_list);
 
         lv.setMode(PullToRefreshBase.Mode.BOTH);
-
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent=new Intent(mContext,PersonDetaileInfoActivity.class);
+                startActivity(intent);
+            }
+        });
         lv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
@@ -233,9 +240,9 @@ public class PersonInfoListActivity extends BaseActivity{
                     TextView tvBirth=holder.getView(R.id.tv_item_person_info_list_birth);
                     tvBirth.setText(MyDateUtils.stringToYMD(item.getCSDATE1()));
                     TextView tvCurrent=holder.getView(R.id.tv_item_person_info_list_current);
-                    //tvCurrent.setText(item.getCurrent());
+                    tvCurrent.setText(item.getDCMQZK_LAST());
                     TextView tvMd=holder.getView(R.id.tv_item_person_info_list_md);
-                    //tvMd.setText(item.getMd());
+                    tvMd.setText(item.getDCDQYX_LAST());
 
                     LinearLayout ll = holder.getView(R.id.item_person_info_list_ll);
 

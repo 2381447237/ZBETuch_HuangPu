@@ -18,6 +18,7 @@ import com.youli.zbetuch_huangpu.entity.AdminInfo;
 import com.youli.zbetuch_huangpu.entity.MyFollowInfo;
 import com.youli.zbetuch_huangpu.utils.IOUtil;
 import com.youli.zbetuch_huangpu.utils.MyOkHttpUtils;
+import com.youli.zbetuch_huangpu.utils.SharedPreferencesUtils;
 import com.youli.zbetuch_huangpu.view.CircleImageView;
 
 import java.io.InputStream;
@@ -58,6 +59,7 @@ public class AdminInfoActivity extends BaseActivity implements View.OnClickListe
     private TextView tvIMEI;//IMEI
     private TextView tvJdu;//经度
     private TextView tvWdu;//纬度
+    private TextView tvWx;//卫星数量
 
     private AdminInfo aInfo;
 
@@ -147,7 +149,11 @@ public class AdminInfoActivity extends BaseActivity implements View.OnClickListe
         tvJdu.setText("经度:    ");
         tvWdu= (TextView) findViewById(R.id.tv_admin_info_wdu);
         tvWdu.setText("纬度:    ");
+        tvWx= (TextView) findViewById(R.id.tv_admin_info_wx);
+        //tvWx.setText("卫星:    ");
 
+
+        tvWx.setText("卫星:"+SharedPreferencesUtils.getString("wx")+"颗");
         if(HomePageActivity.jDuStr.contains(".")&&HomePageActivity.wDuStr.contains(".")) {
 
             tvJdu.setText("经度:" + HomePageActivity.jDuStr.substring(0, HomePageActivity.jDuStr.indexOf(".")));//截取小数点前面的
@@ -195,6 +201,8 @@ public class AdminInfoActivity extends BaseActivity implements View.OnClickListe
                 tvJdu.setText("经度:" + HomePageActivity.jDuStr);//截取小数点前面的
                 tvWdu.setText("纬度:" + HomePageActivity.wDuStr);
             }
+
+            tvWx.setText("卫星:"+SharedPreferencesUtils.getString("wx")+"颗");
         }
     };
 

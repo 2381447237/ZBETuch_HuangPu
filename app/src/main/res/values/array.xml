@@ -36,22 +36,25 @@
     </string-array>
 
     <string-array name="quxian">
-        <item>请选择</item>
         <item>黄浦区</item>
-        <item>静安区</item>
 
     </string-array>
-    <string-array name="jiedao">
-        <item>请选择</item>
-        <item>田林路街道</item>
-        <item>黄浦区街道</item>
+
+    <string-array name="jwnull">
+        <item>全部</item>
+        <item>居委不明</item>
+        <item>居委为空</item>
+
     </string-array>
-    <string-array name="juwei">
-        <item>请选择</item>
-        <item>海园居委</item>
-        <item>景华居委</item>
-        <item>白乐居委</item>
+    <string-array name="jwall">
+        <item>全部</item>
     </string-array>
+    <!--<string-array name="juwei">-->
+        <!--<item>请选择</item>-->
+        <!--<item>海园居委</item>-->
+        <!--<item>景华居委</item>-->
+        <!--<item>白乐居委</item>-->
+    <!--</string-array>-->
 
         <string-array name="spinner_sex">
             <item>全部</item>

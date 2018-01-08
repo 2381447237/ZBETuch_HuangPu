@@ -91,22 +91,22 @@ public class PolicyQueryActivity extends BaseActivity implements View.OnClickLis
 
                     fretchElv(queryInfo);
                     elv.setVisibility(View.VISIBLE);
-                    Log.e("2017-12-19","1111111111111111111111111111111111");
+
                     break;
 
                 case PROBLEM:
                     Toast.makeText(mContext,"网络不给力",Toast.LENGTH_SHORT).show();
-                    Log.e("2017-12-19","22222222222222222222222222222222");
+
                     break;
                 case SUCCEED_NODATA:
                     elv.setVisibility(View.GONE);
-                    Log.e("2017-12-19","333333333333333333333333333333333333");
+
                     break;
                 case OVERTIME:
 
                     Intent i=new Intent(mContext,OvertimeDialogActivity.class);
                     startActivity(i);
-                    Log.e("2017-12-19","4444444444444444444444444444444444444444");
+
 
                     break;
             }

@@ -9,4 +9,7 @@
     <color name="yellow">#FFFF00</color>
     <color name="blue">#E5F0FF</color>
     <color name="black">#000000</color>
+    <color name="tabLay">#e29b70</color>
+    <color name="tabLayBg">#4f8cf4</color>
+    <color name="table_header">#d7d7d7</color>
 </resources>

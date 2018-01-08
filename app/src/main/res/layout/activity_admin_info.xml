@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="位置信息"/>
+                android:text="定位"/>
 
             <ImageView
                 android:id="@+id/iv_admin_info_gps"
@@ -69,9 +69,20 @@
 
 
             <TextView
-                android:id="@+id/tv_admin_info_wdu"
+                android:id="@+id/tv_admin_info_wx"
                 android:textColor="#cccccc"
                 android:layout_toLeftOf="@id/iv_admin_info_gps"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:paddingRight="10dp"
+                android:id="@+id/tv_admin_info_wdu"
+                android:textColor="#cccccc"
+                android:layout_toLeftOf="@id/tv_admin_info_wx"
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
