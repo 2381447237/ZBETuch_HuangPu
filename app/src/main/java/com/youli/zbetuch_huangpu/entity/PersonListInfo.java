@@ -1,12 +1,14 @@
 package com.youli.zbetuch_huangpu.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by liutao on 2018/1/3.
  *
  *http://web.youli.pw:8088/Json/Get_BASIC_INFORMATION.aspx?sfz=310102197209103215
  */
 
-public class PersonListInfo {
+public class PersonListInfo implements Serializable{
 
 
     /**

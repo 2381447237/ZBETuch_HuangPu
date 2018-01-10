@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.youli.zbetuch_huangpu.R;
 import com.youli.zbetuch_huangpu.adapter.MyFragmentPagerAdapter;
+import com.youli.zbetuch_huangpu.entity.PersonListInfo;
 import com.youli.zbetuch_huangpu.fragment.BaseInfoFragment;
 import com.youli.zbetuch_huangpu.fragment.BtInfoFragment;
 import com.youli.zbetuch_huangpu.fragment.CyInfoFragment;
@@ -36,6 +38,9 @@ import java.util.List;
 
 public class PersonDetaileInfoActivity extends FragmentActivity {
 
+
+    private PersonListInfo pInfo;
+
     private MyViewPager viewPager;
     private List<Fragment> fragmentList;
     private TabLayout tl;
@@ -46,14 +51,18 @@ public class PersonDetaileInfoActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person_detail_info);
 
+        pInfo=(PersonListInfo) getIntent().getSerializableExtra("pInfo");
+
+
+
         viewPager= (MyViewPager) findViewById(R.id.vp_person_detail_info);
         tl= (TabLayout) findViewById(R.id.tl_person_detail_info);
         fragmentList=new ArrayList<>();
         fragmentList.add(new BaseInfoFragment());//基本信息
         fragmentList.add(new SameHjInfoFragment());//同户籍信息
         fragmentList.add(new LdjlFragment());//劳动经历
-        fragmentList.add(new StudyJlFragment());//学习经历
-        fragmentList.add(new BtInfoFragment());//补贴信息
+        fragmentList.add(StudyJlFragment.newInstance(pInfo));//学习经历
+        fragmentList.add(BtInfoFragment.newInstance(pInfo));//补贴信息
         fragmentList.add(new YbInfoFragment());//医保信息
         fragmentList.add(new PxInfoFragment());//培训信息
         fragmentList.add(new CyInfoFragment());//创业信息
@@ -63,6 +72,7 @@ public class PersonDetaileInfoActivity extends FragmentActivity {
         MyFragmentPagerAdapter fpAdapter=new MyFragmentPagerAdapter(fm,fragmentList);
         viewPager.setAdapter(fpAdapter);
         viewPager.setOffscreenPageLimit(9);
+
         tl.setupWithViewPager(viewPager);
 
         for(int i=0;i<tl.getTabCount();i++){

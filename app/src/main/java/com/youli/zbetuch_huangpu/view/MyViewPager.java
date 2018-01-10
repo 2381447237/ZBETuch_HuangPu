@@ -46,5 +46,9 @@ public class MyViewPager extends ViewPager{
         this.enabled = enabled;
     }
 
-
+    //去除页面切换时的滑动翻页效果
+    @Override
+    public void setCurrentItem(int item) {
+        super.setCurrentItem(item,false);
+    }
 }

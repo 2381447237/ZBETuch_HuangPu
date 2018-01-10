@@ -52,6 +52,8 @@ public class OvertimeDialogActivity extends BaseActivity{
             tv.setText("IMEI号码不正确，请您重新登录！");
         }else if(TextUtils.equals(mark,"state")){
             tv.setText("此账号已停用，请您重新登录！");
+        }else if(TextUtils.equals(mark,"pwd")){
+            tv.setText("密码修改成功，请您重新登录！");
         }
 
 

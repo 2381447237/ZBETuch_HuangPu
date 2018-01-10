@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:paddingBottom="5dp"
-    android:paddingTop="5dp">
+    android:paddingTop="5dp"
+    android:id="@+id/item_fragment_study_jl_ll">
 
     <TextView
         android:id="@+id/tv_item_fragment_study_jl_no"
@@ -32,7 +33,7 @@
         android:id="@+id/tv_item_fragment_study_shool_name"
         android:textColor="#666666"
         style="@style/resources_main_title"
-        android:layout_width="100dp"
+        android:layout_width="150dp"
         android:text="学校名称" />
 
     <TextView

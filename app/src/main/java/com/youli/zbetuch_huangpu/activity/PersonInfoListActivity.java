@@ -134,7 +134,9 @@ public class PersonInfoListActivity extends BaseActivity{
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
                 Intent intent=new Intent(mContext,PersonDetaileInfoActivity.class);
+                intent.putExtra("pInfo",data.get(i-1));
                 startActivity(intent);
             }
         });

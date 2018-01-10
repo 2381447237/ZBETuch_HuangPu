@@ -8,87 +8,87 @@ package com.youli.zbetuch_huangpu.entity;
 
 public class StudyJlInfo {
 
-    private String startTime;//起始日期
-    private String endTime;//终止日期
-    private String shool;//学校名称
-    private String edu;//文化程度
-    private String major;//所学专业
-    private String grdu;//毕业肄业
-    private String fullTime;//全日制
-    private String mark;//备注
+    private String QSDATE;//起始日期
+    private String ZZDATE;//终止日期
+    private String XXMC;//学校名称
+    private String WHCD;//文化程度
+    private String SXZY;//所学专业
+    private String SFBYY;//毕业肄业
+    private String SFQRZ;//全日制
+    private String BZ;//备注
 
-    public StudyJlInfo(String startTime, String endTime, String shool, String edu, String major, String grdu, String fullTime, String mark) {
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.shool = shool;
-        this.edu = edu;
-        this.major = major;
-        this.grdu = grdu;
-        this.fullTime = fullTime;
-        this.mark = mark;
+    public StudyJlInfo(String QSDATE, String ZZDATE, String XXMC, String WHCD, String SXZY, String SFBYY, String SFQRZ, String BZ) {
+        this.QSDATE = QSDATE;
+        this.ZZDATE = ZZDATE;
+        this.XXMC = XXMC;
+        this.WHCD = WHCD;
+        this.SXZY = SXZY;
+        this.SFBYY = SFBYY;
+        this.SFQRZ = SFQRZ;
+        this.BZ= BZ;
     }
 
-    public String getStartTime() {
-        return startTime;
+    public String getQSDATE() {
+        return QSDATE;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+    public void setQSDATE(String QSDATE) {
+        this.QSDATE = QSDATE;
     }
 
-    public String getEndTime() {
-        return endTime;
+    public String getZZDATE() {
+        return ZZDATE;
     }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    public void setZZDATE(String ZZDATE) {
+        this.ZZDATE = ZZDATE;
     }
 
-    public String getShool() {
-        return shool;
+    public String getXXMC() {
+        return XXMC;
     }
 
-    public void setShool(String shool) {
-        this.shool = shool;
+    public void setXXMC(String XXMC) {
+        this.XXMC = XXMC;
     }
 
-    public String getEdu() {
-        return edu;
+    public String getWHCD() {
+        return WHCD;
     }
 
-    public void setEdu(String edu) {
-        this.edu = edu;
+    public void setWHCD(String WHCD) {
+        this.WHCD = WHCD;
     }
 
-    public String getMajor() {
-        return major;
+    public String getSXZY() {
+        return SXZY;
     }
 
-    public void setMajor(String major) {
-        this.major = major;
+    public void setSXZY(String SXZY) {
+        this.SXZY = SXZY;
     }
 
-    public String getGrdu() {
-        return grdu;
+    public String getSFBYY() {
+        return SFBYY;
     }
 
-    public void setGrdu(String grdu) {
-        this.grdu = grdu;
+    public void setSFBYY(String SFBYY) {
+        this.SFBYY = SFBYY;
     }
 
-    public String getFullTime() {
-        return fullTime;
+    public String getSFQRZ() {
+        return SFQRZ;
     }
 
-    public void setFullTime(String fullTime) {
-        this.fullTime = fullTime;
+    public void setSFQRZ(String SFQRZ) {
+        this.SFQRZ = SFQRZ;
     }
 
-    public String getMark() {
-        return mark;
+    public String getBZ() {
+        return BZ;
     }
 
-    public void setMark(String mark) {
-        this.mark = mark;
+    public void setBZ(String BZ) {
+        this.BZ = BZ;
     }
 }

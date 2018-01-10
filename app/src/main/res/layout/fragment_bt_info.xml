@@ -2,7 +2,8 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    xmlns:ptr="http://schemas.android.com/tools">
 
     <LinearLayout
         android:background="@drawable/title2"
@@ -14,7 +15,7 @@
             android:textColor="#000"
             android:paddingLeft="3dp"
             style="@style/resources_main_title"
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:text="编号" />
 
         <TextView
@@ -45,12 +46,17 @@
     </LinearLayout>
 
 
-    <ListView
-        android:dividerHeight="1dp"
-        android:divider="#dbdbdb"
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/fragment_bt_info_lv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"></ListView>
+        android:layout_weight="1"
+        android:cacheColorHint="#000000"
+        android:divider="#19000000"
+        android:fastScrollEnabled="false"
+        android:footerDividersEnabled="true"
+        android:smoothScrollbar="true"
+        ptr:ptrAnimationStyle="rotate"></com.handmark.pulltorefresh.library.PullToRefreshListView>
 
 </LinearLayout>

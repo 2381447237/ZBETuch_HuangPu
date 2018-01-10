@@ -37,8 +37,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.youli.zbetuch_huangpu.provider"
@@ -124,17 +122,19 @@
             android:name=".naire.ShowPersionHistoryList"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden" >
-        </activity>
-        <activity android:name=".activity.MeetManageActivity"
-        android:screenOrientation="portrait"></activity><!--会议管理-->
-        <activity android:name=".activity.MeetDetailActivity"
-            android:screenOrientation="portrait"></activity><!--会议详情-->
-        <activity android:name=".activity.InspectorActivity"
-            android:screenOrientation="portrait"></activity><!--督察督办-->
-        <activity android:name=".activity.NeedWorkActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+        <activity
+            android:name=".activity.MeetManageActivity"
+            android:screenOrientation="portrait" /> <!-- 会议管理 -->
+        <activity
+            android:name=".activity.MeetDetailActivity"
+            android:screenOrientation="portrait" /> <!-- 会议详情 -->
+        <activity
+            android:name=".activity.InspectorActivity"
+            android:screenOrientation="portrait" /> <!-- 督察督办 -->
+        <activity
+            android:name=".activity.NeedWorkActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-
 
         <service android:name=".naire.PersonService">
             <intent-filter>
@@ -170,25 +170,27 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"> <!-- 政策查询 -->
         </activity>
-
-
-        <activity android:name=".activity.AdminPicActivity"
-            android:screenOrientation="portrait"></activity><!--头像-->
-
+        <activity
+            android:name=".activity.AdminPicActivity"
+            android:screenOrientation="portrait" /> <!-- 头像 -->
 
         <activity
             android:name=".activity.PersonalInfoQuery"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
-
-        <activity android:name=".activity.OperationActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".activity.OperationActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.PersonInfoListActivity"
-            android:screenOrientation="portrait" /><!--个人信息列表-->
+        <activity
+            android:name=".activity.PersonInfoListActivity"
+            android:screenOrientation="portrait" /> <!-- 个人信息列表 -->
+        <activity android:name=".activity.ModifyPassword"
+            android:screenOrientation="portrait" /><!--修改密码-->
 
         <activity android:name=".activity.PersonDetaileInfoActivity"
             android:screenOrientation="portrait" /><!--个人信息-->
+
 
     </application>
 

@@ -33,16 +33,16 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="编号"
-                    android:textColor="@color/black"
+                    android:textColor="#666666"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv2"
-                    android:layout_width="100dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="工作单位名称"
-                    android:textColor="@color/black"
+                    android:textColor="#666666"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="单位性质"
-                    android:textColor="@color/black"
+                    android:textColor="#666666"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="起始日期"
-                    android:textColor="@color/black"
+                    android:textColor="#666666"
                     android:textStyle="bold" />
 
                 <TextView
@@ -69,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="终止日期"
-                    android:textColor="@color/black"
+                    android:textColor="#666666"
                     android:textStyle="bold" />
 
                 <TextView
@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="就业类型"
-                    android:textColor="@color/black"
+                    android:textColor="#666666"
                     android:textStyle="bold" />
 
                 <TextView
@@ -87,16 +87,16 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="用工形式"
-                    android:textColor="@color/black"
+                    android:textColor="#666666"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv8"
-                    android:layout_width="100dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="退工原因"
-                    android:textColor="@color/black"
+                    android:textColor="#666666"
                     android:textStyle="bold" />
 
                 <TextView
@@ -105,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="备注"
-                    android:textColor="@color/black"
+                    android:textColor="#666666"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -114,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="就业登记日期"
-                    android:textColor="@color/black"
+                    android:textColor="#666666"
                     android:textStyle="bold" />
 
                 <TextView
@@ -123,7 +123,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="退工登记日期"
-                    android:textColor="@color/black"
+                    android:textColor="#666666"
                     android:textStyle="bold" />
 
                 <TextView
@@ -132,7 +132,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="就业登记所在地"
-                    android:textColor="@color/black"
+                    android:textColor="#666666"
                     android:textStyle="bold" />
 
                 <TextView
@@ -141,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="退工登记所在地"
-                    android:textColor="@color/black"
+                    android:textColor="#666666"
                     android:textStyle="bold" />
 
 

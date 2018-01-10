@@ -5,13 +5,19 @@
     android:scrollbars="none">
 
     <LinearLayout
-        android:background="#f1f1f1"
+        android:background="#8fbbdf"
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp">
+
+        </LinearLayout>
+
+        <LinearLayout
             android:background="#c2d5eb"
-            android:padding="9dp"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -62,11 +68,11 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp">
+            android:layout_height="10dp">
 
         </LinearLayout>
         <LinearLayout
-            android:padding="9dp"
+            android:padding="5dp"
             android:background="#c2d5eb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -118,12 +124,12 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp">
+            android:layout_height="10dp">
 
         </LinearLayout>
         <LinearLayout
             android:background="#c2d5eb"
-            android:padding="9dp"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -175,14 +181,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp">
+            android:layout_height="10dp">
 
         </LinearLayout>
 
 
         <LinearLayout
             android:background="#c2d5eb"
-            android:padding="9dp"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -237,14 +243,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp">
+            android:layout_height="10dp">
 
         </LinearLayout>
 
 
         <LinearLayout
             android:background="#c2d5eb"
-            android:padding="9dp"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -298,12 +304,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp">
+            android:layout_height="10dp">
 
         </LinearLayout>
         <LinearLayout
             android:background="#c2d5eb"
-            android:padding="9dp"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -326,12 +332,12 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp">
+            android:layout_height="10dp">
 
         </LinearLayout>
         <LinearLayout
             android:background="#c2d5eb"
-            android:padding="9dp"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -356,13 +362,13 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp">
+            android:layout_height="10dp">
 
         </LinearLayout>
 
         <LinearLayout
             android:background="#c2d5eb"
-            android:padding="9dp"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -389,12 +395,12 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp">
+            android:layout_height="10dp">
 
         </LinearLayout>
         <LinearLayout
             android:background="#c2d5eb"
-            android:padding="9dp"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -418,12 +424,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp">
+            android:layout_height="10dp">
 
         </LinearLayout>
         <LinearLayout
             android:background="#c2d5eb"
-            android:padding="9dp"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -448,14 +454,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp">
+            android:layout_height="10dp">
 
         </LinearLayout>
 
 
         <LinearLayout
             android:background="#c2d5eb"
-            android:padding="9dp"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -477,14 +483,14 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp">
+            android:layout_height="10dp">
 
         </LinearLayout>
 
 
         <LinearLayout
             android:background="#c2d5eb"
-            android:padding="9dp"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -507,14 +513,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp">
+            android:layout_height="10dp">
 
         </LinearLayout>
 
 
         <LinearLayout
             android:background="#c2d5eb"
-            android:padding="9dp"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -649,12 +655,12 @@
         <!--</LinearLayout>-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp">
+            android:layout_height="10dp">
 
         </LinearLayout>
         <LinearLayout
             android:background="#c2d5eb"
-            android:padding="9dp"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">

@@ -8,47 +8,47 @@ package com.youli.zbetuch_huangpu.entity;
 
 public class BtInfo {
 
-    private String time;//支付年月
-    private String name;//补贴项目名称
-    private String money;//补贴金额
-    private String nature;//补贴性质
+    private String btzfny;//支付年月
+    private String btxmmc;//补贴项目名称
+    private String btje;//补贴金额
+    private String btxz;//补贴性质
 
-    public BtInfo(String time, String name, String money, String nature) {
-        this.time = time;
-        this.name = name;
-        this.money = money;
-        this.nature = nature;
+    public BtInfo(String btzfny, String btxmmc, String btje, String btxz) {
+        this.btzfny = btzfny;
+        this.btxmmc = btxmmc;
+        this.btje = btje;
+        this.btxz = btxz;
     }
 
-    public String getTime() {
-        return time;
+    public String getBtzfny() {
+        return btzfny;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setBtzfny(String btzfny) {
+        this.btzfny = btzfny;
     }
 
-    public String getName() {
-        return name;
+    public String getBtxmmc() {
+        return btxmmc;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBtxmmc(String btxmmc) {
+        this.btxmmc = btxmmc;
     }
 
-    public String getMoney() {
-        return money;
+    public String getBtje() {
+        return btje;
     }
 
-    public void setMoney(String money) {
-        this.money = money;
+    public void setBtje(String btje) {
+        this.btje = btje;
     }
 
-    public String getNature() {
-        return nature;
+    public String getBtxz() {
+        return btxz;
     }
 
-    public void setNature(String nature) {
-        this.nature = nature;
+    public void setBtxz(String btxz) {
+        this.btxz = btxz;
     }
 }

@@ -111,6 +111,8 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
                     adminInfo=(AdminInfo)msg.obj;
                     adminName=adminInfo.getNAME();
+
+
                     if(adminInfo.isSTOP()){//判断账号是否被启用
                         gpsHandler.removeCallbacks(rState);
                         Intent i=new Intent(mContext,OvertimeDialogActivity.class);

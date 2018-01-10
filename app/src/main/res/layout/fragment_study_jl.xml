@@ -41,7 +41,7 @@
         <TextView
             android:textColor="#000"
             style="@style/resources_main_title"
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:text="学校名称" />
 
         <TextView
@@ -74,7 +74,8 @@
     </com.youli.zbetuch_huangpu.view.MyHorizontalScrollView>
 
     <com.handmark.pulltorefresh.library.PullToRefreshScrollView
-        android:id="@+id/hsv_study_jl"
+        android:scrollbars="none"
+        android:id="@+id/psv_study_jl"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -94,6 +95,8 @@
 
 
             <com.youli.zbetuch_huangpu.view.MyListView
+                android:scrollbars="none"
+                android:divider="@null"
                 android:id="@+id/lv_fragment_study_jl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></com.youli.zbetuch_huangpu.view.MyListView>

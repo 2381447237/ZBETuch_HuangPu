@@ -278,6 +278,7 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
 
 		private boolean mAddedLvFooter = false;
 
+
 		public InternalListView(Context context, AttributeSet attrs) {
 			super(context, attrs);
 		}
