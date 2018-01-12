@@ -28,7 +28,6 @@ public class MyViewPager extends ViewPager{
         if (this.enabled) {
             return super.onTouchEvent(event);
         }
-
         return false;
     }
 

@@ -40,6 +40,7 @@ public class PersonDetaileInfoActivity extends FragmentActivity {
 
 
     private PersonListInfo pInfo;
+    private String zjhm;
 
     private MyViewPager viewPager;
     private List<Fragment> fragmentList;
@@ -55,11 +56,12 @@ public class PersonDetaileInfoActivity extends FragmentActivity {
 
 
 
+
         viewPager= (MyViewPager) findViewById(R.id.vp_person_detail_info);
         tl= (TabLayout) findViewById(R.id.tl_person_detail_info);
         fragmentList=new ArrayList<>();
-        fragmentList.add(new BaseInfoFragment());//基本信息
-        fragmentList.add(new SameHjInfoFragment());//同户籍信息
+        fragmentList.add(BaseInfoFragment.newInstance(pInfo));//基本信息
+        fragmentList.add(SameHjInfoFragment.newInstance(pInfo));//同户籍信息
         fragmentList.add(new LdjlFragment());//劳动经历
         fragmentList.add(StudyJlFragment.newInstance(pInfo));//学习经历
         fragmentList.add(BtInfoFragment.newInstance(pInfo));//补贴信息

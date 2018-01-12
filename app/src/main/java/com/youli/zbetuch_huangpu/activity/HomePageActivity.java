@@ -121,10 +121,10 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
                         return;
                     }
 
-                    if(!getImei(adminInfo.getIMEI())){//获取IMEI号
-                        gpsHandler.removeCallbacks(rState);
-                        return;
-                    }
+//                    if(!getImei(adminInfo.getIMEI())){//获取IMEI号
+//                        gpsHandler.removeCallbacks(rState);
+//                        return;
+//                    }
 
                     getPic();//获取头像
                     getNum("WDGZ");//我的关注

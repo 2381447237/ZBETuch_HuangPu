@@ -137,6 +137,7 @@ public class PersonInfoListActivity extends BaseActivity{
 
                 Intent intent=new Intent(mContext,PersonDetaileInfoActivity.class);
                 intent.putExtra("pInfo",data.get(i-1));
+                intent.putExtra("zjhm",data.get(i-1).getZJHM());
                 startActivity(intent);
             }
         });

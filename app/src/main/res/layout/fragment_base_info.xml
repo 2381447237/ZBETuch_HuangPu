@@ -35,7 +35,6 @@
                     android:text="姓        名:"/>
 
                 <TextView
-                    android:text="沈文伟"
                     android:id="@+id/tv_person_info_name"
                     android:textSize="16sp"
                     android:layout_width="wrap_content"
@@ -57,8 +56,7 @@
                     android:text="性        别:"/>
 
                 <TextView
-                    android:text="男"
-                    android:id="@+id/tv_person_info_sex"
+                    android:id="@+id/tv_fag_sex"
                     android:textSize="16sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -91,7 +89,6 @@
                     android:text="出生日期:"/>
 
                 <TextView
-                    android:text="1983-12-23"
                     android:id="@+id/tv_person_info_birthday"
                     android:textSize="16sp"
                     android:layout_width="wrap_content"
@@ -113,7 +110,6 @@
                     android:text="民        族:"/>
 
                 <TextView
-                    android:text="汉"
                     android:id="@+id/tv_person_info_nation"
                     android:textSize="16sp"
                     android:layout_width="wrap_content"
@@ -147,7 +143,6 @@
                     android:text="籍        贯:"/>
 
                 <TextView
-                    android:text="上海"
                     android:id="@+id/tv_person_info_jiguan"
                     android:textSize="16sp"
                     android:layout_width="wrap_content"
@@ -169,7 +164,6 @@
                     android:text="状        态:"/>
 
                 <TextView
-                    android:text="无业"
                     android:id="@+id/tv_person_info_state"
                     android:textSize="16sp"
                     android:layout_width="wrap_content"
@@ -206,7 +200,6 @@
                     android:text="文化程度:"/>
 
                 <TextView
-                    android:text="中专毕业"
                     android:id="@+id/tv_person_info_edu"
                     android:textSize="16sp"
                     android:layout_width="wrap_content"
@@ -228,7 +221,6 @@
                     android:text="联系电话:"/>
 
                 <TextView
-                    android:text="13112341234"
                     android:id="@+id/tv_person_info_md"
                     android:singleLine="true"
                     android:textSize="16sp"
@@ -268,7 +260,6 @@
                     android:text="街        道:"/>
 
                 <TextView
-                    android:text="南京东路街道"
                     android:id="@+id/tv_person_info_jd"
                     android:textSize="16sp"
                     android:layout_width="wrap_content"
@@ -290,7 +281,6 @@
                     android:text="居        委:"/>
 
                 <TextView
-                    android:text="三德居委"
                     android:id="@+id/tv_person_info_jwh"
                     android:singleLine="true"
                     android:textSize="16sp"
@@ -322,8 +312,7 @@
                 android:text="身  份  证:"/>
 
             <TextView
-                android:text="000000198312230005"
-                android:id="@+id/tv_person_info_sfz"
+                android:id="@+id/tv_person_info_sfzz"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -349,7 +338,6 @@
                 android:text="户口地址:"/>
 
             <TextView
-                android:text="山海关路153弄2号"
                 android:id="@+id/tv_person_info_huji"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
@@ -382,7 +370,6 @@
                 android:text="联系地址:"/>
 
             <TextView
-                android:text="上海市黄浦区南京街道三德居委山海关路153弄2号"
                 android:id="@+id/tv_person_info_juzhu"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
@@ -413,7 +400,6 @@
                 android:text="摸底情况:"/>
 
             <TextView
-                android:text="有劳动收入"
                 android:id="@+id/tv_person_info_phone"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
@@ -442,7 +428,6 @@
                 android:text="当前意向:"/>
 
             <TextView
-                android:text="就业条件一般"
                 android:id="@+id/tv_person_info_curr_intent"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
@@ -474,7 +459,7 @@
                 android:text="劳动经历就业终止日期:"/>
 
             <TextView
-                android:text="2018-01-10"
+                android:id="@+id/tv_ldzzrq"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -503,7 +488,7 @@
                 android:text="失业月数:"/>
 
             <TextView
-                android:text="30"
+               android:id="@+id/tv_shiyeys"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -533,7 +518,7 @@
                 android:text="目前档案所在地:"/>
 
             <TextView
-                android:text="上海市"
+                android:id="@+id/tv_mqdaszd"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

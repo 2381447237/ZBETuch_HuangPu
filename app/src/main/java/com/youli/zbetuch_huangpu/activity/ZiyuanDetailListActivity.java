@@ -318,6 +318,8 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
                     juWeiTv.setText(data.get(position).getHJJWMC());
                     TextView hkdzTv = holder.getView(R.id.item_ziyuan_detail_hkdz_tv);
                     hkdzTv.setText(data.get(position).getHKDZ());
+//                    TextView jiezhi_tv=holder.getView(R.id.item_ziyuan_detail_jiezhiriqi_tv);
+//                    jiezhi_tv.setText();
 
 
                     LinearLayout ll = holder.getView(R.id.item_ziyuan_detail_ll);
