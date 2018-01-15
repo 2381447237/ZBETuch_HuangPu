@@ -87,7 +87,7 @@
         android:fastScrollEnabled="false"
         android:footerDividersEnabled="true"
         android:smoothScrollbar="true"
-        ptr:ptrAnimationStyle="rotate"></com.handmark.pulltorefresh.library.PullToRefreshListView>
+        ptr:ptrAnimationStyle="rotate"/>
 
 
     <TextView
@@ -97,6 +97,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-       android:text="没有数据"></TextView>
+       android:text="没有数据"/>
 
 </LinearLayout>

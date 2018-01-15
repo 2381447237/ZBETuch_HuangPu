@@ -59,6 +59,7 @@ public class PersonDetaileInfoActivity extends FragmentActivity {
     private final int OVERTIME=10004;//登录超时
 
     private PersonListInfo pInfo;
+    private String zjhm;
 
     private MyViewPager viewPager;
     private List<Fragment> fragmentList;
@@ -126,6 +127,7 @@ public class PersonDetaileInfoActivity extends FragmentActivity {
         sfzTv= (TextView) findViewById(R.id.tv_person_detail_info_sfz);
 
 
+<<<<<<< HEAD
         if(pInfo!=null) {
 
             nameTv.setText(appendSpace(pInfo.getXM()));
@@ -150,6 +152,14 @@ public class PersonDetaileInfoActivity extends FragmentActivity {
         fragmentList.add(new BaseInfoFragment());//基本信息
         fragmentList.add(new SameHjInfoFragment());//同户籍信息
         fragmentList.add(LdjlFragment.newInstance(pInfo));//劳动经历
+=======
+        viewPager= (MyViewPager) findViewById(R.id.vp_person_detail_info);
+        tl= (TabLayout) findViewById(R.id.tl_person_detail_info);
+        fragmentList=new ArrayList<>();
+        fragmentList.add(BaseInfoFragment.newInstance(pInfo));//基本信息
+        fragmentList.add(SameHjInfoFragment.newInstance(pInfo));//同户籍信息
+        fragmentList.add(new LdjlFragment());//劳动经历
+>>>>>>> 62e23e482b758b899f6c839822fedbcf5027e3b2
         fragmentList.add(StudyJlFragment.newInstance(pInfo));//学习经历
         fragmentList.add(BtInfoFragment.newInstance(pInfo));//补贴信息
         fragmentList.add(new YbInfoFragment());//医保信息

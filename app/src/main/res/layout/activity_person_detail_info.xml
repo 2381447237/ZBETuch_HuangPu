@@ -200,10 +200,10 @@
         app:tabIndicatorHeight="2dp"
         app:tabMode="scrollable"
         app:tabGravity="fill"
-        ></android.support.design.widget.TabLayout>
+        />
     <com.youli.zbetuch_huangpu.view.MyViewPager
         android:id="@+id/vp_person_detail_info"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"></com.youli.zbetuch_huangpu.view.MyViewPager>
+        android:layout_weight="1"/>
 </LinearLayout>
