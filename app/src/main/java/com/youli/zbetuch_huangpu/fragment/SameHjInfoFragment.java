@@ -75,15 +75,28 @@ public class SameHjInfoFragment extends BaseVpFragment{
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case SUCCESS_HUJI:
-                    hujiData.addAll((List<HouseholdInfo.FamilyAddressInfoList>)msg.obj);
-                    data.add(new HouseholdInfo(true, "户籍地址:", hujiData));
+                    if (TextUtils.equals(pInfo.getHJDZ(),"")){
+                        tv_wu.setVisibility(View.VISIBLE);
+                    }else {
+                        hujiData.addAll((List<HouseholdInfo.FamilyAddressInfoList>)msg.obj);
+                        data.add(new HouseholdInfo(true, "户籍地址:", hujiData));
+                        tv_wu.setVisibility(View.GONE);
+                    }
+
                      getAdapder(data);
                     getJuzhuInfo();
                 break;
 
                 case SUCCESS_JUZHU:
-                    lianxiData.addAll((List<HouseholdInfo.FamilyAddressInfoList>)msg.obj);
-                    data.add(new HouseholdInfo(false, "居住地址:", lianxiData));
+
+                    if (TextUtils.equals(pInfo.getLXDZ(),"")){
+                        tv_wu.setVisibility(View.VISIBLE);
+                    }else {
+                        lianxiData.addAll((List<HouseholdInfo.FamilyAddressInfoList>)msg.obj);
+                        data.add(new HouseholdInfo(false, "现住址:", lianxiData));
+                        tv_wu.setVisibility(View.GONE);
+                    }
+
                     if(getActivity()!=null) {
                         getAdapder(data);
                     }
@@ -124,16 +137,7 @@ public class SameHjInfoFragment extends BaseVpFragment{
 
         lv= (ListView) view.findViewById(R.id.lv_fmt_family_info);
         tv_wu= (TextView) view.findViewById(R.id.tv_wu);
-
-
-        if (TextUtils.equals(pInfo.getHJDZ(),"") && TextUtils.equals(pInfo.getLXDZ(),"")){
-            tv_wu.setVisibility(View.VISIBLE);
-        }else {
             networkData();
-            tv_wu.setVisibility(View.GONE);
-
-        }
-
         getAdapder(data);
     }
 
