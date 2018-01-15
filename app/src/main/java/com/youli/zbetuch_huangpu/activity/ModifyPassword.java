@@ -1,6 +1,8 @@
 package com.youli.zbetuch_huangpu.activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -105,9 +107,8 @@ public class ModifyPassword extends BaseActivity implements View.OnClickListener
                     return;
                 }
 
+                changPwdDialog();
 
-                //修改密码
-                changPwd();
                 break;
             case R.id.btn_change_pwd_cancel:
                 finish();
@@ -115,6 +116,33 @@ public class ModifyPassword extends BaseActivity implements View.OnClickListener
         }
     }
 
+
+    private void changPwdDialog() {
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("温馨提示");
+        builder.setMessage("您确定要修改密码吗?");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                new Thread(
+                        new Runnable() {
+                            @Override
+                            public void run() {
+                                //修改密码
+                                changPwd();
+                            }
+                        }
+                ).start();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        builder.show();
+    }
 
     /*
     *http://web.youli.pw:89/Json/Set_Pwd.aspx?pwd=123&new_pwd=321

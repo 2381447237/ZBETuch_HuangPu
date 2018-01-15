@@ -89,6 +89,7 @@
         android:smoothScrollbar="true"
         ptr:ptrAnimationStyle="rotate"></com.handmark.pulltorefresh.library.PullToRefreshListView>
 
+
     <TextView
         android:visibility="gone"
        android:gravity="center"

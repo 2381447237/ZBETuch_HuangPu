@@ -186,7 +186,12 @@ public class StudyJlFragment extends BaseVpFragment implements ScrollViewListene
     }
 
     private void initDatas(final int pIndex){
-
+        if(pInfo==null){
+            if(psv.isRefreshing()) {
+                psv.onRefreshComplete();//停止刷新或加载更多
+            }
+            return;
+        }
         //http://web.youli.pw:8088/Json/Get_grxxjlxx.aspx?sfz=110101196212083069
         new Thread(
 

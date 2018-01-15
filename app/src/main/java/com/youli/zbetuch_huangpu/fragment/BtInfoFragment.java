@@ -176,7 +176,12 @@ public class BtInfoFragment extends BaseVpFragment{
     }
 
     private void initDatas(final int pIndex){
-
+        if(pInfo==null){
+            if(lv.isRefreshing()) {
+                lv.onRefreshComplete();//停止刷新或加载更多
+            }
+            return;
+        }
         //http://web.youli.pw:8088/Json/Get_grbtxx.aspx?sfz=110101196212083069
         new Thread(
 

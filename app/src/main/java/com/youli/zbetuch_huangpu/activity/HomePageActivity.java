@@ -22,11 +22,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.youli.zbetuch_huangpu.R;
 import com.youli.zbetuch_huangpu.entity.AdminInfo;
 import com.youli.zbetuch_huangpu.entity.MyFollowInfo;
@@ -83,6 +86,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
     private ImageView zydcIv;//资源调查
     private TextView tvJdu,tvWdu,tvGdu;//经度，纬度，高度
 
+    private PullToRefreshScrollView psv;
     private RelativeLayout inspectorRl;
     private TextView titieTv,wdgzNumTv;//我的关注的数量
     private TextView tzggNumTv;//通知公告的数量
@@ -132,10 +136,15 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
                     break;
 
                 case PROBLEM:
+                    if(psv.isRefreshing()) {
+                        psv.onRefreshComplete();//停止刷新或加载更多
+                    }
                     Toast.makeText(mContext, "网络不给力", Toast.LENGTH_SHORT).show();
                     break;
                 case OVERTIME:
-
+                    if(psv.isRefreshing()) {
+                        psv.onRefreshComplete();//停止刷新或加载更多
+                    }
                     Intent i=new Intent(mContext,OvertimeDialogActivity.class);
                     startActivity(i);
 
@@ -188,6 +197,11 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
                     break;
 
                 case SUCCESS_DCDB_NUM://督察督办的数量
+
+                    if(psv.isRefreshing()) {
+                        psv.onRefreshComplete();//停止刷新或加载更多
+                    }
+
                     if(!TextUtils.equals("0",""+msg.obj)) {
                         dcdbNumTv.setText("" + msg.obj);
                         dcdbNumTv.setVisibility(View.VISIBLE);
@@ -236,8 +250,6 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
         gpsHandler.post(rState);
         initViews();
 
-
-
     }
 
 
@@ -278,12 +290,20 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
         getYzy();//获取是否援助员
 
+
+        psv= (PullToRefreshScrollView) findViewById(R.id.psv_homepage);
+        psv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ScrollView>() {
+            @Override
+            public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+
+                getNum("WDGZ");//我的关注
+
+            }
+        });
     }
 
     private void getYzy(){
         new Thread(
-
-
                 new Runnable() {
                     @Override
                     public void run() {

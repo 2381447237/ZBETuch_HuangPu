@@ -181,7 +181,7 @@ public class PersonInfoListActivity extends BaseActivity{
                             Log.e("2018-1-4","url="+url);
 
                         }else{
-                          //  http://web.youli.pw:8088/Json/Get_BASIC_INFORMATION.aspx?sfz=310102197209103215
+                          //  http://web.youli.pw:8088/Json/Get_BASIC_INFORMATION.aspx?sfz=110102196901201936
                             url=MyOkHttpUtils.BaseUrl+"/Json/Get_BASIC_INFORMATION.aspx?sfz="+sfzStr;
                         }
                         Response response=MyOkHttpUtils.okHttpGet(url);

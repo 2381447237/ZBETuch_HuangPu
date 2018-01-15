@@ -191,6 +191,8 @@
         <activity android:name=".activity.PersonDetaileInfoActivity"
             android:screenOrientation="portrait" /><!--个人信息-->
 
+        <activity android:name=".activity.DataTongjiActivity"
+            android:screenOrientation="portrait" /><!--数据统计-->
 
     </application>
 

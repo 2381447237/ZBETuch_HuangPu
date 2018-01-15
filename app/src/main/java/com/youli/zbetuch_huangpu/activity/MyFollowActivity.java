@@ -1,6 +1,8 @@
 package com.youli.zbetuch_huangpu.activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,6 +25,7 @@ import com.youli.zbetuch_huangpu.adapter.CommonAdapter;
 import com.youli.zbetuch_huangpu.entity.CommonViewHolder;
 import com.youli.zbetuch_huangpu.entity.InspectorInfo;
 import com.youli.zbetuch_huangpu.entity.MyFollowInfo;
+import com.youli.zbetuch_huangpu.entity.PersonListInfo;
 import com.youli.zbetuch_huangpu.entity.ZhiwuInfo;
 import com.youli.zbetuch_huangpu.utils.MyOkHttpUtils;
 
@@ -47,8 +50,10 @@ public class MyFollowActivity extends BaseActivity{
 
     private final int SUCCEED=10001;
     private final int SUCCEED_NODATA=10002;
-    private final int  PROBLEM=10003;
-    private final int OVERTIME=10004;//登录超时
+    private final int SUCCEED_FOLLOW=10003;
+    private final int SUCCEED_PINFO=10004;
+    private final int  PROBLEM=10005;
+    private final int OVERTIME=10006;//登录超时
 
 
     private PullToRefreshListView lv;
@@ -62,6 +67,8 @@ public class MyFollowActivity extends BaseActivity{
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+
+            Intent i;
 
             switch (msg.what){
 
@@ -88,12 +95,29 @@ public class MyFollowActivity extends BaseActivity{
                     break;
                 case OVERTIME:
 
-                    Intent i=new Intent(mContext,OvertimeDialogActivity.class);
+                    i=new Intent(mContext,OvertimeDialogActivity.class);
                     startActivity(i);
 
 
                     break;
 
+                case SUCCEED_FOLLOW:
+
+                    if(TextUtils.equals(msg.obj+"","True")){
+
+                        data.remove(msg.arg1);
+                        adapter.notifyDataSetChanged();
+
+                    }
+
+                    break;
+
+                case SUCCEED_PINFO:
+                            i=new Intent(mContext,PersonDetaileInfoActivity.class);
+                            i.putExtra("pInfo",((List<PersonListInfo>)msg.obj).get(0));
+                            startActivity(i);
+
+                    break;
 
             }
 
@@ -197,7 +221,7 @@ public class MyFollowActivity extends BaseActivity{
 
             adapter=new CommonAdapter<MyFollowInfo>(mContext,list,R.layout.item_my_follow_lv) {
                 @Override
-                public void convert(CommonViewHolder holder, MyFollowInfo item, int position) {
+                public void convert(CommonViewHolder holder, MyFollowInfo item, final int position) {
 
                     TextView noTv=holder.getView(R.id.item_my_follow_number_tv);//编号
                     noTv.setText((position+1)+"");
@@ -210,7 +234,10 @@ public class MyFollowActivity extends BaseActivity{
                     detailsBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Toast.makeText(mContext,"查看详情",Toast.LENGTH_SHORT).show();
+
+
+                            //获取个人信息
+                            getPinfo(position);
                         }
                     });
 
@@ -218,7 +245,7 @@ public class MyFollowActivity extends BaseActivity{
                     cancelBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Toast.makeText(mContext,"取消关注",Toast.LENGTH_SHORT).show();
+                            noFollowDialog(position);
                         }
                     });
 
@@ -245,4 +272,136 @@ public class MyFollowActivity extends BaseActivity{
         }
     }
 
+
+    private void noFollowDialog(final int position) {
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("温馨提示");
+        builder.setMessage("确定要取消关注吗?");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                new Thread(
+                        new Runnable() {
+                            @Override
+                            public void run() {
+                                noFollow(position);
+                            }
+                        }
+                ).start();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        builder.show();
+    }
+
+    //取消关注
+    private void noFollow(final int position){
+
+
+        new Thread(
+
+
+                new Runnable() {
+                    @Override
+                    public void run() {
+
+
+                        //  http://web.youli.pw:8088/Json/Set_Attention.aspx?sfz=000000196012110010&name=王建成&type=1
+                        String    url=MyOkHttpUtils.BaseUrl+"/Json/Set_Attention.aspx?sfz="+data.get(position).getSFZ()+"&name="+data.get(position).getNAME()+"&type=1";
+
+                        Response response=MyOkHttpUtils.okHttpGet(url);
+
+                        Message msg=Message.obtain();
+
+                        if(response!=null){
+
+                            try {
+                                String followStr=response.body().string();
+
+                                msg.obj=followStr;
+                                msg.what=SUCCEED_FOLLOW;
+                                msg.arg1=position;
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                msg.what=OVERTIME;
+
+                            }
+
+                        }else{
+
+                            msg.what=PROBLEM;
+
+                        }
+
+                        mHandler.sendMessage(msg);
+
+                    }
+                }
+
+
+        ).start();
+
+    }
+
+
+
+    //获取个人信息
+    private void getPinfo(final int position){
+
+
+        new Thread(
+
+
+                new Runnable() {
+                    @Override
+                    public void run() {
+
+                            //  http://web.youli.pw:8088/Json/Get_BASIC_INFORMATION.aspx?sfz=110102196901201936
+                        String    url=MyOkHttpUtils.BaseUrl+"/Json/Get_BASIC_INFORMATION.aspx?sfz="+data.get(position).getSFZ();
+
+                        Response response=MyOkHttpUtils.okHttpGet(url);
+
+                        Message msg=Message.obtain();
+
+                        if(response!=null){
+
+                            try {
+                                String pinfoStr=response.body().string();
+
+                                if(!TextUtils.equals(pinfoStr,"[]")&&!TextUtils.equals(pinfoStr,"[null]")){
+
+                                    Gson gson=new Gson();
+                                    msg.obj=gson.fromJson(pinfoStr,new TypeToken<List<PersonListInfo>>(){}.getType());
+                                    msg.what=SUCCEED_PINFO;
+                                }else{
+                                    msg.what=SUCCEED_NODATA;
+                                }
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                msg.what=OVERTIME;
+
+                            }
+
+                        }else{
+
+                            msg.what=PROBLEM;
+
+                        }
+
+                        mHandler.sendMessage(msg);
+
+                    }
+                }
+
+
+        ).start();
+
+    }
 }

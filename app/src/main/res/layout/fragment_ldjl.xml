@@ -6,7 +6,7 @@
     xmlns:ptr="http://schemas.android.com/tools">
 
     <com.youli.zbetuch_huangpu.view.MyHorizontalScrollView
-        android:id="@+id/hsv_fragment_study_jl_title"
+        android:id="@+id/hsv_fragment_ldjl_title"
         android:overScrollMode="never"
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -115,7 +115,7 @@
 
     <com.handmark.pulltorefresh.library.PullToRefreshScrollView
         android:scrollbars="none"
-        android:id="@+id/psv_study_jl"
+        android:id="@+id/psv_ldjl"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -128,7 +128,7 @@
         <com.youli.zbetuch_huangpu.view.MyHorizontalScrollView
             android:overScrollMode="never"
             android:scrollbars="none"
-            android:id="@+id/hsv_fragment_study_jl_content"
+            android:id="@+id/hsv_fragment_ldjl_content"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">

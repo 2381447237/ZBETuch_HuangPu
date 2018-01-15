@@ -100,8 +100,8 @@
 
 
     <!--android:background="@drawable/bjjm"-->
-    <ScrollView
-
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        android:id="@+id/psv_homepage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -361,7 +361,7 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
 
 
 
