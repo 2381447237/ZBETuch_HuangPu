@@ -30,6 +30,7 @@ import com.youli.zbetuch_huangpu.adapter.CommonAdapter;
 import com.youli.zbetuch_huangpu.entity.CommonViewHolder;
 import com.youli.zbetuch_huangpu.entity.ResourcesDetailInfo;
 import com.youli.zbetuch_huangpu.entity.ResourcesInfo;
+import com.youli.zbetuch_huangpu.utils.MyDateUtils;
 import com.youli.zbetuch_huangpu.utils.MyOkHttpUtils;
 import com.youli.zbetuch_huangpu.utils.ProgressDialogUtils;
 import com.youli.zbetuch_huangpu.view.MyListView;
@@ -237,7 +238,7 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
                             url = MyOkHttpUtils.BaseUrl + "/Json/Get_Resource_Survey_Detil_" + typeMark + ".aspx?page=0&rows=20&&dcId="+dcid+ "&type=" + typeId+ "&sfz=" + sfz;
                         }
 
-                        Log.e("2017/8/10","url=="+url);
+                        Log.e("2017/8/100","url=="+url);
 
                         Response response= MyOkHttpUtils.okHttpGet(url);
 
@@ -318,8 +319,8 @@ public class ZiyuanDetailListActivity extends BaseActivity implements RadioGroup
                     juWeiTv.setText(data.get(position).getHJJWMC());
                     TextView hkdzTv = holder.getView(R.id.item_ziyuan_detail_hkdz_tv);
                     hkdzTv.setText(data.get(position).getHKDZ());
-//                    TextView jiezhi_tv=holder.getView(R.id.item_ziyuan_detail_jiezhiriqi_tv);
-//                    jiezhi_tv.setText();
+                    TextView jiezhi_tv=holder.getView(R.id.item_ziyuan_detail_jiezhiriqi_tv);
+                    jiezhi_tv.setText(MyDateUtils.stringToYMD(data.get(position).getJJ_DATE()));
 
 
                     LinearLayout ll = holder.getView(R.id.item_ziyuan_detail_ll);

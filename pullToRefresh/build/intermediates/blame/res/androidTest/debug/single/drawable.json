@@ -1,9 +1,10 @@
 [
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_top.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_top.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_top.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_top.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "F:\\asxm\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_bottom.xml",
         "source": "F:\\asxm\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_bottom.xml"
     },
@@ -14,5 +15,9 @@
     {
         "merged": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_top.xml",
         "source": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_top.xml"
+=======
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_bottom.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_bottom.xml"
+>>>>>>> 3fe0443b37290057f7cf34ca6c0ab41551acc602
     }
 ]

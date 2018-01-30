@@ -146,12 +146,16 @@ public class PersonDetaileInfoActivity extends FragmentActivity {
                 }
             }
         });
+<<<<<<< HEAD
 //        viewPager= (MyViewPager) findViewById(R.id.vp_person_detail_info);
 //        tl= (TabLayout) findViewById(R.id.tl_person_detail_info);
 //        fragmentList=new ArrayList<>();
 //        fragmentList.add(new BaseInfoFragment());//基本信息
 //        fragmentList.add(new SameHjInfoFragment());//同户籍信息
 //        fragmentList.add(LdjlFragment.newInstance(pInfo));//劳动经历
+=======
+
+>>>>>>> 3fe0443b37290057f7cf34ca6c0ab41551acc602
 
         viewPager= (MyViewPager) findViewById(R.id.vp_person_detail_info);
         tl= (TabLayout) findViewById(R.id.tl_person_detail_info);

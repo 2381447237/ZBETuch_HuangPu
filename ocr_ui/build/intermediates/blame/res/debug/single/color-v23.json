@@ -1,13 +1,14 @@
 [
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_default.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_tint_default.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_spinner.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_tint_spinner.xml"
     },
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_edittext.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_tint_edittext.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_btn_checkable.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_tint_btn_checkable.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_btn_colored_borderless_text_material.xml",
         "source": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_btn_colored_borderless_text_material.xml"
     },
@@ -54,20 +55,37 @@
     {
         "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_color_highlight_material.xml",
         "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_color_highlight_material.xml"
+=======
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_switch_track.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_tint_switch_track.xml"
     },
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_spinner.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_tint_spinner.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_color_highlight_material.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_color_highlight_material.xml"
     },
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_btn_colored_text_material.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_btn_colored_text_material.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_seek_thumb.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_tint_seek_thumb.xml"
     },
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_seek_thumb.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_tint_seek_thumb.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_btn_colored_text_material.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_btn_colored_text_material.xml"
+>>>>>>> 3fe0443b37290057f7cf34ca6c0ab41551acc602
     },
     {
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_switch_thumb.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_tint_switch_thumb.xml"
+    },
+    {
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_default.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_tint_default.xml"
+    },
+    {
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_btn_colored_borderless_text_material.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+<<<<<<< HEAD
         "merged": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_switch_thumb.xml",
         "source": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_tint_switch_thumb.xml"
     },
@@ -78,5 +96,9 @@
     {
         "merged": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_switch_track.xml",
         "source": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_tint_switch_track.xml"
+=======
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_edittext.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_tint_edittext.xml"
+>>>>>>> 3fe0443b37290057f7cf34ca6c0ab41551acc602
     }
 ]

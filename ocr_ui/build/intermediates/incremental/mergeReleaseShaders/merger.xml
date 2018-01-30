@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <merger version="3"><dataSet config="main"><source path="D:\android\e\asworkspace\ZBETuch_HuangPu\ocr_ui\src\main\shaders"/></dataSet><dataSet config="release"><source path="D:\android\e\asworkspace\ZBETuch_HuangPu\ocr_ui\src\release\shaders"/></dataSet></merger>
+=======
+<merger version="3"><dataSet config="main"><source path="F:\asxm\My\ZBETuch_HuangPu\ocr_ui\src\main\shaders"/></dataSet><dataSet config="release"><source path="F:\asxm\My\ZBETuch_HuangPu\ocr_ui\src\release\shaders"/></dataSet></merger>
+>>>>>>> 3fe0443b37290057f7cf34ca6c0ab41551acc602

@@ -1,9 +1,10 @@
 [
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
         "source": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
     },
@@ -14,5 +15,9 @@
     {
         "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
         "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
+=======
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
+>>>>>>> 3fe0443b37290057f7cf34ca6c0ab41551acc602
     }
 ]

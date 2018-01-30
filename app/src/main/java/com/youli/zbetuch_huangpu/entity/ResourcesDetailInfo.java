@@ -16,6 +16,8 @@ import java.io.Serializable;
 
 public class ResourcesDetailInfo implements Serializable {
 
+    private String JJ_DATE; //截止日期
+
     private int MDID;//名单ID(失业，无业，应届生)
 
     private int DCID;//调查ID(失业，无业，应届生)
@@ -100,6 +102,13 @@ public class ResourcesDetailInfo implements Serializable {
 
     private int RecordCount;
 
+    public String getJJ_DATE() {
+        return JJ_DATE;
+    }
+
+    public void setJJ_DATE(String JJ_DATE) {
+        this.JJ_DATE = JJ_DATE;
+    }
     public boolean isRHFL() {
         return RHFL;
     }

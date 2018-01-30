@@ -1,5 +1,6 @@
 [
     {
+<<<<<<< HEAD
         "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_btn_checkable.xml",
         "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_tint_btn_checkable.xml"
     },
@@ -14,12 +15,25 @@
     {
         "merged": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\switch_thumb_material_dark.xml",
         "source": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\switch_thumb_material_dark.xml"
+=======
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_btn_colored_borderless_text_material.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_btn_colored_borderless_text_material.xml"
     },
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_secondary_text_material_light.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_secondary_text_material_light.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_edittext.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_tint_edittext.xml"
     },
     {
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_btn_checkable.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_tint_btn_checkable.xml"
+>>>>>>> 3fe0443b37290057f7cf34ca6c0ab41551acc602
+    },
+    {
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_switch_track.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_tint_switch_track.xml"
+    },
+    {
+<<<<<<< HEAD
         "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_secondary_text_material_dark.xml",
         "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_secondary_text_material_dark.xml"
     },
@@ -90,20 +104,34 @@
     {
         "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_primary_text_disable_only_material_dark.xml",
         "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_primary_text_disable_only_material_dark.xml"
+=======
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_search_url_text.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_search_url_text.xml"
+>>>>>>> 3fe0443b37290057f7cf34ca6c0ab41551acc602
     },
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_primary_text_material_light.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_primary_text_material_light.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_primary_text_material_light.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_primary_text_material_light.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_hint_foreground_material_dark.xml",
         "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_hint_foreground_material_dark.xml"
+=======
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_seek_thumb.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_tint_seek_thumb.xml"
     },
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_search_url_text.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_search_url_text.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\switch_thumb_material_light.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\switch_thumb_material_light.xml"
+>>>>>>> 3fe0443b37290057f7cf34ca6c0ab41551acc602
     },
     {
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_secondary_text_material_light.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_secondary_text_material_light.xml"
+    },
+    {
+<<<<<<< HEAD
         "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_primary_text_material_dark.xml",
         "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_primary_text_material_dark.xml"
     },
@@ -114,16 +142,29 @@
     {
         "merged": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_btn_checkable.xml",
         "source": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_tint_btn_checkable.xml"
+=======
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_primary_text_disable_only_material_dark.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_primary_text_disable_only_material_dark.xml"
     },
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\switch_thumb_material_dark.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\switch_thumb_material_dark.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_primary_text_material_dark.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_primary_text_material_dark.xml"
     },
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_switch_thumb.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_tint_switch_thumb.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_hint_foreground_material_dark.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_hint_foreground_material_dark.xml"
+>>>>>>> 3fe0443b37290057f7cf34ca6c0ab41551acc602
     },
     {
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_primary_text_disable_only_material_light.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_primary_text_disable_only_material_light.xml"
+    },
+    {
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_hint_foreground_material_light.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_hint_foreground_material_light.xml"
+    },
+    {
+<<<<<<< HEAD
         "merged": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_switch_thumb.xml",
         "source": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_tint_switch_thumb.xml"
     },
@@ -150,13 +191,29 @@
     {
         "merged": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_spinner.xml",
         "source": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_tint_spinner.xml"
+=======
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_default.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_tint_default.xml"
     },
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_spinner.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_tint_spinner.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_switch_thumb.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_tint_switch_thumb.xml"
     },
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\switch_thumb_material_light.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\switch_thumb_material_light.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\switch_thumb_material_dark.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\switch_thumb_material_dark.xml"
+    },
+    {
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_btn_colored_text_material.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_btn_colored_text_material.xml"
+>>>>>>> 3fe0443b37290057f7cf34ca6c0ab41551acc602
+    },
+    {
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_spinner.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_tint_spinner.xml"
+    },
+    {
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\color\\abc_secondary_text_material_dark.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_secondary_text_material_dark.xml"
     }
 ]

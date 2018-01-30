@@ -1,10 +1,15 @@
 [
     {
+<<<<<<< HEAD
         "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\mipmap-xhdpi-v4\\ic_launcher.png",
         "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
     },
     {
         "merged": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\mipmap-xhdpi-v4\\ic_launcher.png",
         "source": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+=======
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\mipmap-xhdpi-v4\\ic_launcher.png",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+>>>>>>> 3fe0443b37290057f7cf34ca6c0ab41551acc602
     }
 ]

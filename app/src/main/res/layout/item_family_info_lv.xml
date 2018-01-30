@@ -4,36 +4,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-<LinearLayout
-    android:id="@+id/ll_item_family_info_title"
-    android:background="#afd0ec"
-    android:layout_marginTop="5dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+<!--<LinearLayout-->
+    <!--android:id="@+id/ll_item_family_info_title"-->
+    <!--android:background="#afd0ec"-->
+    <!--android:layout_marginTop="5dp"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="horizontal">-->
 
-    <ImageView
-        android:id="@+id/iv_item_family_info_title"
-        android:padding="5dp"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
+    <!--<ImageView-->
+        <!--android:id="@+id/iv_item_family_info_title"-->
+        <!--android:padding="5dp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--/>-->
 
-    <TextView
-        android:padding="5dp"
-        android:id="@+id/tv_item_family_info_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="内容"/>
+    <!--<TextView-->
+        <!--android:padding="5dp"-->
+        <!--android:id="@+id/tv_item_family_info_title"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="内容"/>-->
 
-</LinearLayout>
+<!--</LinearLayout>-->
 
 
-    <com.youli.zbetuch_huangpu.view.MyListView
-        android:background="#afd0ec"
-        android:id="@+id/lv_item_fmt_family_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.youli.zbetuch_huangpu.view.MyListView>
+    <!--<com.youli.zbetuch_huangpu.view.MyListView-->
+        <!--android:background="#afd0ec"-->
+        <!--android:id="@+id/lv_item_fmt_family_info"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+    <!--</com.youli.zbetuch_huangpu.view.MyListView>-->
+
+
+
+
 
 </LinearLayout>

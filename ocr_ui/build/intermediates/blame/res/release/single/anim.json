@@ -1,25 +1,31 @@
 [
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_out.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_fade_out.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_in.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_fade_in.xml"
     },
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_enter.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_popup_enter.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_enter.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_popup_enter.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_exit.xml",
         "source": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_popup_exit.xml"
     },
     {
         "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_exit.xml",
         "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_popup_exit.xml"
+=======
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_grow_fade_in_from_bottom.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+>>>>>>> 3fe0443b37290057f7cf34ca6c0ab41551acc602
     },
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_bottom.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_slide_in_bottom.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_bottom.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_slide_in_bottom.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_in.xml",
         "source": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_fade_in.xml"
     },
@@ -30,16 +36,21 @@
     {
         "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_bottom.xml",
         "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_slide_out_bottom.xml"
+=======
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_bottom.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_slide_out_bottom.xml"
+>>>>>>> 3fe0443b37290057f7cf34ca6c0ab41551acc602
     },
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_grow_fade_in_from_bottom.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_exit.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_popup_exit.xml"
     },
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_top.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_slide_out_top.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_out.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_fade_out.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_top.xml",
         "source": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_slide_out_top.xml"
     },
@@ -78,5 +89,17 @@
     {
         "merged": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_out.xml",
         "source": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_fade_out.xml"
+=======
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_top.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_slide_out_top.xml"
+    },
+    {
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_shrink_fade_out_from_bottom.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_top.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\ocr_ui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\anim\\abc_slide_in_top.xml"
+>>>>>>> 3fe0443b37290057f7cf34ca6c0ab41551acc602
     }
 ]

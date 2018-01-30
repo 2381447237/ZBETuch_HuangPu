@@ -1,13 +1,14 @@
 [
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\slide_out_to_top.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_out_to_top.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\slide_in_from_top.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_in_from_top.xml"
     },
     {
-        "merged": "F:\\asxm\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\slide_in_from_bottom.xml",
-        "source": "F:\\asxm\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_in_from_bottom.xml"
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\slide_out_to_bottom.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_out_to_bottom.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\slide_out_to_bottom.xml",
         "source": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_out_to_bottom.xml"
     },
@@ -30,5 +31,13 @@
     {
         "merged": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\slide_out_to_top.xml",
         "source": "D:\\android\\e\\asworkspace\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_out_to_top.xml"
+=======
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\slide_out_to_top.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_out_to_top.xml"
+    },
+    {
+        "merged": "F:\\asxm\\My\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\slide_in_from_bottom.xml",
+        "source": "F:\\asxm\\My\\ZBETuch_HuangPu\\pullToRefresh\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_in_from_bottom.xml"
+>>>>>>> 3fe0443b37290057f7cf34ca6c0ab41551acc602
     }
 ]
