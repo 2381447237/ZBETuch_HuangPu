@@ -795,8 +795,6 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
        // http://web.youli.pw:8088/Json/GetStaffPic.aspx?staff=1
         new Thread(
 
-
-
                 new Runnable() {
                     @Override
                     public void run() {
