@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/item_my_follow_l11"
+    >
+
+    <LinearLayout
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:textColor="#666666"
+            android:id="@+id/tv_item_zpgl1"
+            android:paddingLeft="3dp"
+            style="@style/resources_main_title"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:textColor="#666666"
+            android:paddingLeft="15dp"
+            android:id="@+id/tv_item_zpgl2"
+            style="@style/resources_main_title"
+            android:layout_weight="5"
+            />
+
+        <TextView
+            android:textColor="#666666"
+            android:paddingLeft="10dp"
+            android:id="@+id/tv_item_zpgl3"
+            style="@style/resources_main_title"
+            android:layout_weight="2"
+           />
+        <TextView
+            android:textColor="#666666"
+            android:paddingLeft="10dp"
+            android:id="@+id/tv_item_zpgl4"
+            style="@style/resources_main_title"
+            android:layout_weight="3"
+            />
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#A9C6C9"/>
+
+</LinearLayout>

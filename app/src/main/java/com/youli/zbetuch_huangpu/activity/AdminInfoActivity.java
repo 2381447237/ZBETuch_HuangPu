@@ -10,6 +10,7 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +61,7 @@ public class AdminInfoActivity extends BaseActivity implements View.OnClickListe
     private TextView tvJdu;//经度
     private TextView tvWdu;//纬度
     private TextView tvWx;//卫星数量
+    private RelativeLayout  password_xg;
 
     private AdminInfo aInfo;
 
@@ -112,7 +114,14 @@ public class AdminInfoActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void initViews(){
-
+        password_xg= (RelativeLayout) findViewById(R.id.rela_mmxg);
+        password_xg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent=new Intent(mContext,ModifyPassword.class);//修改密码
+                startActivity(intent);
+            }
+        });
         ivBack= (ImageView) findViewById(R.id.iv_admin_info_back);
         ivBack.setOnClickListener(this);
         ivHead= (CircleImageView) findViewById(R.id.iv_admin_info_head);

@@ -94,22 +94,15 @@ public class MyFollowActivity extends BaseActivity{
                     }
                     break;
                 case OVERTIME:
-
                     i=new Intent(mContext,OvertimeDialogActivity.class);
                     startActivity(i);
-
-
                     break;
 
                 case SUCCEED_FOLLOW:
-
                     if(TextUtils.equals(msg.obj+"","True")){
-
                         data.remove(msg.arg1);
                         adapter.notifyDataSetChanged();
-
                     }
-
                     break;
 
                 case SUCCEED_PINFO:

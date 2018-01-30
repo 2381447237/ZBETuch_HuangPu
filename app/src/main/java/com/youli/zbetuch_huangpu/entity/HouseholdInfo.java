@@ -11,42 +11,42 @@ import java.util.List;
 public class HouseholdInfo {
 
 
-    private String title;
-
-    private boolean isChecked;
-
-    public boolean isChecked() {
-        return isChecked;
-    }
-
-    public void setChecked(boolean checked) {
-        isChecked = checked;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-
-    private List<FamilyAddressInfoList> list;
-
-    public List<FamilyAddressInfoList> getList() {
-        return list;
-    }
-
-    public void setList(List<FamilyAddressInfoList> list) {
-        this.list = list;
-    }
-
-    public HouseholdInfo(boolean isChecked, String title, List<FamilyAddressInfoList> list) {
-        this.isChecked = isChecked;
-        this.title = title;
-        this.list = list;
-    }
+//    private String title;
+//
+//    private boolean isChecked;
+//
+//    public boolean isChecked() {
+//        return isChecked;
+//    }
+//
+//    public void setChecked(boolean checked) {
+//        isChecked = checked;
+//    }
+//
+//    public String getTitle() {
+//        return title;
+//    }
+//
+//    public void setTitle(String title) {
+//        this.title = title;
+//    }
+//
+//
+//    private List<FamilyAddressInfoList> list;
+//
+//    public List<FamilyAddressInfoList> getList() {
+//        return list;
+//    }
+//
+//    public void setList(List<FamilyAddressInfoList> list) {
+//        this.list = list;
+//    }
+//
+//    public HouseholdInfo(boolean isChecked, String title, List<FamilyAddressInfoList> list) {
+//        this.isChecked = isChecked;
+//        this.title = title;
+//        this.list = list;
+//    }
 
     /**
      * ZJHM : 31010119840107108X* XM : 尤海晴* GRPID : 200207114864280* CSDATE : 19840107
@@ -61,7 +61,7 @@ public class HouseholdInfo {
      * LXDZ_ROOMNO :* SFCJR :* JLCJSJ : 2017-11-02T10:05:25.333* JLGXSJ : 2017-11-02T10:05:25.333* ISVALID : tru* RecordCount : 0
      * * GetPhotoUrl : ../../img/ooopic_1369286910.png* CSDATE1 : 1984-01-07T00:00:00
      */
-    public static class FamilyAddressInfoList {
+//    public static class FamilyAddressInfoList {
         private String ZJHM;
         private String XM;
         private String GRPID;
@@ -611,5 +611,5 @@ public class HouseholdInfo {
         public void setCSDATE1(String CSDATE1) {
             this.CSDATE1 = CSDATE1;
         }
-    }
+//    }
 }

@@ -74,7 +74,6 @@ public class LdjlFragment extends BaseVpFragment implements ScrollViewListener{
         Bundle bundle=new Bundle();
         bundle.putSerializable("pInfo",p);
         fragment.setArguments(bundle);
-
         return  fragment;
     }
 
@@ -123,10 +122,7 @@ public class LdjlFragment extends BaseVpFragment implements ScrollViewListener{
                     }
 
                     break;
-
-
             }
-
         }
     };
 

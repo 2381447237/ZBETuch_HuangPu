@@ -84,6 +84,7 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
     private ImageView inspectorIv;//督察督办
     private ImageView myFollowIv;//我的关注
     private ImageView zydcIv;//资源调查
+    private ImageView zyjsIv;//职业介绍
     private TextView tvJdu,tvWdu,tvGdu;//经度，纬度，高度
 
     private PullToRefreshScrollView psv;
@@ -274,6 +275,8 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
         myFollowIv.setOnClickListener(this);
         zydcIv= (ImageView) findViewById(R.id.homepage_zydc_iv);
         zydcIv.setOnClickListener(this);
+        zyjsIv= (ImageView) findViewById(R.id.homepage_my_follow_zyjs);
+        zyjsIv.setOnClickListener(this);
         workBtn = (Button) findViewById(R.id.main_layout_work_btn);
         workBtn.setOnClickListener(this);
         tvJdu= (TextView) findViewById(R.id.main_layout_tv_jdu);
@@ -572,6 +575,11 @@ public class HomePageActivity extends CheckPermissionsActivity implements View.O
 
             case R.id.homepage_zydc_iv://资源调查
                 intent=new Intent(this,FunctionListActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.homepage_my_follow_zyjs://职业介绍
+                intent=new Intent(this,OccupationActivity.class);
                 startActivity(intent);
                 break;
         }

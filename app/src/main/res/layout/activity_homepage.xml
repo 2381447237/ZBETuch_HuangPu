@@ -133,7 +133,11 @@
                         android:id="@+id/homepage_zydc_iv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/zydc1"/>
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:src="@drawable/zydc5" />
+
                     <TextView
                         android:layout_marginRight="100dp"
                         android:singleLine="true"
@@ -145,6 +149,42 @@
                         android:layout_height="wrap_content"
                         android:textColor="#ffffff"/>
 
+
+                </RelativeLayout>
+//---
+                <RelativeLayout
+                    android:paddingBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <ImageView
+                        android:id="@+id/homepage_my_follow_zyjs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/zyjs"/>
+
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/wdgz_num_zyjs"
+                        android:layout_marginLeft="200dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:background="@drawable/homepage_num_shape"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_marginRight="100dp"
+                        android:singleLine="true"
+                        android:paddingBottom="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="20sp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffffff"/>
 
                 </RelativeLayout>
 

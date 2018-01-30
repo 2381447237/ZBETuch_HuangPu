@@ -2,5 +2,7 @@
     <string name="app_name">黄浦区社区就业保障服务信息管理系统</string>
     <!--<string name="title">社区就业保障服务系统</string>-->
     <string name="title">黄浦区社区就业保障服务信息管理系统</string>
+    <string name="zyjs_title">职业介绍</string>
     <string name="spinner_title">请选择</string>
+    <string name="zpgl_title">招聘管理</string>
 </resources>

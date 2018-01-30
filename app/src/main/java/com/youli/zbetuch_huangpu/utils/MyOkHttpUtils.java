@@ -21,8 +21,9 @@ public class MyOkHttpUtils {
     //mdiatype 这个需要和服务端保持一致
     private static final MediaType MEDIA_TYPE_JSON = MediaType.parse("application/x-www-form-urlencoded; charset=utf-8");
 
-    public static final String BaseUrl="http://web.youli.pw:8088";
-    //public static final String BaseUrl="http://192.168.191.1:89";
+    //public static final String BaseUrl="http://web.youli.pw:8088";
+    public static final String BaseUrl="http://192.168.43.217:8088";
+    //public static final String BaseUrll="http://192.168.191.1:89";
     public static OkHttpClient okHttpClient=null;
 
     static String cookies;

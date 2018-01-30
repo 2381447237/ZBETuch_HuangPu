@@ -61,7 +61,6 @@
             android:id="@+id/item_ziyuan_detail_jiezhiriqi_tv"
             style="@style/gradeate_list_titletext"
             android:layout_width="120dp"
-             android:text="2018.11.25"
             android:gravity="center"
             android:layout_height="wrap_content"
             />

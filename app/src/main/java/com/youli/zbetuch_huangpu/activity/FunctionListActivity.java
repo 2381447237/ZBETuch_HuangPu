@@ -90,14 +90,15 @@ public class FunctionListActivity extends BaseActivity {
                                     intent=new Intent(mContext, PersonalInfoQuery.class);//个人信息
                                     startActivity(intent);
                                     break;
+//                                case 5:
+//                                    intent=new Intent(mContext,ModifyPassword.class);//修改密码
+//                                    startActivity(intent);
+//                                    break;
                                 case 5:
-                                    intent=new Intent(mContext,ModifyPassword.class);//修改密码
-                                    startActivity(intent);
-                                    break;
-                                case 6:
                                     intent=new Intent(mContext,DataTongjiActivity.class);//数据统计
                                     startActivity(intent);
                                     break;
+
                             }
                             break;
 
@@ -126,7 +127,8 @@ public class FunctionListActivity extends BaseActivity {
 
         myIcons = new int[]{
                 R.drawable.zydc,R.drawable.zxdc,R.drawable.zzcx,
-                R.drawable.ccs,R.drawable.gerenxinxi,R.drawable.xgmm,R.drawable.sjtj};
+                R.drawable.ccs,R.drawable.gerenxinxi,
+                R.drawable.sjtj};
 //                R.drawable.zpxx, R.drawable.tjbb,
 //                R.drawable.yjbys, R.drawable.zzdc, R.drawable.xcms,
 //                R.drawable.sstj,  R.drawable.grsjzx, R.drawable.gglb,
